@@ -173,7 +173,7 @@ export class RegisterForm extends React.Component {
                         style={{ width: '100%' }}
                         type="submit"
                     >
-                        Regiister (ENTER)
+                        Register (ENTER)
                     </Field>
                 </div>
                 <div style={{ textAlign: 'center' }}>
