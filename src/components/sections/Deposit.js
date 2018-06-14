@@ -163,7 +163,7 @@ export class Deposit extends Component {
                         className="btn number cancel"
                         onClick={() => {
                             this.props.resetAmount();
-                            this.props.toggleVisibility(true);
+                            this.props.closeModal();
                         }}
                     >
                         Cancel
@@ -191,7 +191,7 @@ export class Deposit extends Component {
                                 token={this.props.token}
                                 increaseBalance={this.props.increaseBalance}
                                 resetAmount={this.props.resetAmount}
-                                toggleVisibility={this.props.toggleVisibility}
+                                closeModal={this.props.closeModal}
                                 toggleConfirmationVisibility={
                                     this.props.toggleConfirmationVisibility
                                 }

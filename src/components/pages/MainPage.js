@@ -46,7 +46,7 @@ class MainPage extends Component {
         case 100:
             event.preventDefault();
             this.props.showModal(Deposit, {
-                toggleVisibility: this.props.closeModal
+                closeModal: this.props.closeModal
             });
             break;
         default:

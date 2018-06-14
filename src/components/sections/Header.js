@@ -23,7 +23,7 @@ export class Header extends React.Component {
                                 onClick={e => {
                                     e.preventDefault();
                                     this.props.showModal(Deposit, {
-                                        toggleVisibility: this.props.closeModal
+                                        closeModal: this.props.closeModal
                                     });
                                 }}
                                 fill
@@ -45,8 +45,7 @@ export class Header extends React.Component {
                         </Margin>
                         <Margin margin={5} inlineBlock>
                             <HeaderBtn onClick={this.props.logout} hover>
-                                <FontAwesome name="sign-out" /> Log out
-                                (ENTER)
+                                <FontAwesome name="sign-out" /> Log out (ENTER)
                             </HeaderBtn>
                         </Margin>
                     </div>

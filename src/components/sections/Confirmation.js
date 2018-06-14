@@ -31,7 +31,7 @@ export class Confirmation extends Component {
                             );
                             this.props.resetAmount();
                             this.props.toggleConfirmationVisibility(false);
-                            this.props.toggleVisibility(true);
+                            this.props.closeModal();
                         }}
                     >
                         OK
