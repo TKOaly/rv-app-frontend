@@ -17,7 +17,7 @@ export class Confirmation extends Component {
                     <button
                         className="btn number cancel cancelBtn"
                         onClick={() => {
-                            this.props.toggleConfirmationVisibility(true);
+                            this.props.toggleConfirmationVisibility(false);
                         }}
                     >
                         Cancel
@@ -30,7 +30,7 @@ export class Confirmation extends Component {
                                 this.props.depositAmount
                             );
                             this.props.resetAmount();
-                            this.props.toggleConfirmationVisibility(true);
+                            this.props.toggleConfirmationVisibility(false);
                             this.props.toggleVisibility(true);
                         }}
                     >

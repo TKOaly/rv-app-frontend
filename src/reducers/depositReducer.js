@@ -12,7 +12,7 @@ export const initialState = {
 export const toggleConfirmationVisibility = value => {
     return {
         type: depositActions.TOGGLE_CONFIRMATION_VISIBILITY,
-        value: !value
+        value: value
     };
 };
 

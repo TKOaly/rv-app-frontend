@@ -76,9 +76,7 @@ export class Deposit extends Component {
         } else if (cents === 0) {
             this.props.errorMessage('You cannot deposit 0 €.');
         } else {
-            this.props.toggleConfirmationVisibility(
-                this.props.confirmationVisibility
-            );
+            this.props.toggleConfirmationVisibility(true);
         }
     }
 
