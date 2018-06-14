@@ -16,7 +16,8 @@ import {
 } from './../../reducers/userReducer';
 import { getProducts, getCategories } from './../../reducers/productReducer';
 import userService from '../../services/userService';
-import { closeModal } from '../../reducers/modalReducer';
+import { closeModal, showModal } from '../../reducers/modalReducer';
+import Deposit from '../sections/Deposit';
 
 class MainPage extends Component {
     constructor(props) {
@@ -31,6 +32,7 @@ class MainPage extends Component {
 
     handleKeyPress(event) {
         switch (event.keyCode) {
+        // Enter
         case 13:
             if (
                 this.props.terminalInput === '' &&
@@ -39,6 +41,13 @@ class MainPage extends Component {
                 this.props.resetUserData();
                 this.props.logout();
             }
+            break;
+            // D
+        case 100:
+            event.preventDefault();
+            this.props.showModal(Deposit, {
+                toggleVisibility: this.props.closeModal
+            });
             break;
         default:
             break;
@@ -128,6 +137,7 @@ const mapDispatchToProps = {
     resetUserData,
     getProducts,
     closeModal,
+    showModal,
     getCategories
 };
 

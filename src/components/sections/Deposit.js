@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './styles/Deposit.css';
 import {
-    increaseAmount,
+    setAmountText,
     resetAmount,
     toggleConfirmationVisibility
 } from './../../reducers/depositReducer';
 import { increaseBalance } from './../../reducers/userReducer';
+import { errorMessage } from './../../reducers/notificationReducer';
 import { TransitionGroup } from 'react-transition-group';
 import { Fade } from './../animations/Animations';
 import Confirmation from './Confirmation';
@@ -14,81 +15,149 @@ import Confirmation from './Confirmation';
 export class Deposit extends Component {
     constructor(props) {
         super(props);
-        this.handleIncrementChange = this.handleIncrementChange.bind(this);
+        this.createIncrementHandler = this.createIncrementHandler.bind(this);
+        this.handleOK = this.handleOK.bind(this);
     }
 
-    handleIncrementChange(increment) {
+    static depositAmountTextToCents(text) {
+        if (text === '') {
+            return 0;
+        } else {
+            const matchResult = text.match(/^(\d+)[.,](\d{2})$/);
+
+            if (matchResult) {
+                return (
+                    parseInt(matchResult[1], 10) * 100 +
+                    parseInt(matchResult[2], 10)
+                );
+            } else {
+                return NaN;
+            }
+        }
+    }
+
+    static centsToDepositAmountText(cents) {
+        const paddedCentString = cents.toString().padStart(3, '0');
+        return paddedCentString.slice(0, -2) + '.' + paddedCentString.slice(-2);
+    }
+
+    componentDidMount() {
+        this.textField.focus();
+    }
+
+    componentWillUnmount() {}
+
+    createIncrementHandler(increment) {
         return event => {
             event.preventDefault();
-            this.props.increaseAmount(increment);
+            const cents = Deposit.depositAmountTextToCents(
+                this.props.depositAmountText
+            );
+            if (Number.isNaN(cents)) {
+                this.props.errorMessage(
+                    'Invalid deposit amount in text field. Use format 10.00'
+                );
+            } else {
+                this.props.setAmountText(
+                    Deposit.centsToDepositAmountText(cents + increment)
+                );
+            }
         };
+    }
+
+    handleOK() {
+        const cents = Deposit.depositAmountTextToCents(
+            this.props.depositAmountText
+        );
+        if (Number.isNaN(cents)) {
+            this.props.errorMessage(
+                'Invalid deposit amount in text field. Use format 10.00'
+            );
+        } else if (cents === 0) {
+            this.props.errorMessage('You cannot deposit 0 €.');
+        } else {
+            this.props.toggleConfirmationVisibility(
+                this.props.confirmationVisibility
+            );
+        }
     }
 
     render() {
         return (
             <div className="deposit-wrapper">
                 <div className="deposit">
-                    <div className="btn money">
-                        {parseFloat(this.props.depositAmount / 100).toFixed(2)}
-                        &euro;
+                    <div className="input-wrapper">
+                        <input
+                            className="input"
+                            type="text"
+                            placeholder="0.00"
+                            value={this.props.depositAmountText}
+                            onChange={event =>
+                                this.props.setAmountText(event.target.value)
+                            }
+                            ref={input => {
+                                this.textField = input;
+                            }}
+                        />
+                        <div className="euro-sign">€</div>
                     </div>
                     <button
-                        className="btn erase-btn erase"
+                        className="btn number erase"
                         onClick={this.props.resetAmount}
                     >
-                        &#9003;
+                        Tyhjennä
                     </button>
                     <button
                         className="btn number increment"
-                        onClick={this.handleIncrementChange(5)}
+                        onClick={this.createIncrementHandler(5)}
                     >
                         + 0.05 €
                     </button>
                     <button
                         className="btn number increment"
-                        onClick={this.handleIncrementChange(10)}
+                        onClick={this.createIncrementHandler(10)}
                     >
                         + 0.10 €
                     </button>
                     <button
                         className="btn number increment"
-                        onClick={this.handleIncrementChange(20)}
+                        onClick={this.createIncrementHandler(20)}
                     >
                         + 0.20 €
                     </button>
                     <button
                         className="btn number increment"
-                        onClick={this.handleIncrementChange(50)}
+                        onClick={this.createIncrementHandler(50)}
                     >
                         + 0.50 €
                     </button>
                     <button
                         className="btn number increment"
-                        onClick={this.handleIncrementChange(100)}
+                        onClick={this.createIncrementHandler(100)}
                     >
                         + 1.00 €
                     </button>
                     <button
                         className="btn number increment"
-                        onClick={this.handleIncrementChange(200)}
+                        onClick={this.createIncrementHandler(200)}
                     >
                         + 2.00 €
                     </button>
                     <button
                         className="btn number increment"
-                        onClick={this.handleIncrementChange(500)}
+                        onClick={this.createIncrementHandler(500)}
                     >
                         + 5.00 €
                     </button>
                     <button
                         className="btn number increment"
-                        onClick={this.handleIncrementChange(1000)}
+                        onClick={this.createIncrementHandler(1000)}
                     >
                         + 10.00 €
                     </button>
                     <button
                         className="btn number increment"
-                        onClick={this.handleIncrementChange(2000)}
+                        onClick={this.createIncrementHandler(2000)}
                     >
                         + 20.00 €
                     </button>
@@ -103,17 +172,13 @@ export class Deposit extends Component {
                     </button>
                     <button
                         className="btn number increment"
-                        onClick={this.handleIncrementChange(5000)}
+                        onClick={this.createIncrementHandler(5000)}
                     >
                         + 50.00 €
                     </button>
                     <button
                         className="btn number success"
-                        onClick={() => {
-                            this.props.toggleConfirmationVisibility(
-                                this.props.confirmationVisibility
-                            );
-                        }}
+                        onClick={this.handleOK}
                     >
                         OK
                     </button>
@@ -122,13 +187,13 @@ export class Deposit extends Component {
                     {this.props.confirmationVisibility && (
                         <Fade>
                             <Confirmation
-                                depositAmount={this.props.depositAmount}
+                                depositAmount={Deposit.depositAmountTextToCents(
+                                    this.props.depositAmountText
+                                )}
                                 token={this.props.token}
                                 increaseBalance={this.props.increaseBalance}
                                 resetAmount={this.props.resetAmount}
-                                toggleVisibility={
-                                    this.props.toggleVisibility
-                                }
+                                toggleVisibility={this.props.toggleVisibility}
                                 toggleConfirmationVisibility={
                                     this.props.toggleConfirmationVisibility
                                 }
@@ -142,16 +207,17 @@ export class Deposit extends Component {
 }
 
 const mapStateToProps = state => ({
-    depositAmount: state.deposit.depositAmount,
+    depositAmountText: state.deposit.depositAmountText,
     token: state.authentication.access_token,
     confirmationVisibility: state.deposit.confirmationVisibility
 });
 
 const mapDispatchToProps = {
-    increaseAmount,
+    setAmountText,
     resetAmount,
     increaseBalance,
-    toggleConfirmationVisibility
+    toggleConfirmationVisibility,
+    errorMessage
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Deposit);

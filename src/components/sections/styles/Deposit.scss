@@ -1,7 +1,7 @@
 @import "vars";
 
 .deposit-wrapper {
-  
+
   .deposit {
     position: relative;
     display: flex;
@@ -13,6 +13,40 @@
     border-radius: 5px;
     box-shadow: $box-shadow;
     overflow: hidden;
+  }
+
+  .input-wrapper {
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    height: 100px;
+    width: calc(100% - 100% / 3);
+    padding: 10px;
+    background-color: white;
+    border-left: 1px solid #aaa;
+    border-top: 1px solid #aaa;
+    border-bottom: none;
+    border-right: none;
+  }
+
+  .input {
+    flex-grow: 1;
+    height: 100%;
+    font-size: 2.3vw;
+    border-radius: 10px;
+    border: 1px solid #aaa;
+    color: black;
+    background-color: white;
+    text-align: center;
+  }
+
+  .input::placeholder {
+    font-size: 2.3vw;
+  }
+
+  .euro-sign {
+    font-size: 2.3vw;
+    margin-left: 10px;
   }
 
   .btn {
@@ -65,15 +99,12 @@
     font-size: 15pt;
   }
 
-  .money {
-    width: calc(100% - 100% / 3);
-    background-color: rgb(219, 219, 219);
-  }
-
-  .erase-btn {
-    width: calc(100% / 3);
-    font-size: 27pt;
+  .erase {
+    background-color: rgb(165, 165, 165);
+    color: white;
+    font-size: 17pt;
     font-weight: bold;
+    border: none;
   }
 
   .number {
