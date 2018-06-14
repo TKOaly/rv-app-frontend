@@ -105,7 +105,7 @@ export class Deposit extends Component {
                         className="btn number erase"
                         onClick={this.props.resetAmount}
                     >
-                        Tyhjennä
+                        Reset
                     </button>
                     <button
                         className="btn number increment"
@@ -168,7 +168,7 @@ export class Deposit extends Component {
                             this.props.toggleVisibility(true);
                         }}
                     >
-                        Peruuta
+                        Cancel
                     </button>
                     <button
                         className="btn number increment"
