@@ -24,7 +24,7 @@ const minLength = (field, min) => value =>
         : undefined;
 const passwordLength = value =>
     value && value.length < 12
-        ? 'Consider using a stonger password.'
+        ? 'Consider using a stronger password'
         : undefined;
 const email = value =>
     value && !validator.isEmail(value) ? 'Invalid E-mail address' : undefined;
@@ -199,9 +199,11 @@ const mapStateToProps = state => {
     };
 };
 
-RegisterForm = connect(mapStateToProps, mapDispatchToProps)(RegisterForm);
+const ConnectedRegisterForm = connect(mapStateToProps, mapDispatchToProps)(
+    RegisterForm
+);
 
 export default reduxForm({
     // a unique name for the form
     form: 'register'
-})(RegisterForm);
+})(ConnectedRegisterForm);
