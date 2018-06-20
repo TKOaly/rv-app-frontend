@@ -1,7 +1,7 @@
 import eanValidator from './../services/eanValidator';
 import productService from './../services/productService';
 import { addProductToNotification, errorMessage } from './notificationReducer';
-import { setBalance, increaseBalance } from './userReducer';
+import { setBalance } from './userReducer';
 
 export const initialState = {
     terminalInput: '',
@@ -14,26 +14,13 @@ export const terminalActions = {
     RESET_TERMINAL: 'RESET_TERMINAL'
 };
 
-const regex =
-    '^d(255(.|,)00|0(.|,)(05|[1-9](0|5))|([1-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-4])(.|,)[0-9](0|5))$';
-
-const parseRegexToCents = value => {
-    return parseInt(value[1].replace(',', '').replace('.', ''), 10);
-};
-
-const getRegexMatch = value => {
-    return value.match(regex);
-};
-
 export const handleInputEvent = event => {
     return dispatch => {
         dispatch({
             type: terminalActions.INPUT_EVENT_TERMINAL,
             value: event.target.value
         });
-        const inputValid =
-            getRegexMatch(event.target.value) ||
-            eanValidator.validateEan(event.target.value);
+        const inputValid = eanValidator.validateEan(event.target.value);
         dispatch({
             type: terminalActions.SET_INPUT_VALIDITY,
             inputValid: inputValid
@@ -41,20 +28,11 @@ export const handleInputEvent = event => {
     };
 };
 
-export const handleTerminalSubmit = (value, deposit, token) => {
-    /**implement regex here
-     *
-     */
+export const handleTerminalSubmit = (barcode, token) => {
     return async dispatch => {
-        const depositRegexMatch = getRegexMatch(value);
-        if (depositRegexMatch) {
-            dispatch(increaseBalance(
-                token,
-                parseRegexToCents(depositRegexMatch)
-            ));
-        } else if (eanValidator.validateEan(value)) {
+        if (eanValidator.validateEan(barcode)) {
             try {
-                const res = await productService.buyProduct(value, 1, token);
+                const res = await productService.buyProduct(barcode, 1, token);
 
                 const accountBalance = res.data.account_balance;
                 dispatch(setBalance(accountBalance));
@@ -74,8 +52,7 @@ export const handleTerminalSubmit = (value, deposit, token) => {
                 );
             }
         } else {
-            // Invalid EAN / command
-            dispatch(errorMessage('Invalid command'));
+            dispatch(errorMessage('Invalid barcode'));
         }
         dispatch({
             type: terminalActions.RESET_TERMINAL

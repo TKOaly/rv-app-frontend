@@ -18,7 +18,6 @@ class Terminal extends React.Component {
         e.preventDefault();
         this.props.handleTerminalSubmit(
             this.props.terminalInput,
-            this.props.deposit,
             this.props.token
         );
     }
@@ -41,7 +40,7 @@ class Terminal extends React.Component {
                             this.terminalFocus = input;
                         }}
                         onChange={this.props.handleInputEvent}
-                        placeholder="Input EAN and press ENTER to buy a product. To deposit 10€ to your account: d10.00 or d10,00 and press ENTER."
+                        placeholder="Scan a barcode here to buy a product."
                     />
                 </form>
             </div>
@@ -51,7 +50,7 @@ class Terminal extends React.Component {
 
 const mapDispatchToProps = {
     handleInputEvent,
-    handleTerminalSubmit,
+    handleTerminalSubmit
 };
 
 const mapStateToProps = state => {
