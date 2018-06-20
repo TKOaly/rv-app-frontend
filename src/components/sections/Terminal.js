@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import './styles/Terminal.css';
 
 import {
-    handleInputEvent,
+    setTerminalText,
     handleTerminalSubmit
 } from './../../reducers/terminalReducer';
 class Terminal extends React.Component {
@@ -39,7 +39,9 @@ class Terminal extends React.Component {
                         ref={input => {
                             this.terminalFocus = input;
                         }}
-                        onChange={this.props.handleInputEvent}
+                        onChange={event =>
+                            this.props.setTerminalText(event.target.value)
+                        }
                         placeholder="Scan a barcode here to buy a product."
                     />
                 </form>
@@ -49,7 +51,7 @@ class Terminal extends React.Component {
 }
 
 const mapDispatchToProps = {
-    handleInputEvent,
+    setTerminalText,
     handleTerminalSubmit
 };
 

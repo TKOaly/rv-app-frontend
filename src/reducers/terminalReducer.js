@@ -9,22 +9,20 @@ export const initialState = {
 };
 
 export const terminalActions = {
-    INPUT_EVENT_TERMINAL: 'INPUT_EVENT_TERMINAL',
-    SET_INPUT_VALIDITY: 'SET_INPUT_VALIDITY',
+    SET_TERMINAL_TEXT: 'SET_TERMINAL_TEXT',
     RESET_TERMINAL: 'RESET_TERMINAL'
 };
 
-export const handleInputEvent = event => {
-    return dispatch => {
-        dispatch({
-            type: terminalActions.INPUT_EVENT_TERMINAL,
-            value: event.target.value
-        });
-        const inputValid = eanValidator.validateEan(event.target.value);
-        dispatch({
-            type: terminalActions.SET_INPUT_VALIDITY,
-            inputValid: inputValid
-        });
+export const setTerminalText = text => {
+    return {
+        type: terminalActions.SET_TERMINAL_TEXT,
+        text: text
+    };
+};
+
+export const resetTerminal = () => {
+    return {
+        type: terminalActions.RESET_TERMINAL
     };
 };
 
@@ -54,9 +52,7 @@ export const handleTerminalSubmit = (barcode, token) => {
         } else {
             dispatch(errorMessage('Invalid barcode'));
         }
-        dispatch({
-            type: terminalActions.RESET_TERMINAL
-        });
+        dispatch(resetTerminal());
     };
 };
 
@@ -67,10 +63,11 @@ export const handleTerminalSubmit = (barcode, token) => {
  */
 const terminalReducer = (state = initialState, action) => {
     switch (action.type) {
-    case terminalActions.INPUT_EVENT_TERMINAL:
-        return Object.assign({}, state, { terminalInput: action.value });
-    case terminalActions.SET_INPUT_VALIDITY:
-        return Object.assign({}, state, { inputValid: action.inputValid });
+    case terminalActions.SET_TERMINAL_TEXT:
+        return Object.assign({}, state, {
+            terminalInput: action.text,
+            inputValid: eanValidator.validateEan(action.text)
+        });
     case terminalActions.RESET_TERMINAL:
         return Object.assign({}, initialState);
     default:
