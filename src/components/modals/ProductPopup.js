@@ -40,7 +40,7 @@ export class ProductPopup extends React.Component {
                         <button onClick={() => this.changeQuantity(-1)}>
                             -
                         </button>
-                        <span>{this.state.quantity} kpl</span>
+                        <span>{this.state.quantity} pcs</span>
                         <button onClick={() => this.changeQuantity(1)}>
                             +
                         </button>
