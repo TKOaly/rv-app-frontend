@@ -10,7 +10,7 @@ exports[`renders without crashing 1`] = `
     Confirm
      
     <b>
-      NaN
+      NaN.NaN
        
       €
     </b>

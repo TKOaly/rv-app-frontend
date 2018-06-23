@@ -3,6 +3,7 @@ import { Row, Col } from 'react-flexbox-grid';
 import './styles/ShoppingCart.css';
 
 import { connect } from 'react-redux';
+import moneyFormatter from './../../services/moneyFormatter';
 
 const ShoppingCartItem = ({ item }) => {
     return (
@@ -13,7 +14,7 @@ const ShoppingCartItem = ({ item }) => {
                     {item.quantity}
                 </Col>
                 <Col xs={3} className="cart-item-total">
-                    {(item.quantity * item.price / 100).toFixed(2)} &euro;
+                    {moneyFormatter.centsToString(item.price * item.quantity)} €
                 </Col>
             </Row>
         </li>
@@ -59,8 +60,10 @@ export class ShoppingCart extends React.Component {
                     <Row end="xs">
                         <Col xs={3}>Yhteensä</Col>
                         <Col xs={3} className="cart-total-price">
-                            {(this.calculateCartTotal() / 100).toFixed(2)}{' '}
-                            &euro;
+                            {moneyFormatter.centsToString(
+                                this.calculateCartTotal()
+                            )}{' '}
+                            €
                         </Col>
                     </Row>
                 </div>

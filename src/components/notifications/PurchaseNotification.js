@@ -5,14 +5,15 @@ import SuccessNotification from './SuccessNotification';
 import { TransitionGroup } from 'react-transition-group';
 
 import { Fade } from './../animations/Animations';
+import moneyFormatter from './../../services/moneyFormatter';
 
 const PurchaseNotificationProduct = ({ product }) => {
     return (
         <div className="product" key={product.barcode}>
             {product.quantity} x {product.product_name}{' '}
             <b>
-                {parseFloat(product.price / 100 * product.quantity).toFixed(2)}{' '}
-                &euro;
+                {moneyFormatter.centsToString(product.price * product.quantity)}{' '}
+                €
             </b>
         </div>
     );

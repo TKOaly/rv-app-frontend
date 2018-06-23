@@ -11,6 +11,7 @@ import { errorMessage } from './../../reducers/notificationReducer';
 import { TransitionGroup } from 'react-transition-group';
 import { Fade } from './../animations/Animations';
 import Confirmation from './Confirmation';
+import moneyFormatter from './../../services/moneyFormatter';
 
 export class Deposit extends Component {
     constructor(props) {
@@ -23,22 +24,8 @@ export class Deposit extends Component {
         if (text === '') {
             return 0;
         } else {
-            const matchResult = text.match(/^(\d+)[.,](\d{2})$/);
-
-            if (matchResult) {
-                return (
-                    parseInt(matchResult[1], 10) * 100 +
-                    parseInt(matchResult[2], 10)
-                );
-            } else {
-                return NaN;
-            }
+            return moneyFormatter.stringToCents(text);
         }
-    }
-
-    static centsToDepositAmountText(cents) {
-        const paddedCentString = cents.toString().padStart(3, '0');
-        return paddedCentString.slice(0, -2) + '.' + paddedCentString.slice(-2);
     }
 
     componentDidMount() {
@@ -59,7 +46,7 @@ export class Deposit extends Component {
                 );
             } else {
                 this.props.setAmountText(
-                    Deposit.centsToDepositAmountText(cents + increment)
+                    moneyFormatter.centsToString(cents + increment)
                 );
             }
         };
@@ -73,8 +60,8 @@ export class Deposit extends Component {
             this.props.errorMessage(
                 'Invalid deposit amount in text field. Use format 10.00'
             );
-        } else if (cents === 0) {
-            this.props.errorMessage('You cannot deposit 0 €.');
+        } else if (cents <= 0) {
+            this.props.errorMessage('You cannot deposit 0 € or less.');
         } else {
             this.props.toggleConfirmationVisibility(true);
         }

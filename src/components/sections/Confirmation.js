@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './styles/Confirmation.css';
+import moneyFormatter from './../../services/moneyFormatter';
 
 export class Confirmation extends Component {
     render() {
@@ -8,8 +9,8 @@ export class Confirmation extends Component {
                 <div className="confirm">
                     Confirm{' '}
                     <b>
-                        {parseFloat(this.props.depositAmount / 100).toFixed(2)}{' '}
-                        &euro;
+                        {moneyFormatter.centsToString(this.props.depositAmount)}{' '}
+                        €
                     </b>{' '}
                     deposit
                     <br />

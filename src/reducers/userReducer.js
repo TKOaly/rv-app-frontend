@@ -1,5 +1,6 @@
 import userService from '../services/userService';
 import { successMessage, errorMessage } from './notificationReducer';
+import moneyFormatter from './../services/moneyFormatter';
 
 export const initialState = {
     username: '',
@@ -37,7 +38,7 @@ export const increaseBalance = (token, amount) => {
             dispatch(
                 successMessage(
                     'Deposited into RV-account ' +
-                        parseFloat(amount / 100).toFixed(2) +
+                        moneyFormatter.centsToString(amount) +
                         ' €'
                 )
             );

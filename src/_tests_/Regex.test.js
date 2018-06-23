@@ -1,12 +1,12 @@
+import moneyFormatter from './../services/moneyFormatter';
+
 const regex =
     '^d(255(.|,)00|0(.|,)(05|[1-9](0|5))|([1-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-4])(.|,)[0-9](0|5))$';
 
 describe('Money deposit regular expression', () => {
     it('Allows deposits from 0,05 to 255,00', () => {
         for (let i = 5; i <= 25500; i += 5) {
-            const tmpPrice = parseFloat(i / 100)
-                .toFixed(2)
-                .toString();
+            const tmpPrice = moneyFormatter.centsToString(i);
             const tmpPrice2 = tmpPrice.replace(',', '.');
             const regexMatch = ('d' + tmpPrice).match(regex);
             const regexMatch2 = ('d' + tmpPrice2).match(regex);

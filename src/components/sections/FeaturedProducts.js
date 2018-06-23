@@ -3,11 +3,12 @@ import './styles/FeaturedProducts.css';
 import { connect } from 'react-redux';
 import { buyProduct } from '../../reducers/productReducer';
 import Loader from '../loaders/Loader';
+import moneyFormatter from './../../services/moneyFormatter';
 
 const FeaturedProductsList = props => {
     const products = props.products;
 
-    const productsList = products.map((p) => 
+    const productsList = products.map(p => (
         <li key={p.product_id}>
             <a
                 href="/"
@@ -17,39 +18,38 @@ const FeaturedProductsList = props => {
                     props.buy(p);
                 }}
             >
-                <div className="featured-name">
-                    {p.product_name}
-                </div>
+                <div className="featured-name">{p.product_name}</div>
                 <div className="featured-price">
-                    {(p.sellprice / 100).toFixed(2).replace('.', ',')} &euro;
+                    {moneyFormatter.centsToString(p.sellprice)} €
                 </div>
             </a>
         </li>
-    );
+    ));
 
     return <ul>{productsList}</ul>;
 };
-
 
 export class FeaturedProducts extends React.Component {
     render() {
         // these will some day come from backend, hardcoded for now
         const featuredProductIds = [56, 58, 54, 50, 52, 626, 344];
-        const featuredProducts = this.props.products
-            .filter(p => featuredProductIds.includes(p.product_id));
+        const featuredProducts = this.props.products.filter(p =>
+            featuredProductIds.includes(p.product_id)
+        );
 
         return (
             <div className="featured-products">
                 <div className="featured-header">
                     <h2>Click 'n' Buy</h2>
                 </div>
-                {this.props.loading 
-                    ? <Loader/> : 
-                    <FeaturedProductsList 
-                        products={featuredProducts} 
+                {this.props.loading ? (
+                    <Loader />
+                ) : (
+                    <FeaturedProductsList
+                        products={featuredProducts}
                         buy={p => this.props.buyProduct(p, 1)}
                     />
-                }
+                )}
             </div>
         );
     }

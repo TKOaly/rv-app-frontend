@@ -7,6 +7,7 @@ import { showModal, closeModal } from '../../reducers/modalReducer';
 import Deposit from '../sections/Deposit';
 import './styles/Header.css';
 import FontAwesome from 'react-fontawesome';
+import moneyFormatter from './../../services/moneyFormatter';
 
 export class Header extends React.Component {
     render() {
@@ -36,10 +37,10 @@ export class Header extends React.Component {
                                 <FontAwesome name="user-circle" />{' '}
                                 <span>
                                     <b>{this.props.user.full_name}</b>{' '}
-                                    {parseFloat(
-                                        this.props.user.account_balance / 100
-                                    ).toFixed(2)}{' '}
-                                    &euro;
+                                    {moneyFormatter.centsToString(
+                                        this.props.user.account_balance
+                                    )}{' '}
+                                    €
                                 </span>
                             </HeaderBtn>
                         </Margin>
