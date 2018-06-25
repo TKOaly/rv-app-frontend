@@ -34,10 +34,10 @@ const NotificationDrawer = ({ notifications, products }) => (
                 )}
             {products &&
                 products.length > 0 && (
-                    <Fade>
-                        <PurchaseNotification shadow products={products} />
-                    </Fade>
-                )}
+                <Fade>
+                    <PurchaseNotification shadow products={products} />
+                </Fade>
+            )}
         </TransitionGroup>
     </div>
 );
