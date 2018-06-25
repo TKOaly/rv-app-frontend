@@ -31,7 +31,8 @@
         "build-js": "react-scripts build",
         "build": "npm-run-all build-css build-js",
         "build-css": "node-sass-chokidar --include-path ./src src/ -o src/",
-        "watch-css": "npm run build-css && node-sass-chokidar --include-path ./src src/ -o src/ --watch --recursive",
+        "watch-css":
+            "npm run build-css && node-sass-chokidar --include-path ./src src/ -o src/ --watch --recursive",
         "lint-css": "stylelint src/**/*.scss --syntax=scss",
         "fix-css": "stylelint src/**/*.scss --syntax=scss --fix",
         "test": "react-scripts test --env=jsdom",
@@ -50,6 +51,7 @@
         "@storybook/addons": "^3.3.10",
         "@storybook/react": "^3.3.10",
         "babel-core": "^6.26.0",
+        "babel-eslint": "8.2.5",
         "dotenv": "^5.0.0",
         "enzyme": "^3.3.0",
         "enzyme-adapter-react-16": "^1.1.1",
@@ -68,14 +70,8 @@
         "stylelint-scss": "^2.3.0"
     },
     "lint-staged": {
-        "src/**/*.{js,jsx}": [
-            "eslint",
-            "git add"
-        ],
-        "src/**/*.scss": [
-            "stylelint --syntax=scss",
-            "git add"
-        ]
+        "src/**/*.{js,jsx}": ["eslint", "git add"],
+        "src/**/*.scss": ["stylelint --syntax=scss", "git add"]
     },
     "jest": {
         "collectCoverageFrom": [
@@ -84,8 +80,6 @@
             "src/services/**/*.{js,jsx}",
             "src/*.{js,jsx}"
         ],
-        "coverageReporters": [
-            "lcov"
-        ]
+        "coverageReporters": ["lcov"]
     }
 }
