@@ -8,9 +8,9 @@ import { toggleRegisterVisibility } from './../../reducers/registerReducer';
 import { Redirect } from 'react-router-dom';
 
 class LoginPage extends React.Component {
-    render() {
+    render = () => {
         if (this.props.loggedIn) {
-            return <Redirect to="/"/>;
+            return <Redirect to="/" />;
         }
 
         return (
@@ -25,7 +25,7 @@ class LoginPage extends React.Component {
                 </Grid>
             </div>
         );
-    }
+    };
 }
 
 const mapDispatchToProps = {

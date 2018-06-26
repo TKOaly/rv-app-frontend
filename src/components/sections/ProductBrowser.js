@@ -8,16 +8,7 @@ import './styles/ProductBrowser.css';
 import moneyFormatter from './../../services/moneyFormatter';
 
 export class ProductBrowser extends React.Component {
-    constructor(props) {
-        super(props);
-        this.sortProducts = this.sortProducts.bind(this);
-        this.filterProducts = this.filterProducts.bind(this);
-        this.createElements = this.createElements.bind(this);
-        this.handleChangeFilter = this.handleChangeFilter.bind(this);
-        this.handleChangeCategory = this.handleChangeCategory.bind(this);
-    }
-
-    sortProducts(products) {
+    sortProducts = products => {
         return products.sort((a, b) => {
             const [aname, bname] = [
                 a.product_name.toLowerCase(),
@@ -26,9 +17,9 @@ export class ProductBrowser extends React.Component {
 
             return aname < bname ? -1 : aname === bname ? 0 : 1;
         });
-    }
+    };
 
-    filterProducts(products) {
+    filterProducts = products => {
         return products.filter(p => {
             return (
                 (this.props.selectedCategory === -1 ||
@@ -39,9 +30,9 @@ export class ProductBrowser extends React.Component {
                     .includes(this.props.filter.toLowerCase().trim())
             );
         });
-    }
+    };
 
-    createElements(products) {
+    createElements = products => {
         return products.map(p => (
             <li key={p.product_id} className="product-list-item">
                 <a
@@ -63,24 +54,24 @@ export class ProductBrowser extends React.Component {
                 </a>
             </li>
         ));
-    }
+    };
 
-    handleChangeFilter(e) {
+    handleChangeFilter = e => {
         this.props.setFilter(e.target.value);
-    }
+    };
 
-    handleChangeCategory(e) {
+    handleChangeCategory = e => {
         this.props.setCategorySelected(parseInt(e.target.value, 10));
-    }
+    };
 
-    createProductList() {
+    createProductList = () => {
         const prods = this.props.products.slice();
         const sortedProds = this.sortProducts(prods);
         const sortedFilteredProds = this.filterProducts(sortedProds);
         return this.createElements(sortedFilteredProds);
-    }
+    };
 
-    render() {
+    render = () => {
         return (
             <div className="product-browser-container">
                 <div className="product-filter">
@@ -114,7 +105,7 @@ export class ProductBrowser extends React.Component {
                 </div>
             </div>
         );
-    }
+    };
 }
 
 const mapDispatchToProps = {

@@ -14,27 +14,21 @@ import Confirmation from './Confirmation';
 import moneyFormatter from './../../services/moneyFormatter';
 
 export class Deposit extends Component {
-    constructor(props) {
-        super(props);
-        this.createIncrementHandler = this.createIncrementHandler.bind(this);
-        this.handleOK = this.handleOK.bind(this);
-    }
-
-    static depositAmountTextToCents(text) {
+    static depositAmountTextToCents = text => {
         if (text === '') {
             return 0;
         } else {
             return moneyFormatter.stringToCents(text);
         }
-    }
+    };
 
-    componentDidMount() {
+    componentDidMount = () => {
         this.textField.focus();
-    }
+    };
 
-    componentWillUnmount() {}
+    componentWillUnmount = () => {};
 
-    createIncrementHandler(increment) {
+    createIncrementHandler = increment => {
         return event => {
             event.preventDefault();
             const cents = Deposit.depositAmountTextToCents(
@@ -50,9 +44,9 @@ export class Deposit extends Component {
                 );
             }
         };
-    }
+    };
 
-    handleOK() {
+    handleOK = () => {
         const cents = Deposit.depositAmountTextToCents(
             this.props.depositAmountText
         );
@@ -65,9 +59,9 @@ export class Deposit extends Component {
         } else {
             this.props.toggleConfirmationVisibility(true);
         }
-    }
+    };
 
-    render() {
+    render = () => {
         return (
             <div className="deposit-wrapper">
                 <div className="deposit">
@@ -188,7 +182,7 @@ export class Deposit extends Component {
                 </TransitionGroup>
             </div>
         );
-    }
+    };
 }
 
 const mapStateToProps = state => ({

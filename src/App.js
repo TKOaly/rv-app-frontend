@@ -7,11 +7,7 @@ import ModalContainer from './components/modals/ModalContainer';
 
 import { connect } from 'react-redux';
 
-import {
-    BrowserRouter as Router,
-    Route,
-    Redirect
-} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 
 const AuthenticatedRoute = ({ component: Component, ...rest }) => (
     <Route
@@ -32,7 +28,7 @@ const AuthenticatedRoute = ({ component: Component, ...rest }) => (
 );
 
 class App extends Component {
-    render() {
+    render = () => {
         // let page = this.props.loggedIn ? <MainPage /> : <LoginPage />;
         return (
             <div className="App">
@@ -42,15 +38,20 @@ class App extends Component {
                 />
                 <Router>
                     <div className="pages">
-                        <AuthenticatedRoute exact path="/" authenticated={this.props.loggedIn} component={MainPage}/>
-                        <Route path="/login" component={LoginPage}/>
-                        <Route path="/register" component={RegistrationPage}/>
+                        <AuthenticatedRoute
+                            exact
+                            path="/"
+                            authenticated={this.props.loggedIn}
+                            component={MainPage}
+                        />
+                        <Route path="/login" component={LoginPage} />
+                        <Route path="/register" component={RegistrationPage} />
                     </div>
                 </Router>
-                <ModalContainer/>
+                <ModalContainer />
             </div>
         );
-    }
+    };
 }
 
 const mapStateToProps = state => {

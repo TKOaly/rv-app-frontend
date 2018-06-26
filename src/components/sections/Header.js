@@ -10,7 +10,7 @@ import FontAwesome from 'react-fontawesome';
 import moneyFormatter from './../../services/moneyFormatter';
 
 export class Header extends React.Component {
-    render() {
+    render = () => {
         return (
             <header>
                 <div className="header-title">
@@ -53,7 +53,7 @@ export class Header extends React.Component {
                 )}
             </header>
         );
-    }
+    };
 }
 
 const mapDispatchToProps = {

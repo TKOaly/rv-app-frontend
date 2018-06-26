@@ -11,19 +11,17 @@ export class ProductPopup extends React.Component {
         this.state = {
             quantity: 1
         };
-
-        this.changeQuantity = this.changeQuantity.bind(this);
     }
 
-    changeQuantity(delta) {
+    changeQuantity = delta => {
         if (this.state.quantity + delta >= 1) {
             this.setState({
                 quantity: this.state.quantity + delta
             });
         }
-    }
+    };
 
-    render() {
+    render = () => {
         const prod = this.props.product;
 
         return (
@@ -74,7 +72,7 @@ export class ProductPopup extends React.Component {
                 </div>
             </div>
         );
-    }
+    };
 }
 
 const mapDispatchToProps = {

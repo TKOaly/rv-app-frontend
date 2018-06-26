@@ -3,7 +3,7 @@ import './styles/Confirmation.css';
 import moneyFormatter from './../../services/moneyFormatter';
 
 export class Confirmation extends Component {
-    render() {
+    render = () => {
         return (
             <div className="confirm-overlay">
                 <div className="confirm">
@@ -40,7 +40,7 @@ export class Confirmation extends Component {
                 </div>
             </div>
         );
-    }
+    };
 }
 
 export default Confirmation;

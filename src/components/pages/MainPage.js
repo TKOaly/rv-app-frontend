@@ -26,11 +26,9 @@ class MainPage extends Component {
             timeoutHandler: null,
             notificationInterval: null
         };
-        this.buy = this.buy.bind(this);
-        this.handleKeyPress = this.handleKeyPress.bind(this);
     }
 
-    handleKeyPress(event) {
+    handleKeyPress = event => {
         switch (event.keyCode) {
         // Enter
         case 13:
@@ -52,9 +50,9 @@ class MainPage extends Component {
         default:
             break;
         }
-    }
+    };
 
-    componentDidMount() {
+    componentDidMount = () => {
         const notificationInterval = setInterval(() => {
             if (this.props.purchaseNotificationStartTime != null) {
                 const delta =
@@ -69,18 +67,18 @@ class MainPage extends Component {
         document.addEventListener('keypress', this.handleKeyPress);
         this.props.getProducts();
         this.props.getCategories();
-    }
+    };
 
-    componentWillUnmount() {
+    componentWillUnmount = () => {
         clearInterval(this.state.notificationInterval);
         this.setState({ notificationInterval: null });
         document.removeEventListener('keypress', this.handleKeyPress);
-    }
+    };
 
     /**
      * Buys a product.
      */
-    async buy(product) {
+    buy = async product => {
         try {
             await userService.reduceBalance(this.props.token, product.price);
 
@@ -107,23 +105,23 @@ class MainPage extends Component {
             const errorResponse = error.response;
             this.props.errorMessage(errorResponse.data.message);
         }
-    }
+    };
 
-    show() {
+    show = () => {
         return event => {
             event.preventDefault();
             this.props.toggleVisibility(this.props.modalVisibility);
         };
-    }
+    };
 
-    render() {
+    render = () => {
         return (
             <div className="mainpage">
                 <Header logout={this.props.logout} user={this.props.user} />
                 <Content />
             </div>
         );
-    }
+    };
 }
 
 const mapDispatchToProps = {

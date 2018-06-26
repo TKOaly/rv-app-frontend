@@ -62,7 +62,7 @@ const renderField = ({
 );
 
 export class RegisterForm extends React.Component {
-    render() {
+    render = () => {
         return (
             <form
                 onSubmit={this.props.handleSubmit}
@@ -183,7 +183,7 @@ export class RegisterForm extends React.Component {
                 </div>
             </form>
         );
-    }
+    };
 }
 
 const mapDispatchToProps = {

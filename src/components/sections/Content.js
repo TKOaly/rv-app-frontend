@@ -13,7 +13,7 @@ import {
 } from './../../reducers/notificationReducer';
 
 export class Content extends React.Component {
-    render() {
+    render = () => {
         return (
             <main>
                 <Row className="products-container">
@@ -33,7 +33,7 @@ export class Content extends React.Component {
                 </Row>
             </main>
         );
-    }
+    };
 }
 
 const mapDispatchToProps = {

@@ -5,12 +5,12 @@ import './styles/ModalContainer.css';
 import { CSSTransition } from 'react-transition-group';
 
 export class ModalContainer extends React.Component {
-    render() {
+    render = () => {
         const ModalContent = this.props.contentComponent;
         if (!ModalContent) {
             return null;
         }
-        
+
         return (
             <CSSTransition
                 in={this.props.modalVisible}
@@ -19,20 +19,26 @@ export class ModalContainer extends React.Component {
                 mountOnEnter
                 unmountOnExit
             >
-                {(state) => {
+                {state => {
                     return (
-                        <div className="modal-overlay" onClick={e => {
-                            this.props.closeModal();
-                        }}>
-                            <div className="modal-container" onClick={e => e.stopPropagation()}>
-                                <ModalContent {...this.props.modalProps}/>
+                        <div
+                            className="modal-overlay"
+                            onClick={e => {
+                                this.props.closeModal();
+                            }}
+                        >
+                            <div
+                                className="modal-container"
+                                onClick={e => e.stopPropagation()}
+                            >
+                                <ModalContent {...this.props.modalProps} />
                             </div>
                         </div>
                     );
                 }}
             </CSSTransition>
         );
-    }
+    };
 }
 
 const mapDispatchToProps = {

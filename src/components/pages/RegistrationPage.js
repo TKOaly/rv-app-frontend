@@ -12,7 +12,8 @@ class RegistrationPage extends React.Component {
         console.log(values);
         this.props.registerUser(values);
     };
-    render() {
+
+    render = () => {
         if (this.props.loggedIn) {
             return <Redirect to="/" />;
         }
@@ -27,7 +28,7 @@ class RegistrationPage extends React.Component {
                 </Row>
             </div>
         );
-    }
+    };
 }
 
 const mapDispatchToProps = {

@@ -8,25 +8,21 @@ import {
     setTerminalText,
     handleTerminalSubmit
 } from './../../reducers/terminalReducer';
-class Terminal extends React.Component {
-    constructor(props) {
-        super(props);
-        this.handleSubmit = this.handleSubmit.bind(this);
-    }
 
-    handleSubmit(e) {
+class Terminal extends React.Component {
+    handleSubmit = e => {
         e.preventDefault();
         this.props.handleTerminalSubmit(
             this.props.terminalInput,
             this.props.token
         );
-    }
+    };
 
-    componentDidMount() {
+    componentDidMount = () => {
         this.terminalFocus.focus();
-    }
+    };
 
-    render() {
+    render = () => {
         const className = this.props.inputValid
             ? 'input fullWidth valid'
             : 'input fullWidth invalid';
@@ -47,7 +43,7 @@ class Terminal extends React.Component {
                 </form>
             </div>
         );
-    }
+    };
 }
 
 const mapDispatchToProps = {

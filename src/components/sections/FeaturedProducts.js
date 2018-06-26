@@ -30,7 +30,7 @@ const FeaturedProductsList = props => {
 };
 
 export class FeaturedProducts extends React.Component {
-    render() {
+    render = () => {
         // these will some day come from backend, hardcoded for now
         const featuredProductIds = [56, 58, 54, 50, 52, 626, 344];
         const featuredProducts = this.props.products.filter(p =>
@@ -52,7 +52,7 @@ export class FeaturedProducts extends React.Component {
                 )}
             </div>
         );
-    }
+    };
 }
 
 const mapDispatchToProps = {
