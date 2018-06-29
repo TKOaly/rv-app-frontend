@@ -13,7 +13,7 @@ export class ProductPopup extends React.Component {
         };
     }
 
-    changeQuantity = delta => {
+    changeQuantity = (delta) => {
         if (this.state.quantity + delta >= 1) {
             this.setState({
                 quantity: this.state.quantity + delta
@@ -35,29 +35,19 @@ export class ProductPopup extends React.Component {
                 <div className="product-quantity">
                     <div>Amount:</div>
                     <div className="quantity-picker">
-                        <button onClick={() => this.changeQuantity(-1)}>
-                            -
-                        </button>
+                        <button onClick={() => this.changeQuantity(-1)}>-</button>
                         <span>{this.state.quantity} pcs</span>
-                        <button onClick={() => this.changeQuantity(1)}>
-                            +
-                        </button>
+                        <button onClick={() => this.changeQuantity(1)}>+</button>
                     </div>
                     <div className="total">
                         <div>Total</div>
                         <div className="sum">
-                            {moneyFormatter.centsToString(
-                                prod.sellprice * this.state.quantity
-                            )}{' '}
-                            €
+                            {moneyFormatter.centsToString(prod.sellprice * this.state.quantity)} €
                         </div>
                     </div>
                 </div>
                 <div className="product-actions">
-                    <button
-                        className="cancel-btn"
-                        onClick={() => this.props.closeModal()}
-                    >
+                    <button className="cancel-btn" onClick={() => this.props.closeModal()}>
                         Cancel
                     </button>
                     <button

@@ -9,7 +9,7 @@ export const initialState = {
     depositAmountText: ''
 };
 
-export const toggleConfirmationVisibility = value => {
+export const toggleConfirmationVisibility = (value) => {
     return {
         type: depositActions.TOGGLE_CONFIRMATION_VISIBILITY,
         value: value
@@ -22,7 +22,7 @@ export const resetAmount = () => {
     };
 };
 
-export const setAmountText = text => {
+export const setAmountText = (text) => {
     return {
         type: depositActions.SET_AMOUNT_TEXT,
         text
@@ -31,20 +31,20 @@ export const setAmountText = text => {
 
 const depositReducer = (state = initialState, action) => {
     switch (action.type) {
-    case depositActions.TOGGLE_CONFIRMATION_VISIBILITY:
-        return Object.assign({}, state, {
-            confirmationVisibility: action.value
-        });
-    case depositActions.RESET_DEPOSIT:
-        return Object.assign({}, state, {
-            depositAmountText: ''
-        });
-    case depositActions.SET_AMOUNT_TEXT:
-        return Object.assign({}, state, {
-            depositAmountText: action.text
-        });
-    default:
-        return state;
+        case depositActions.TOGGLE_CONFIRMATION_VISIBILITY:
+            return Object.assign({}, state, {
+                confirmationVisibility: action.value
+            });
+        case depositActions.RESET_DEPOSIT:
+            return Object.assign({}, state, {
+                depositAmountText: ''
+            });
+        case depositActions.SET_AMOUNT_TEXT:
+            return Object.assign({}, state, {
+                depositAmountText: action.text
+            });
+        default:
+            return state;
     }
 };
 

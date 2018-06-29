@@ -19,20 +19,12 @@ import '../index.css';
 
 storiesOf('Danger button', module)
     .add('With fill', () => (
-        <DangerBtn
-            fill
-            hover
-            onClick={action('clicked danger button with fill')}
-        >
+        <DangerBtn fill hover onClick={action('clicked danger button with fill')}>
             Danger button
         </DangerBtn>
     ))
     .add('With fill, with loader', () => (
-        <DangerBtn
-            fill
-            loader
-            onClick={action('clicked danber button with fill, with loader')}
-        />
+        <DangerBtn fill loader onClick={action('clicked danber button with fill, with loader')} />
     ))
     .add('Without fill', () => (
         <DangerBtn hover onClick={action('clicked danger button without fill')}>
@@ -42,26 +34,15 @@ storiesOf('Danger button', module)
 
 storiesOf('Success button', module)
     .add('With fill', () => (
-        <SuccessBtn
-            fill
-            hover
-            onClick={action('clicked success button with fill')}
-        >
+        <SuccessBtn fill hover onClick={action('clicked success button with fill')}>
             Success button
         </SuccessBtn>
     ))
     .add('With fill, with loader', () => (
-        <SuccessBtn
-            fill
-            loader
-            onClick={action('clicked success button with fill, with loader')}
-        />
+        <SuccessBtn fill loader onClick={action('clicked success button with fill, with loader')} />
     ))
     .add('Without fill', () => (
-        <SuccessBtn
-            hover
-            onClick={action('clicked success button without fill')}
-        >
+        <SuccessBtn hover onClick={action('clicked success button without fill')}>
             Success button
         </SuccessBtn>
     ));
@@ -75,15 +56,13 @@ const products = [
     }
 ];
 
-storiesOf('Purchase notification (with shadow)', module).add(
-    'Coca-Cola Zero, 1.85 eur',
-    () => <PurchaseNotification shadow products={products} />
-);
+storiesOf('Purchase notification (with shadow)', module).add('Coca-Cola Zero, 1.85 eur', () => (
+    <PurchaseNotification shadow products={products} />
+));
 
-storiesOf('Purchase notification (without shadow)', module).add(
-    'Coca-Cola Zero, 1.85 eur',
-    () => <PurchaseNotification products={products} />
-);
+storiesOf('Purchase notification (without shadow)', module).add('Coca-Cola Zero, 1.85 eur', () => (
+    <PurchaseNotification products={products} />
+));
 
 storiesOf('Header', module).add('Initial', () => <Header />);
 
@@ -125,14 +104,10 @@ storiesOf('TopBalanceUsers', module)
  * Authentication mock
  * @param {*} user
  */
-const authenticate = user => {};
+const authenticate = (user) => {};
 
 storiesOf('LoginForm', module)
     .add('Without loader', () => <LoginForm authenticate={authenticate} />)
     .add('With loader', () => <LoginForm loader authenticate={authenticate} />)
-    .add('Without loader, shadow', () => (
-        <LoginForm shadow authenticate={authenticate} />
-    ))
-    .add('With loader, shadow', () => (
-        <LoginForm loader shadow authenticate={authenticate} />
-    ));
+    .add('Without loader, shadow', () => <LoginForm shadow authenticate={authenticate} />)
+    .add('With loader, shadow', () => <LoginForm loader shadow authenticate={authenticate} />);

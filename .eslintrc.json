@@ -17,11 +17,14 @@
     "parser": "babel-eslint",
     "plugins": ["react"],
     "rules": {
-        "indent": ["error", 4],
+        "indent": ["error", 4, { "SwitchCase": 1 }],
         "linebreak-style": ["error", "unix"],
         "quotes": ["error", "single"],
         "semi": ["error", "always"],
-        "no-unused-vars": 0,
+        "max-len": ["error", { "code": 120 }],
+        "arrow-parens": ["error", "always"],
+        "no-trailing-spaces": "error",
+        "no-unused-vars": "warn",
         "no-console": "warn",
         "no-undef": "warn"
     }

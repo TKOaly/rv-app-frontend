@@ -12,7 +12,7 @@ import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 const AuthenticatedRoute = ({ component: Component, ...rest }) => (
     <Route
         {...rest}
-        render={props =>
+        render={(props) =>
             rest.authenticated ? (
                 <Component {...props} />
             ) : (
@@ -32,18 +32,10 @@ class App extends Component {
         // let page = this.props.loggedIn ? <MainPage /> : <LoginPage />;
         return (
             <div className="App">
-                <NotificationDrawer
-                    notifications={this.props.notifications}
-                    products={this.props.products}
-                />
+                <NotificationDrawer notifications={this.props.notifications} products={this.props.products} />
                 <Router>
                     <div className="pages">
-                        <AuthenticatedRoute
-                            exact
-                            path="/"
-                            authenticated={this.props.loggedIn}
-                            component={MainPage}
-                        />
+                        <AuthenticatedRoute exact path="/" authenticated={this.props.loggedIn} component={MainPage} />
                         <Route path="/login" component={LoginPage} />
                         <Route path="/register" component={RegistrationPage} />
                     </div>
@@ -54,7 +46,7 @@ class App extends Component {
     };
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
     return {
         access_token: state.authentication.access_token,
         loggedIn: state.authentication.loggedIn,

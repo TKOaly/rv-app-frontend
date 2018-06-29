@@ -4,19 +4,10 @@ import './styles/LoginForm.css';
 import SuccessBtn from './../buttons/SuccessBtn';
 
 import { connect } from 'react-redux';
-import {
-    loggingIn,
-    loggedIn,
-    loginFailed
-} from './../../reducers/authenticationReducer';
+import { loggingIn, loggedIn, loginFailed } from './../../reducers/authenticationReducer';
 import { errorMessage } from './../../reducers/notificationReducer';
 import userService from './../../services/userService';
-import {
-    handleInputEvent,
-    reset,
-    focusPasswordField,
-    focusUsernameField
-} from './../../reducers/loginReducer';
+import { handleInputEvent, reset, focusPasswordField, focusUsernameField } from './../../reducers/loginReducer';
 
 import { Link } from 'react-router-dom';
 
@@ -24,7 +15,7 @@ import { Link } from 'react-router-dom';
 let timeout;
 
 class LoginForm extends React.Component {
-    handleSubmit = e => {
+    handleSubmit = (e) => {
         e.preventDefault();
     };
 
@@ -41,8 +32,8 @@ class LoginForm extends React.Component {
         this.props.reset();
     };
 
-    wait = timeout => {
-        return new Promise(resolve => setTimeout(resolve, timeout));
+    wait = (timeout) => {
+        return new Promise((resolve) => setTimeout(resolve, timeout));
     };
 
     nextStep = async () => {
@@ -71,10 +62,7 @@ class LoginForm extends React.Component {
                     // Set login step to 1
                     this.props.focusUsernameField();
                     // Send error message
-                    this.props.errorMessage(
-                        'Unknown error while logging in.',
-                        2500
-                    );
+                    this.props.errorMessage('Unknown error while logging in.', 2500);
                 }
             } catch (err) {
                 // Error response
@@ -89,10 +77,7 @@ class LoginForm extends React.Component {
                 // Server error
                 if (errorResponse.status === 500) {
                     this.props.errorMessage('Server error', 2500);
-                } else if (
-                    errorResponse.status === 403 ||
-                    errorResponse.status === 400
-                ) {
+                } else if (errorResponse.status === 403 || errorResponse.status === 400) {
                     // Validation error
                     this.props.errorMessage(errorResponse.data.message, 2500);
                 }
@@ -100,30 +85,24 @@ class LoginForm extends React.Component {
         }
     };
 
-    handleKeyPress = event => {
+    handleKeyPress = (event) => {
         switch (event.keyCode) {
-        case 13:
-            event.preventDefault();
-            this.nextStep();
-            break;
-        case 9:
-            event.preventDefault();
-            this.nextStep();
-            break;
-        default:
-            break;
+            case 13:
+                event.preventDefault();
+                this.nextStep();
+                break;
+            case 9:
+                event.preventDefault();
+                this.nextStep();
+                break;
+            default:
+                break;
         }
     };
 
     render = () => {
         return (
-            <div
-                className={
-                    this.props.shadow
-                        ? 'form form-shadow loginForm'
-                        : 'form loginForm'
-                }
-            >
+            <div className={this.props.shadow ? 'form form-shadow loginForm' : 'form loginForm'}>
                 <form onSubmit={this.handleSubmit}>
                     <legend>Log in</legend>
                     <div className="formControl">
@@ -133,16 +112,14 @@ class LoginForm extends React.Component {
                             name="username"
                             placeholder="Username"
                             value={this.props.username}
-                            onChange={event =>
-                                this.props.handleInputEvent(event)
-                            }
+                            onChange={(event) => this.props.handleInputEvent(event)}
                             onKeyDown={this.handleKeyUp}
                             autoComplete="off"
                             autoCorrect="off"
                             autoCapitalize="off"
                             className="input fullWidth"
                             disabled={this.props.usernameDisabled}
-                            ref={input => {
+                            ref={(input) => {
                                 this.usernameInput = input;
                             }}
                         />
@@ -154,16 +131,14 @@ class LoginForm extends React.Component {
                             name="password"
                             placeholder="Password"
                             value={this.props.password}
-                            onChange={event =>
-                                this.props.handleInputEvent(event)
-                            }
+                            onChange={(event) => this.props.handleInputEvent(event)}
                             onKeyDown={this.handleKeyUp}
                             className="input fullWidth"
                             autoComplete="off"
                             autoCorrect="off"
                             autoCapitalize="off"
                             disabled={this.props.passwordDisabled}
-                            ref={input => {
+                            ref={(input) => {
                                 this.passwordInput = input;
                             }}
                         />
@@ -175,8 +150,7 @@ class LoginForm extends React.Component {
                             disabled={
                                 !(
                                     !this.props.submitDisabled &&
-                                    this.props.password.length >
-                                        this.props.minPasswordLength
+                                    this.props.password.length > this.props.minPasswordLength
                                 )
                             }
                             style={{ width: '100%' }}
@@ -204,7 +178,7 @@ const mapDispatchToProps = {
     loginFailed
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
     return {
         username: state.login.username,
         password: state.login.password,

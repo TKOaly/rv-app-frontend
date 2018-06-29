@@ -23,7 +23,7 @@ export const reset = () => {
     };
 };
 
-export const handleInputEvent = event => {
+export const handleInputEvent = (event) => {
     return {
         type: loginActions.INPUT_EVENT,
         target: event.target.name,
@@ -58,31 +58,31 @@ export const focusUsernameField = () => {
  */
 const loginReducer = (state = initialState, action) => {
     switch (action.type) {
-    case loginActions.RESET:
-        return Object.assign({}, initialState);
-    case loginActions.INPUT_EVENT:
-        return Object.assign({}, state, { [action.target]: action.value });
-    case loginActions.FOCUS_PASSWORD_FIELD:
-        return Object.assign({}, state, {
-            loginStep: action.loginStep,
-            usernameDisabled: action.usernameDisabled,
-            passwordDisabled: action.passwordDisabled,
-            submitDisabled: action.submitDisabled
-        });
-    case loginActions.FOCUS_USERNAME_FIELD:
-        return Object.assign({}, state, {
-            loginStep: action.loginStep,
-            usernameDisabled: action.usernameDisabled,
-            passwordDisabled: action.passwordDisabled,
-            submitDisabled: action.submitDisabled
-        });
-    case loginActions.CLEAR_FORM:
-        return Object.assign({}, state, {
-            username: '',
-            password: ''
-        });
-    default:
-        return state;
+        case loginActions.RESET:
+            return Object.assign({}, initialState);
+        case loginActions.INPUT_EVENT:
+            return Object.assign({}, state, { [action.target]: action.value });
+        case loginActions.FOCUS_PASSWORD_FIELD:
+            return Object.assign({}, state, {
+                loginStep: action.loginStep,
+                usernameDisabled: action.usernameDisabled,
+                passwordDisabled: action.passwordDisabled,
+                submitDisabled: action.submitDisabled
+            });
+        case loginActions.FOCUS_USERNAME_FIELD:
+            return Object.assign({}, state, {
+                loginStep: action.loginStep,
+                usernameDisabled: action.usernameDisabled,
+                passwordDisabled: action.passwordDisabled,
+                submitDisabled: action.submitDisabled
+            });
+        case loginActions.CLEAR_FORM:
+            return Object.assign({}, state, {
+                username: '',
+                password: ''
+            });
+        default:
+            return state;
     }
 };
 

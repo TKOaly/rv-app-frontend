@@ -5,9 +5,7 @@ import renderer from 'react-test-renderer';
 
 describe.only('<Margin />', () => {
     it('renders correctly', () => {
-        const cmpnt = renderer
-            .create(<Margin margin={20}>HelloWorld</Margin>)
-            .toJSON();
+        const cmpnt = renderer.create(<Margin margin={20}>HelloWorld</Margin>).toJSON();
         expect(cmpnt).toMatchSnapshot();
     });
 });

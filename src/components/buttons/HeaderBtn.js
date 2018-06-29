@@ -7,18 +7,11 @@ import PropTypes from 'prop-types';
 const HeaderBtn = ({ onClick, children, fill, hover, loader, ...props }) => {
     let className = 'btn';
     fill ? (className += ' headerbtn-fill') : (className += ' headerbtn');
-    hover &&
-        (fill
-            ? (className += ' headerbtn-fill-hover')
-            : (className += ' headerbtn-hover'));
+    hover && (fill ? (className += ' headerbtn-fill-hover') : (className += ' headerbtn-hover'));
 
     return (
         <button {...props} onClick={onClick} className={className}>
-            {!loader ? (
-                <span className="btnContent">{children}</span>
-            ) : (
-                <Loader />
-            )}
+            {!loader ? <span className="btnContent">{children}</span> : <Loader />}
         </button>
     );
 };

@@ -16,7 +16,7 @@ describe('authenticationReducer', () => {
         const action = loggingIn();
 
         const newState = authenticationReducer(state, action);
-        
+
         expect(Object.keys(newState).length).toBeTruthy();
     });
 
@@ -34,7 +34,7 @@ describe('authenticationReducer', () => {
         const action = loginFailed();
 
         const newState = authenticationReducer(state, action);
-        
+
         expect(Object.keys(newState).length).toBeTruthy();
     });
 });

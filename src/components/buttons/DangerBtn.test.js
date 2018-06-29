@@ -15,9 +15,7 @@ describe.only('<DangerBtn />', () => {
         const contentDiv = dangerBtnComponent.find('.btnContent');
         expect(contentDiv.text()).toContain(data.text);
 
-        const cmpnt = renderer
-            .create(<DangerBtn>{data.text}</DangerBtn>)
-            .toJSON();
+        const cmpnt = renderer.create(<DangerBtn>{data.text}</DangerBtn>).toJSON();
         expect(cmpnt).toMatchSnapshot();
     });
 
@@ -40,9 +38,7 @@ describe.only('<DangerBtn />', () => {
 
         const button = dangerBtnComponent.find('button');
 
-        const cmpnt = renderer
-            .create(<DangerBtn onClick={mockHandler} />)
-            .toJSON();
+        const cmpnt = renderer.create(<DangerBtn onClick={mockHandler} />).toJSON();
         expect(cmpnt).toMatchSnapshot();
 
         expect(mockHandler.mock.calls.length).toBe(0);

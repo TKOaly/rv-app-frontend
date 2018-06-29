@@ -32,7 +32,7 @@ const mapDispatchToProps = {
     toggleRegisterVisibility
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
     return {
         registerVisible: state.register.registerVisible,
         loggedIn: state.authentication.loggedIn

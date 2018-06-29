@@ -11,10 +11,7 @@ const PurchaseNotificationProduct = ({ product }) => {
     return (
         <div className="product" key={product.barcode}>
             {product.quantity} x {product.product_name}{' '}
-            <b>
-                {moneyFormatter.centsToString(product.price * product.quantity)}{' '}
-                €
-            </b>
+            <b>{moneyFormatter.centsToString(product.price * product.quantity)} €</b>
         </div>
     );
 };
@@ -31,10 +28,7 @@ const PurchaseNotification = ({ products, shadow }) => {
                         products.length > 0 &&
                         products.map((product, id) => (
                             <Fade key={id}>
-                                <PurchaseNotificationProduct
-                                    product={product}
-                                    key={product.barcode}
-                                />
+                                <PurchaseNotificationProduct product={product} key={product.barcode} />
                             </Fade>
                         ))}
                 </TransitionGroup>

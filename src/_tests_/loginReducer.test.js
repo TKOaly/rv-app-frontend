@@ -16,7 +16,7 @@ describe('loginReducer', () => {
         const action = handleInputEvent({ target: { value: 1 } });
 
         const newState = loginReducer(state, action);
-        
+
         expect(Object.keys(newState).length).toBeTruthy();
     });
 
@@ -34,7 +34,7 @@ describe('loginReducer', () => {
         const action = focusUsernameField();
 
         const newState = loginReducer(state, action);
-        
+
         expect(Object.keys(newState).length).toBeTruthy();
     });
 });

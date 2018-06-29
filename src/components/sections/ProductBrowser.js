@@ -8,22 +8,18 @@ import './styles/ProductBrowser.css';
 import moneyFormatter from './../../services/moneyFormatter';
 
 export class ProductBrowser extends React.Component {
-    sortProducts = products => {
+    sortProducts = (products) => {
         return products.sort((a, b) => {
-            const [aname, bname] = [
-                a.product_name.toLowerCase(),
-                b.product_name.toLowerCase()
-            ];
+            const [aname, bname] = [a.product_name.toLowerCase(), b.product_name.toLowerCase()];
 
             return aname < bname ? -1 : aname === bname ? 0 : 1;
         });
     };
 
-    filterProducts = products => {
-        return products.filter(p => {
+    filterProducts = (products) => {
+        return products.filter((p) => {
             return (
-                (this.props.selectedCategory === -1 ||
-                    p.product_group === this.props.selectedCategory) &&
+                (this.props.selectedCategory === -1 || p.product_group === this.props.selectedCategory) &&
                 p.product_name
                     .toLowerCase()
                     .trim()
@@ -32,35 +28,31 @@ export class ProductBrowser extends React.Component {
         });
     };
 
-    createElements = products => {
-        return products.map(p => (
+    createElements = (products) => {
+        return products.map((p) => (
             <li key={p.product_id} className="product-list-item">
                 <a
                     role="button"
                     href="/"
-                    onClick={e => {
+                    onClick={(e) => {
                         e.preventDefault();
                         this.props.showModal(ProductPopup, {
                             product: p
                         });
                     }}
                 >
-                    <span className="product-list-item-name">
-                        {p.product_name}
-                    </span>
-                    <span className="product-list-item-price">
-                        {moneyFormatter.centsToString(p.sellprice)} €
-                    </span>
+                    <span className="product-list-item-name">{p.product_name}</span>
+                    <span className="product-list-item-price">{moneyFormatter.centsToString(p.sellprice)} €</span>
                 </a>
             </li>
         ));
     };
 
-    handleChangeFilter = e => {
+    handleChangeFilter = (e) => {
         this.props.setFilter(e.target.value);
     };
 
-    handleChangeCategory = e => {
+    handleChangeCategory = (e) => {
         this.props.setCategorySelected(parseInt(e.target.value, 10));
     };
 
@@ -75,16 +67,10 @@ export class ProductBrowser extends React.Component {
         return (
             <div className="product-browser-container">
                 <div className="product-filter">
-                    <select
-                        value={this.props.selectedCategory}
-                        onChange={this.handleChangeCategory}
-                    >
+                    <select value={this.props.selectedCategory} onChange={this.handleChangeCategory}>
                         <option value={-1}>All products</option>
-                        {this.props.categories.map(category => (
-                            <option
-                                value={category.category_id}
-                                key={category.category_id}
-                            >
+                        {this.props.categories.map((category) => (
+                            <option value={category.category_id} key={category.category_id}>
                                 {category.category_description}
                             </option>
                         ))}
@@ -97,11 +83,7 @@ export class ProductBrowser extends React.Component {
                     />
                 </div>
                 <div className="product-browser-list">
-                    {this.props.loading ? (
-                        <Loader />
-                    ) : (
-                        <ul>{this.createProductList()}</ul>
-                    )}
+                    {this.props.loading ? <Loader /> : <ul>{this.createProductList()}</ul>}
                 </div>
             </div>
         );
@@ -114,14 +96,12 @@ const mapDispatchToProps = {
     setCategorySelected
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     products: state.products.products,
     loading: state.products.gettingProducts,
     filter: state.products.filter,
     selectedCategory: state.products.selectedCategory,
-    categories: state.products.categories.filter(
-        categ => categ.category_id !== 65535
-    )
+    categories: state.products.categories.filter((categ) => categ.category_id !== 65535)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductBrowser);

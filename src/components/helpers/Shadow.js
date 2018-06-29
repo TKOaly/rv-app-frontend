@@ -2,7 +2,7 @@ import React from 'react';
 
 import './styles/Shadow.css';
 
-const Shadow = props => {
+const Shadow = (props) => {
     return <div className="shadow" />;
 };
 

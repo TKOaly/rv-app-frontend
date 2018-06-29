@@ -21,7 +21,7 @@ export class Header extends React.Component {
                     <div className="header-right">
                         <Margin margin={5} inlineBlock>
                             <HeaderBtn
-                                onClick={e => {
+                                onClick={(e) => {
                                     e.preventDefault();
                                     this.props.showModal(Deposit, {
                                         closeModal: this.props.closeModal
@@ -37,10 +37,7 @@ export class Header extends React.Component {
                                 <FontAwesome name="user-circle" />{' '}
                                 <span>
                                     <b>{this.props.user.full_name}</b>{' '}
-                                    {moneyFormatter.centsToString(
-                                        this.props.user.account_balance
-                                    )}{' '}
-                                    €
+                                    {moneyFormatter.centsToString(this.props.user.account_balance)} €
                                 </span>
                             </HeaderBtn>
                         </Margin>
@@ -61,7 +58,7 @@ const mapDispatchToProps = {
     closeModal
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     loggedIn: state.authentication.loggedIn
 });
 

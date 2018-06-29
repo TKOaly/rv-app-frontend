@@ -12,9 +12,7 @@ import thunk from 'redux-thunk';
 
 // Import reducers
 import notificationReducer from './reducers/notificationReducer';
-import authenticationReducer, {
-    authenticationActions
-} from './reducers/authenticationReducer';
+import authenticationReducer, { authenticationActions } from './reducers/authenticationReducer';
 import registerReducer from './reducers/registerReducer';
 import loginReducer from './reducers/loginReducer';
 import terminalReducer from './reducers/terminalReducer';
@@ -54,8 +52,7 @@ const middleware =
 // Create store
 const store = createStore(
     rootReducer,
-    window.__REDUX_DEVTOOLS_EXTENSION__ &&
-        window.__REDUX_DEVTOOLS_EXTENSION__(),
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
     applyMiddleware(...middleware)
 );
 

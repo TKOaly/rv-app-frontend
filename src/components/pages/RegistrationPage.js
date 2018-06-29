@@ -8,7 +8,7 @@ import { Redirect } from 'react-router-dom';
 import { registerUser } from './../../reducers/registerReducer';
 
 class RegistrationPage extends React.Component {
-    submit = values => {
+    submit = (values) => {
         console.log(values);
         this.props.registerUser(values);
     };
@@ -35,7 +35,7 @@ const mapDispatchToProps = {
     registerUser
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
     return {
         loggedIn: state.authentication.loggedIn
     };

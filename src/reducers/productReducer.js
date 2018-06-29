@@ -20,14 +20,14 @@ export const initialState = {
     selectedCategory: -1
 };
 
-export const setFilter = filter => {
+export const setFilter = (filter) => {
     return {
         type: productActions.SET_FILTER,
         filter
     };
 };
 
-export const setCategorySelected = category => {
+export const setCategorySelected = (category) => {
     return {
         type: productActions.SET_SELECTED_CATEGORY,
         category
@@ -35,7 +35,7 @@ export const setCategorySelected = category => {
 };
 
 export const getProducts = () => {
-    return async dispatch => {
+    return async (dispatch) => {
         try {
             dispatch({ type: productActions.SET_GETTING_PRODUCTS });
             const products = await productService.getAllProducts();
@@ -50,7 +50,7 @@ export const getProducts = () => {
 };
 
 export const getCategories = () => {
-    return async dispatch => {
+    return async (dispatch) => {
         try {
             dispatch({ type: productActions.SET_GETTING_CATEGORIES });
             const categories = await productService.getAllCategories();
@@ -69,11 +69,7 @@ export const buyProduct = (product, quantity) => {
         const token = getState().authentication.access_token;
 
         try {
-            const res = await productService.buyProduct(
-                product.product_barcode,
-                quantity,
-                token
-            );
+            const res = await productService.buyProduct(product.product_barcode, quantity, token);
 
             dispatch(setBalance(res.data.account_balance));
 
@@ -102,34 +98,34 @@ export const buyProduct = (product, quantity) => {
  */
 const productReducer = (state = initialState, action) => {
     switch (action.type) {
-    case productActions.SET_GETTING_PRODUCTS:
-        return Object.assign({}, state, {
-            gettingProducts: true
-        });
-    case productActions.SET_GETTING_CATEGORIES:
-        return Object.assign({}, state, {
-            gettingCategories: true
-        });
-    case productActions.SET_PRODUCTS:
-        return Object.assign({}, state, {
-            products: action.products,
-            gettingProducts: false
-        });
-    case productActions.SET_CATEGORIES:
-        return Object.assign({}, state, {
-            categories: action.categories,
-            gettingCategories: false
-        });
-    case productActions.SET_FILTER:
-        return Object.assign({}, state, {
-            filter: action.filter
-        });
-    case productActions.SET_SELECTED_CATEGORY:
-        return Object.assign({}, state, {
-            selectedCategory: action.category
-        });
-    default:
-        return state;
+        case productActions.SET_GETTING_PRODUCTS:
+            return Object.assign({}, state, {
+                gettingProducts: true
+            });
+        case productActions.SET_GETTING_CATEGORIES:
+            return Object.assign({}, state, {
+                gettingCategories: true
+            });
+        case productActions.SET_PRODUCTS:
+            return Object.assign({}, state, {
+                products: action.products,
+                gettingProducts: false
+            });
+        case productActions.SET_CATEGORIES:
+            return Object.assign({}, state, {
+                categories: action.categories,
+                gettingCategories: false
+            });
+        case productActions.SET_FILTER:
+            return Object.assign({}, state, {
+                filter: action.filter
+            });
+        case productActions.SET_SELECTED_CATEGORY:
+            return Object.assign({}, state, {
+                selectedCategory: action.category
+            });
+        default:
+            return state;
     }
 };
 

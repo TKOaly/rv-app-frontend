@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Margin = props => (
+const Margin = (props) => (
     <div
         className="margin"
         style={{

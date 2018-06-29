@@ -9,11 +9,7 @@ import {
     addProductToNotification,
     clearProductsFromNotification
 } from './../../reducers/notificationReducer';
-import {
-    increaseBalance,
-    decreaseBalance,
-    resetUserData
-} from './../../reducers/userReducer';
+import { increaseBalance, decreaseBalance, resetUserData } from './../../reducers/userReducer';
 import { getProducts, getCategories } from './../../reducers/productReducer';
 import userService from '../../services/userService';
 import { closeModal, showModal } from '../../reducers/modalReducer';
@@ -28,36 +24,31 @@ class MainPage extends Component {
         };
     }
 
-    handleKeyPress = event => {
+    handleKeyPress = (event) => {
         switch (event.keyCode) {
-        // Enter
-        case 13:
-            if (
-                this.props.terminalInput === '' &&
-                    this.props.filter === ''
-            ) {
-                this.props.resetUserData();
-                this.props.logout();
-            }
-            break;
+            // Enter
+            case 13:
+                if (this.props.terminalInput === '' && this.props.filter === '') {
+                    this.props.resetUserData();
+                    this.props.logout();
+                }
+                break;
             // D
-        case 100:
-            event.preventDefault();
-            this.props.showModal(Deposit, {
-                closeModal: this.props.closeModal
-            });
-            break;
-        default:
-            break;
+            case 100:
+                event.preventDefault();
+                this.props.showModal(Deposit, {
+                    closeModal: this.props.closeModal
+                });
+                break;
+            default:
+                break;
         }
     };
 
     componentDidMount = () => {
         const notificationInterval = setInterval(() => {
             if (this.props.purchaseNotificationStartTime != null) {
-                const delta =
-                    new Date().getTime() -
-                    this.props.purchaseNotificationStartTime.getTime();
+                const delta = new Date().getTime() - this.props.purchaseNotificationStartTime.getTime();
                 if (delta > this.props.purchaseNotificationTimeout) {
                     this.props.clearProductsFromNotification();
                 }
@@ -78,7 +69,7 @@ class MainPage extends Component {
     /**
      * Buys a product.
      */
-    buy = async product => {
+    buy = async (product) => {
         try {
             await userService.reduceBalance(this.props.token, product.price);
 
@@ -108,7 +99,7 @@ class MainPage extends Component {
     };
 
     show = () => {
-        return event => {
+        return (event) => {
             event.preventDefault();
             this.props.toggleVisibility(this.props.modalVisibility);
         };
@@ -139,13 +130,11 @@ const mapDispatchToProps = {
     getCategories
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
     return {
         token: state.authentication.access_token,
-        purchaseNotificationTimeout:
-            state.notification.purchaseNotificationTimeout,
-        purchaseNotificationStartTime:
-            state.notification.purchaseNotificationStartTime,
+        purchaseNotificationTimeout: state.notification.purchaseNotificationTimeout,
+        purchaseNotificationStartTime: state.notification.purchaseNotificationStartTime,
         user: state.user,
         terminalInput: state.terminal.terminalInput,
         filter: state.products.filter,

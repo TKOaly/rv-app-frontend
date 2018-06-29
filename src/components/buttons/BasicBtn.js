@@ -12,18 +12,11 @@ import PropTypes from 'prop-types';
 const BasicBtn = ({ onClick, children, fill, hover, loader, ...props }) => {
     let className = 'btn';
     fill ? (className += ' basic-fill') : (className += ' basic');
-    hover &&
-        (fill
-            ? (className += ' basic-fill-hover')
-            : (className += ' basic-hover'));
+    hover && (fill ? (className += ' basic-fill-hover') : (className += ' basic-hover'));
 
     return (
         <button {...props} onClick={onClick} className={className}>
-            {!loader ? (
-                <span className="btnContent">{children}</span>
-            ) : (
-                <Loader />
-            )}
+            {!loader ? <span className="btnContent">{children}</span> : <Loader />}
         </button>
     );
 };

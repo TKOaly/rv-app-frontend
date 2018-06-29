@@ -16,7 +16,7 @@ describe('productReducer', () => {
         const action = setCategorySelected();
 
         const newState = productReducer(state, action);
-        
+
         expect(Object.keys(newState).length).toBeTruthy();
     });
 
@@ -34,7 +34,7 @@ describe('productReducer', () => {
         const action = getCategories();
 
         const newState = productReducer(state, action);
-        
+
         expect(Object.keys(newState).length).toBeFalsy();
     });
 
@@ -43,7 +43,7 @@ describe('productReducer', () => {
         const action = buyProduct();
 
         const newState = productReducer(state, action);
-        
+
         expect(Object.keys(newState).length).toBeFalsy();
     });
 });

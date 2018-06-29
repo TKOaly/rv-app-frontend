@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Padding = props => (
+const Padding = (props) => (
     <div
         className="padding"
         style={{

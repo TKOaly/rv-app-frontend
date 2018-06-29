@@ -20,15 +20,14 @@ export const registerActions = {
     RESET_REGISTER: 'RESET_REGISTER',
     REGISTERING: 'REGISTERING',
     FOCUS_PASSWORD_FIELD_REGISTER: 'FOCUS_PASSWORD_FIELD_REGISTER',
-    FOCUS_PASSWORD_CONFIRM_FIELD_REGISTER:
-        'FOCUS_PASSWORD_CONFIRM_FIELD_REGISTER',
+    FOCUS_PASSWORD_CONFIRM_FIELD_REGISTER: 'FOCUS_PASSWORD_CONFIRM_FIELD_REGISTER',
     FOCUS_EMAIL_FIELD: 'FOCUS_EMAIL_FIELD',
     FOCUS_REALNAME_FIELD: 'FOCUS_REALNAME_FIELD',
     REGISTER_USER: 'REGISTER_USER'
 };
 
-export const registerUser = userData => {
-    return async dispatch => {
+export const registerUser = (userData) => {
+    return async (dispatch) => {
         dispatch(setRegistering());
         try {
             const registerRequest = await userService.registerUser({
@@ -71,7 +70,7 @@ export const reset = () => {
     };
 };
 
-export const setRegistering = event => {
+export const setRegistering = (event) => {
     return {
         type: registerActions.REGISTERING,
         registerUsernameDisabled: true,
@@ -131,44 +130,43 @@ export const focusPasswordConfirmField = () => {
  */
 const registerReducer = (state = initialState, action) => {
     switch (action.type) {
-    case registerActions.TOGGLE_REGISTER_VISIBILITY:
-        return Object.assign({}, state, {
-            registerVisible: !state.registerVisible
-        });
-    case registerActions.RESET_REGISTER:
-        return Object.assign({}, initialState);
-    case registerActions.INPUT_EVENT_REGISTER:
-        return Object.assign({}, state, { [action.target]: action.value });
-    case registerActions.FOCUS_PASSWORD_FIELD_REGISTER:
-        return Object.assign({}, state, {
-            registerStep: action.registerStep,
-            registerUsernameDisabled: action.registerUsernameDisabled,
-            registerPasswordDisabled: action.registerPasswordDisabled,
-            submitDisabled: action.submitDisabled
-        });
-    case registerActions.FOCUS_PASSWORD_CONFIRM_FIELD_REGISTER:
-        return Object.assign({}, state, {
-            registerStep: action.registerStep,
-            registerUsernameDisabled: action.registerUsernameDisabled,
-            registerPasswordDisabled: action.registerPasswordDisabled,
-            registerPasswordConfirmDisabled:
-                    action.registerConfirmPasswordDisabled,
-            submitDisabled: action.submitDisabled
-        });
-    case registerActions.REGISTERING:
-        return Object.assign({}, state, {
-            registerUsernameDisabled: true,
-            registerPasswordDisabled: true,
-            loader: true
-        });
-    case registerActions.FOCUS_EMAIL_FIELD:
-    case registerActions.FOCUS_REALNAME_FIELD:
-        return Object.assign({}, state, {
-            ...state,
-            action
-        });
-    default:
-        return state;
+        case registerActions.TOGGLE_REGISTER_VISIBILITY:
+            return Object.assign({}, state, {
+                registerVisible: !state.registerVisible
+            });
+        case registerActions.RESET_REGISTER:
+            return Object.assign({}, initialState);
+        case registerActions.INPUT_EVENT_REGISTER:
+            return Object.assign({}, state, { [action.target]: action.value });
+        case registerActions.FOCUS_PASSWORD_FIELD_REGISTER:
+            return Object.assign({}, state, {
+                registerStep: action.registerStep,
+                registerUsernameDisabled: action.registerUsernameDisabled,
+                registerPasswordDisabled: action.registerPasswordDisabled,
+                submitDisabled: action.submitDisabled
+            });
+        case registerActions.FOCUS_PASSWORD_CONFIRM_FIELD_REGISTER:
+            return Object.assign({}, state, {
+                registerStep: action.registerStep,
+                registerUsernameDisabled: action.registerUsernameDisabled,
+                registerPasswordDisabled: action.registerPasswordDisabled,
+                registerPasswordConfirmDisabled: action.registerConfirmPasswordDisabled,
+                submitDisabled: action.submitDisabled
+            });
+        case registerActions.REGISTERING:
+            return Object.assign({}, state, {
+                registerUsernameDisabled: true,
+                registerPasswordDisabled: true,
+                loader: true
+            });
+        case registerActions.FOCUS_EMAIL_FIELD:
+        case registerActions.FOCUS_REALNAME_FIELD:
+            return Object.assign({}, state, {
+                ...state,
+                action
+            });
+        default:
+            return state;
     }
 };
 

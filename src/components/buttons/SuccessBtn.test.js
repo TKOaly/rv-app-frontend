@@ -10,15 +10,11 @@ describe.only('<SuccessBtn />', () => {
             text: 'Hello world'
         };
 
-        const successBtnComponent = shallow(
-            <SuccessBtn>{data.text}</SuccessBtn>
-        );
+        const successBtnComponent = shallow(<SuccessBtn>{data.text}</SuccessBtn>);
         console.log(successBtnComponent.debug());
         const contentDiv = successBtnComponent.find('.btnContent');
         expect(contentDiv.text()).toContain(data.text);
-        const cmpnt = renderer
-            .create(<SuccessBtn>{data.text}</SuccessBtn>)
-            .toJSON();
+        const cmpnt = renderer.create(<SuccessBtn>{data.text}</SuccessBtn>).toJSON();
         expect(cmpnt).toMatchSnapshot();
     });
 
@@ -37,13 +33,9 @@ describe.only('<SuccessBtn />', () => {
 
         const mockHandler = jest.fn();
 
-        const successBtnComponent = shallow(
-            <SuccessBtn onClick={mockHandler} />
-        );
+        const successBtnComponent = shallow(<SuccessBtn onClick={mockHandler} />);
 
-        const cmpnt = renderer
-            .create(<SuccessBtn onClick={mockHandler} />)
-            .toJSON();
+        const cmpnt = renderer.create(<SuccessBtn onClick={mockHandler} />).toJSON();
         expect(cmpnt).toMatchSnapshot();
 
         const button = successBtnComponent.find('button');

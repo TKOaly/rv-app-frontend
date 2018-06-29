@@ -7,12 +7,7 @@ export class Confirmation extends Component {
         return (
             <div className="confirm-overlay">
                 <div className="confirm">
-                    Confirm{' '}
-                    <b>
-                        {moneyFormatter.centsToString(this.props.depositAmount)}{' '}
-                        €
-                    </b>{' '}
-                    deposit
+                    Confirm <b>{moneyFormatter.centsToString(this.props.depositAmount)} €</b> deposit
                     <br />
                     <br />
                     <button
@@ -26,10 +21,7 @@ export class Confirmation extends Component {
                     <button
                         className="btn number success confirmBtn"
                         onClick={() => {
-                            this.props.increaseBalance(
-                                this.props.token,
-                                this.props.depositAmount
-                            );
+                            this.props.increaseBalance(this.props.token, this.props.depositAmount);
                             this.props.resetAmount();
                             this.props.toggleConfirmationVisibility(false);
                             this.props.closeModal();

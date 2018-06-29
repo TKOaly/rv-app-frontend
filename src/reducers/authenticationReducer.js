@@ -28,8 +28,8 @@ export const loggingIn = () => {
     };
 };
 
-export const loggedIn = token => {
-    return async dispatch => {
+export const loggedIn = (token) => {
+    return async (dispatch) => {
         try {
             const userData = await userService.getUser(token);
             dispatch(setUserData(userData));
@@ -56,27 +56,27 @@ export const loginFailed = () => {
  */
 const authenticationReducer = (state = initialState, action) => {
     switch (action.type) {
-    case authenticationActions.LOGGING_IN:
-        return Object.assign({}, state, { isLoggingIn: true });
-    case authenticationActions.LOGGED_IN:
-        return Object.assign({}, state, {
-            loggedIn: true,
-            access_token: action.token,
-            isLoggingIn: false
-        });
-    case authenticationActions.LOGIN_FAILED:
-        return Object.assign({}, state, {
-            loggedIn: false,
-            access_token: '',
-            isLoggingIn: false
-        });
-    case authenticationActions.LOGOUT_SUCCESS:
-        return Object.assign({}, state, {
-            loggedIn: false,
-            access_token: ''
-        });
-    default:
-        return state;
+        case authenticationActions.LOGGING_IN:
+            return Object.assign({}, state, { isLoggingIn: true });
+        case authenticationActions.LOGGED_IN:
+            return Object.assign({}, state, {
+                loggedIn: true,
+                access_token: action.token,
+                isLoggingIn: false
+            });
+        case authenticationActions.LOGIN_FAILED:
+            return Object.assign({}, state, {
+                loggedIn: false,
+                access_token: '',
+                isLoggingIn: false
+            });
+        case authenticationActions.LOGOUT_SUCCESS:
+            return Object.assign({}, state, {
+                loggedIn: false,
+                access_token: ''
+            });
+        default:
+            return state;
     }
 };
 

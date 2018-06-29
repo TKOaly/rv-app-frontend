@@ -7,10 +7,7 @@ import ProductBrowser from './ProductBrowser';
 
 import { connect } from 'react-redux';
 
-import {
-    successMessage,
-    errorMessage
-} from './../../reducers/notificationReducer';
+import { successMessage, errorMessage } from './../../reducers/notificationReducer';
 
 export class Content extends React.Component {
     render = () => {
@@ -41,7 +38,7 @@ const mapDispatchToProps = {
     errorMessage
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
     return {
         success: state.notification.success,
         error: state.notification.error

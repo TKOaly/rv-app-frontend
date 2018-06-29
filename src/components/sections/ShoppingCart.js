@@ -23,15 +23,11 @@ const ShoppingCartItem = ({ item }) => {
 
 export class ShoppingCart extends React.Component {
     calculateCartTotal = () => {
-        return this.props.products
-            .map(item => item.price * item.quantity)
-            .reduce((sum, cur) => sum + cur, 0);
+        return this.props.products.map((item) => item.price * item.quantity).reduce((sum, cur) => sum + cur, 0);
     };
 
     render = () => {
-        const cartItems = this.props.products.map(item => (
-            <ShoppingCartItem key={item.barcode} item={item} />
-        ));
+        const cartItems = this.props.products.map((item) => <ShoppingCartItem key={item.barcode} item={item} />);
 
         return (
             <div className="shopping-cart">
@@ -54,10 +50,7 @@ export class ShoppingCart extends React.Component {
                     <Row end="xs">
                         <Col xs={3}>Yhteensä</Col>
                         <Col xs={3} className="cart-total-price">
-                            {moneyFormatter.centsToString(
-                                this.calculateCartTotal()
-                            )}{' '}
-                            €
+                            {moneyFormatter.centsToString(this.calculateCartTotal())} €
                         </Col>
                     </Row>
                 </div>
@@ -66,7 +59,7 @@ export class ShoppingCart extends React.Component {
     };
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
     return {
         products: state.shoppingCart.products
     };

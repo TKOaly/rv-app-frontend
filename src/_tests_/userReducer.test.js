@@ -16,7 +16,7 @@ describe('userReducer', () => {
         const action = setUserData();
 
         const newState = userReducer(state, action);
-        
+
         expect(Object.keys(newState).length).toBeFalsy();
     });
 
@@ -34,7 +34,7 @@ describe('userReducer', () => {
         const action = decreaseBalance();
 
         const newState = userReducer(state, action);
-        
+
         expect(Object.keys(newState).length).toBeTruthy();
     });
 
@@ -43,7 +43,7 @@ describe('userReducer', () => {
         const action = setBalance();
 
         const newState = userReducer(state, action);
-        
+
         expect(Object.keys(newState).length).toBeTruthy();
     });
 });

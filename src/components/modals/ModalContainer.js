@@ -12,25 +12,16 @@ export class ModalContainer extends React.Component {
         }
 
         return (
-            <CSSTransition
-                in={this.props.modalVisible}
-                timeout={200}
-                classNames="overlay"
-                mountOnEnter
-                unmountOnExit
-            >
-                {state => {
+            <CSSTransition in={this.props.modalVisible} timeout={200} classNames="overlay" mountOnEnter unmountOnExit>
+                {(state) => {
                     return (
                         <div
                             className="modal-overlay"
-                            onClick={e => {
+                            onClick={(e) => {
                                 this.props.closeModal();
                             }}
                         >
-                            <div
-                                className="modal-container"
-                                onClick={e => e.stopPropagation()}
-                            >
+                            <div className="modal-container" onClick={(e) => e.stopPropagation()}>
                                 <ModalContent {...this.props.modalProps} />
                             </div>
                         </div>
@@ -45,7 +36,7 @@ const mapDispatchToProps = {
     closeModal
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     contentComponent: state.modal.modalContent,
     modalProps: state.modal.props,
     modalVisible: state.modal.modalVisible

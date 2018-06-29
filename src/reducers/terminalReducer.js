@@ -13,7 +13,7 @@ export const terminalActions = {
     RESET_TERMINAL: 'RESET_TERMINAL'
 };
 
-export const setTerminalText = text => {
+export const setTerminalText = (text) => {
     return {
         type: terminalActions.SET_TERMINAL_TEXT,
         text: text
@@ -27,7 +27,7 @@ export const resetTerminal = () => {
 };
 
 export const handleTerminalSubmit = (barcode, token) => {
-    return async dispatch => {
+    return async (dispatch) => {
         if (eanValidator.validateEan(barcode)) {
             try {
                 const res = await productService.buyProduct(barcode, 1, token);
@@ -43,11 +43,7 @@ export const handleTerminalSubmit = (barcode, token) => {
                 };
                 dispatch(addProductToNotification(prod));
             } catch (err) {
-                dispatch(
-                    errorMessage(
-                        'Error buying product: ' + err.response.data.message
-                    )
-                );
+                dispatch(errorMessage('Error buying product: ' + err.response.data.message));
             }
         } else {
             dispatch(errorMessage('Invalid barcode'));
@@ -63,15 +59,15 @@ export const handleTerminalSubmit = (barcode, token) => {
  */
 const terminalReducer = (state = initialState, action) => {
     switch (action.type) {
-    case terminalActions.SET_TERMINAL_TEXT:
-        return Object.assign({}, state, {
-            terminalInput: action.text,
-            inputValid: eanValidator.validateEan(action.text)
-        });
-    case terminalActions.RESET_TERMINAL:
-        return Object.assign({}, initialState);
-    default:
-        return state;
+        case terminalActions.SET_TERMINAL_TEXT:
+            return Object.assign({}, state, {
+                terminalInput: action.text,
+                inputValid: eanValidator.validateEan(action.text)
+            });
+        case terminalActions.RESET_TERMINAL:
+            return Object.assign({}, initialState);
+        default:
+            return state;
     }
 };
 

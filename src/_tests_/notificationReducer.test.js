@@ -1,5 +1,10 @@
 import notificationReducer from '../reducers/notificationReducer';
-import { successMessage, errorMessage, addProductToNotification, clearProductsFromNotification } from '../reducers/notificationReducer';
+import {
+    successMessage,
+    errorMessage,
+    addProductToNotification,
+    clearProductsFromNotification
+} from '../reducers/notificationReducer';
 
 describe('notificationReducer', () => {
     it('successMessage-action changes state', () => {
@@ -16,7 +21,7 @@ describe('notificationReducer', () => {
         const action = errorMessage();
 
         const newState = notificationReducer(state, action);
-        
+
         expect(Object.keys(newState).length).toBeFalsy();
     });
 
@@ -34,7 +39,7 @@ describe('notificationReducer', () => {
         const action = clearProductsFromNotification();
 
         const newState = notificationReducer(state, action);
-        
+
         expect(Object.keys(newState).length).toBeTruthy();
     });
 });

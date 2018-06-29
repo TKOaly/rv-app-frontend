@@ -18,17 +18,11 @@ const NotificationDrawer = ({ notifications, products }) => (
                     (notification, id) =>
                         notification.messageType === 'SUCCESS' ? (
                             <Fade key={notification.id}>
-                                <SuccessNotification
-                                    message={notification.message}
-                                    shadow
-                                />
+                                <SuccessNotification message={notification.message} shadow />
                             </Fade>
                         ) : (
                             <Fade key={notification.id}>
-                                <ErrorNotification
-                                    message={notification.message}
-                                    shadow
-                                />
+                                <ErrorNotification message={notification.message} shadow />
                             </Fade>
                         )
                 )}

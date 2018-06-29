@@ -1,4 +1,4 @@
-const validateEan = ean => {
+const validateEan = (ean) => {
     ean = ean.toString();
     // Allow only numbers
     if (ean.match('^[0-9]+$') === null) {
@@ -6,19 +6,19 @@ const validateEan = ean => {
     }
     // Make EAN 14 characters in length
     switch (ean.length) {
-    case 8:
-        ean = '000000' + ean;
-        break;
-    case 12:
-        ean = '00' + ean;
-        break;
-    case 13:
-        ean = '0' + ean;
-        break;
-    case 14:
-        break;
-    default:
-        return false;
+        case 8:
+            ean = '000000' + ean;
+            break;
+        case 12:
+            ean = '00' + ean;
+            break;
+        case 13:
+            ean = '0' + ean;
+            break;
+        case 14:
+            break;
+        default:
+            return false;
     }
 
     // Start calculating checksum

@@ -1,4 +1,4 @@
-const stringToCents = string => {
+const stringToCents = (string) => {
     const matchResult = string.match(/^(-?)(\d+)[.,](\d{2})$/);
 
     if (matchResult) {
@@ -6,8 +6,7 @@ const stringToCents = string => {
         const integerPart = matchResult[2];
         const fractionalPart = matchResult[3];
 
-        let cents =
-            parseInt(integerPart, 10) * 100 + parseInt(fractionalPart, 10);
+        let cents = parseInt(integerPart, 10) * 100 + parseInt(fractionalPart, 10);
         if (sign === '-') {
             cents *= -1;
         }
@@ -17,7 +16,7 @@ const stringToCents = string => {
     }
 };
 
-const centsToString = cents => {
+const centsToString = (cents) => {
     const sign = cents < 0 ? '-' : '';
     const integerPart = Math.abs(Math.trunc(cents / 100)).toString();
     const fractionalPart = Math.abs(cents % 100)

@@ -16,7 +16,7 @@ describe('modalReducer', () => {
         const action = closeModal();
 
         const newState = modalReducer(state, action);
-        
+
         expect(Object.keys(newState).length).toBeTruthy();
     });
 });
