@@ -16,6 +16,14 @@ class Terminal extends React.Component {
         this.terminalFocus.focus();
     };
 
+    terminalInputRef = (input) => {
+        this.terminalFocus = input;
+    };
+
+    handleTerminalInputChange = (event) => {
+        this.props.setTerminalText(event.target.value);
+    };
+
     render = () => {
         const className = this.props.inputValid ? 'input fullWidth valid' : 'input fullWidth invalid';
         return (
@@ -24,10 +32,8 @@ class Terminal extends React.Component {
                     <input
                         className={className}
                         value={this.props.terminalInput}
-                        ref={(input) => {
-                            this.terminalFocus = input;
-                        }}
-                        onChange={(event) => this.props.setTerminalText(event.target.value)}
+                        ref={this.terminalInputRef}
+                        onChange={this.handleTerminalInputChange}
                         placeholder="Scan a barcode here to buy a product."
                     />
                 </form>

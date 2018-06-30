@@ -3,6 +3,17 @@ import './styles/Confirmation.css';
 import moneyFormatter from './../../services/moneyFormatter';
 
 export class Confirmation extends Component {
+    handleConfirm = (event) => {
+        this.props.increaseBalance(this.props.token, this.props.depositAmount);
+        this.props.resetAmount();
+        this.props.toggleConfirmationVisibility(false);
+        this.props.closeModal();
+    };
+
+    handleCancel = (event) => {
+        this.props.toggleConfirmationVisibility(false);
+    };
+
     render = () => {
         return (
             <div className="confirm-overlay">
@@ -10,23 +21,10 @@ export class Confirmation extends Component {
                     Confirm <b>{moneyFormatter.centsToString(this.props.depositAmount)} €</b> deposit
                     <br />
                     <br />
-                    <button
-                        className="btn number cancel cancelBtn"
-                        onClick={() => {
-                            this.props.toggleConfirmationVisibility(false);
-                        }}
-                    >
+                    <button className="btn number cancel cancelBtn" onClick={this.handleCancel}>
                         Cancel
                     </button>
-                    <button
-                        className="btn number success confirmBtn"
-                        onClick={() => {
-                            this.props.increaseBalance(this.props.token, this.props.depositAmount);
-                            this.props.resetAmount();
-                            this.props.toggleConfirmationVisibility(false);
-                            this.props.closeModal();
-                        }}
-                    >
+                    <button className="btn number success confirmBtn" onClick={this.handleConfirm}>
                         OK
                     </button>
                 </div>

@@ -28,6 +28,10 @@ const FeaturedProductsList = (props) => {
 };
 
 export class FeaturedProducts extends React.Component {
+    buyProduct = (product) => {
+        this.props.buyProduct(product, 1);
+    };
+
     render = () => {
         // these will some day come from backend, hardcoded for now
         const featuredProductIds = [56, 58, 54, 50, 52, 626, 344];
@@ -41,7 +45,7 @@ export class FeaturedProducts extends React.Component {
                 {this.props.loading ? (
                     <Loader />
                 ) : (
-                    <FeaturedProductsList products={featuredProducts} buy={(p) => this.props.buyProduct(p, 1)} />
+                    <FeaturedProductsList products={featuredProducts} buy={this.buyProduct} />
                 )}
             </div>
         );

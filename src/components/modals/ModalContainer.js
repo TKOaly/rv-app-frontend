@@ -5,6 +5,12 @@ import './styles/ModalContainer.css';
 import { CSSTransition } from 'react-transition-group';
 
 export class ModalContainer extends React.Component {
+    handleClose = (e) => {
+        this.props.closeModal();
+    };
+
+    handleModalClick = (e) => e.stopPropagation();
+
     render = () => {
         const ModalContent = this.props.contentComponent;
         if (!ModalContent) {
@@ -15,13 +21,8 @@ export class ModalContainer extends React.Component {
             <CSSTransition in={this.props.modalVisible} timeout={200} classNames="overlay" mountOnEnter unmountOnExit>
                 {(state) => {
                     return (
-                        <div
-                            className="modal-overlay"
-                            onClick={(e) => {
-                                this.props.closeModal();
-                            }}
-                        >
-                            <div className="modal-container" onClick={(e) => e.stopPropagation()}>
+                        <div className="modal-overlay" onClick={this.handleClose}>
+                            <div className="modal-container" onClick={this.handleModalClick}>
                                 <ModalContent {...this.props.modalProps} />
                             </div>
                         </div>

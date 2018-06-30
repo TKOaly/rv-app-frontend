@@ -10,6 +10,13 @@ import FontAwesome from 'react-fontawesome';
 import moneyFormatter from './../../services/moneyFormatter';
 
 export class Header extends React.Component {
+    handleDepositClick = (event) => {
+        event.preventDefault();
+        this.props.showModal(Deposit, {
+            closeModal: this.props.closeModal
+        });
+    };
+
     render = () => {
         return (
             <header>
@@ -20,15 +27,7 @@ export class Header extends React.Component {
                 {this.props.loggedIn && (
                     <div className="header-right">
                         <Margin margin={5} inlineBlock>
-                            <HeaderBtn
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                    this.props.showModal(Deposit, {
-                                        closeModal: this.props.closeModal
-                                    });
-                                }}
-                                fill
-                            >
+                            <HeaderBtn onClick={this.handleDepositClick} fill>
                                 Deposit
                             </HeaderBtn>
                         </Margin>

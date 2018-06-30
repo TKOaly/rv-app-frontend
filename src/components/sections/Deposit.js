@@ -47,6 +47,17 @@ export class Deposit extends Component {
         }
     };
 
+    handleCancel = () => {
+        this.props.resetAmount();
+        this.props.closeModal();
+    };
+
+    handleValueChange = (event) => this.props.setAmountText(event.target.value);
+
+    depositRef = (input) => {
+        this.textField = input;
+    };
+
     render = () => {
         return (
             <div className="deposit-wrapper">
@@ -57,10 +68,8 @@ export class Deposit extends Component {
                             type="text"
                             placeholder="0.00"
                             value={this.props.depositAmountText}
-                            onChange={(event) => this.props.setAmountText(event.target.value)}
-                            ref={(input) => {
-                                this.textField = input;
-                            }}
+                            onChange={this.handleValueChange}
+                            ref={this.depositRef}
                         />
                         <div className="euro-sign">€</div>
                     </div>
@@ -94,13 +103,7 @@ export class Deposit extends Component {
                     <button className="btn number increment" onClick={this.createIncrementHandler(2000)}>
                         + 20.00 €
                     </button>
-                    <button
-                        className="btn number cancel"
-                        onClick={() => {
-                            this.props.resetAmount();
-                            this.props.closeModal();
-                        }}
-                    >
+                    <button className="btn number cancel" onClick={this.handleCancel}>
                         Cancel
                     </button>
                     <button className="btn number increment" onClick={this.createIncrementHandler(5000)}>

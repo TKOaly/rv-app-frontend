@@ -75,7 +75,7 @@ class LoginForm extends React.Component {
                 this.usernameInput.focus();
                 this.props.focusUsernameField();
                 // Server error
-                if (errorResponse.status === 500) {
+                if (errorResponse.status === 500 || errorResponse.status === 404) {
                     this.props.errorMessage('Server error', 2500);
                 } else if (errorResponse.status === 403 || errorResponse.status === 400) {
                     // Validation error
