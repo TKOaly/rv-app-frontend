@@ -62,6 +62,14 @@ export class ProductBrowser extends React.Component {
         const sortedFilteredProds = this.filterProducts(sortedProds);
         return this.createElements(sortedFilteredProds);
     };
+    shouldComponentUpdate(nextProps) {
+        return (
+            this.props.categories.length !== nextProps.categories.length ||
+            this.props.products.length !== nextProps.products.length ||
+            this.props.selectedCategory !== nextProps.selectedCategory ||
+            this.props.filter !== nextProps.filter
+        );
+    }
 
     render = () => {
         return (
