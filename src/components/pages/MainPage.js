@@ -12,8 +12,6 @@ import {
 import { increaseBalance, decreaseBalance, resetUserData } from './../../reducers/userReducer';
 import { getProducts, getCategories } from './../../reducers/productReducer';
 import userService from '../../services/userService';
-import { closeModal, showModal } from '../../reducers/modalReducer';
-import Deposit from '../sections/Deposit';
 
 class MainPage extends Component {
     constructor(props) {
@@ -23,27 +21,6 @@ class MainPage extends Component {
             notificationInterval: null
         };
     }
-
-    handleKeyPress = (event) => {
-        switch (event.keyCode) {
-            // Enter
-            case 13:
-                if (this.props.terminalInput === '' && this.props.filter === '') {
-                    this.props.resetUserData();
-                    this.props.logout();
-                }
-                break;
-            // D
-            case 100:
-                event.preventDefault();
-                this.props.showModal(Deposit, {
-                    closeModal: this.props.closeModal
-                });
-                break;
-            default:
-                break;
-        }
-    };
 
     componentDidMount = () => {
         const notificationInterval = setInterval(() => {
@@ -55,7 +32,6 @@ class MainPage extends Component {
             }
         }, 100);
         this.setState({ notificationInterval });
-        document.addEventListener('keypress', this.handleKeyPress);
         this.props.getProducts();
         this.props.getCategories();
     };
@@ -63,7 +39,6 @@ class MainPage extends Component {
     componentWillUnmount = () => {
         clearInterval(this.state.notificationInterval);
         this.setState({ notificationInterval: null });
-        document.removeEventListener('keypress', this.handleKeyPress);
     };
 
     /**
@@ -125,8 +100,6 @@ const mapDispatchToProps = {
     decreaseBalance,
     resetUserData,
     getProducts,
-    closeModal,
-    showModal,
     getCategories
 };
 

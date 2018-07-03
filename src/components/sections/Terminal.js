@@ -5,11 +5,22 @@ import { connect } from 'react-redux';
 import './styles/Terminal.css';
 
 import { setTerminalText, handleTerminalSubmit } from './../../reducers/terminalReducer';
+import Deposit from './Deposit';
+import { closeModal, showModal } from '../../reducers/modalReducer';
+import { logout } from './../../reducers/authenticationReducer';
+import { resetUserData } from './../../reducers/userReducer';
 
 class Terminal extends React.Component {
-    handleSubmit = (e) => {
-        e.preventDefault();
-        this.props.handleTerminalSubmit(this.props.terminalInput, this.props.token);
+    handleSubmit = (event) => {
+        event.preventDefault();
+
+        // Submitting empty string = pressing enter without content in barcode field. This should log out the user.
+        if (this.props.terminalInput === '') {
+            this.props.resetUserData();
+            this.props.logout();
+        } else {
+            this.props.handleTerminalSubmit(this.props.terminalInput, this.props.token);
+        }
     };
 
     componentDidMount = () => {
@@ -18,6 +29,15 @@ class Terminal extends React.Component {
 
     terminalInputRef = (input) => {
         this.terminalFocus = input;
+    };
+
+    handleKeyDown = (event) => {
+        if (event.key === 'd') {
+            event.preventDefault();
+            this.props.showModal(Deposit, {
+                closeModal: this.props.closeModal
+            });
+        }
     };
 
     handleTerminalInputChange = (event) => {
@@ -33,6 +53,7 @@ class Terminal extends React.Component {
                         className={className}
                         value={this.props.terminalInput}
                         ref={this.terminalInputRef}
+                        onKeyDown={this.handleKeyDown}
                         onChange={this.handleTerminalInputChange}
                         placeholder="Scan a barcode here to buy a product."
                     />
@@ -44,7 +65,11 @@ class Terminal extends React.Component {
 
 const mapDispatchToProps = {
     setTerminalText,
-    handleTerminalSubmit
+    handleTerminalSubmit,
+    showModal,
+    closeModal,
+    logout,
+    resetUserData
 };
 
 const mapStateToProps = (state) => {
