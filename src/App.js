@@ -1,13 +1,11 @@
-import React, { Component } from 'react';
-import MainPage from './components/pages/MainPage';
-import LoginPage from './components/pages/LoginPage';
-import RegistrationPage from './components/pages/RegistrationPage';
-import NotificationDrawer from './components/helpers/NotificationDrawer';
-import ModalContainer from './components/modals/ModalContainer';
-
+import { Redirect, Route, BrowserRouter as Router } from 'react-router-dom';
 import { connect } from 'react-redux';
-
-import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
+import LoginPage from './components/pages/LoginPage';
+import MainPage from './components/pages/MainPage';
+import ModalContainer from './components/modals/ModalContainer';
+import NotificationDrawer from './components/helpers/NotificationDrawer';
+import React, { Component } from 'react';
+import RegistrationPage from './components/pages/RegistrationPage';
 
 const AuthenticatedRoute = ({ component: Component, ...rest }) => (
     <Route

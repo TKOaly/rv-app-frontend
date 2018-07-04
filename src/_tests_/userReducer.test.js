@@ -1,5 +1,5 @@
+import { decreaseBalance, increaseBalance, resetUserData, setBalance, setUserData } from '../reducers/userReducer';
 import userReducer from '../reducers/userReducer';
-import { resetUserData, setUserData, increaseBalance, decreaseBalance, setBalance } from '../reducers/userReducer';
 
 describe('userReducer', () => {
     it('resetUserData-action changes state', () => {

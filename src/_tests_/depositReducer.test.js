@@ -1,5 +1,5 @@
+import { resetAmount, setAmountText, toggleConfirmationVisibility } from '../reducers/depositReducer';
 import depositReducer from '../reducers/depositReducer';
-import { toggleConfirmationVisibility, setAmountText, resetAmount } from '../reducers/depositReducer';
 
 describe('depositReducer', () => {
     it('toggleConfirmationVisibility-action changes state', () => {

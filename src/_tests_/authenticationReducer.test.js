@@ -1,5 +1,5 @@
+import { loggedIn, loggingIn, loginFailed, logout } from '../reducers/authenticationReducer';
 import authenticationReducer from '../reducers/authenticationReducer';
-import { logout, loggingIn, loggedIn, loginFailed } from '../reducers/authenticationReducer';
 
 describe('authenticationReducer', () => {
     it('logout-action changes state', () => {

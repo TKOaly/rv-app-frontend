@@ -1,7 +1,7 @@
+import Enzyme from 'enzyme';
+import HeaderBtn from '../components/buttons/HeaderBtn';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import HeaderBtn from '../components/buttons/HeaderBtn';
-import Enzyme from 'enzyme';
 import renderer from 'react-test-renderer';
 
 it('renders without crashing', () => {

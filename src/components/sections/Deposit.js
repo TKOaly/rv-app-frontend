@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import './styles/Deposit.css';
-import { setAmountText, resetAmount, toggleConfirmationVisibility } from './../../reducers/depositReducer';
-import { increaseBalance } from './../../reducers/userReducer';
-import { errorMessage } from './../../reducers/notificationReducer';
+import { Fade } from '../animations/Animations';
 import { TransitionGroup } from 'react-transition-group';
-import { Fade } from './../animations/Animations';
+import { connect } from 'react-redux';
+import { errorMessage } from '../../reducers/notificationReducer';
+import { increaseBalance } from '../../reducers/userReducer';
+import { resetAmount, setAmountText, toggleConfirmationVisibility } from '../../reducers/depositReducer';
 import Confirmation from './Confirmation';
-import moneyFormatter from './../../services/moneyFormatter';
+import React, { Component } from 'react';
+import moneyFormatter from '../../services/moneyFormatter';
 
 export class Deposit extends Component {
     static depositAmountTextToCents = (text) => {

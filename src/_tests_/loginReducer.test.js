@@ -1,5 +1,5 @@
+import { focusPasswordField, focusUsernameField, handleInputEvent, reset } from '../reducers/loginReducer';
 import loginReducer from '../reducers/loginReducer';
-import { reset, handleInputEvent, focusPasswordField, focusUsernameField } from '../reducers/loginReducer';
 
 describe('loginReducer', () => {
     it('reset-action changes state', () => {

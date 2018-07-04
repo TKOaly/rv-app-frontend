@@ -1,5 +1,5 @@
-import terminalReducer from '../reducers/terminalReducer';
 import { handleTerminalSubmit } from '../reducers/terminalReducer';
+import terminalReducer from '../reducers/terminalReducer';
 
 describe('terminalReducer', () => {
     it('action creators return correct actions', async () => {

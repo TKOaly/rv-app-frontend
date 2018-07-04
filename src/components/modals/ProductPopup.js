@@ -1,9 +1,9 @@
-import React from 'react';
 import './styles/ProductPopup.css';
-import { connect } from 'react-redux';
-import { closeModal } from '../../reducers/modalReducer';
 import { buyProduct } from '../../reducers/productReducer';
-import moneyFormatter from './../../services/moneyFormatter';
+import { closeModal } from '../../reducers/modalReducer';
+import { connect } from 'react-redux';
+import React from 'react';
+import moneyFormatter from '../../services/moneyFormatter';
 
 export class ProductPopup extends React.Component {
     constructor(props) {

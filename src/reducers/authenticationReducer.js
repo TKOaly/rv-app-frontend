@@ -1,7 +1,6 @@
-import userService from './../services/userService';
-
-import { setUserData } from './../reducers/userReducer';
 import { errorMessage } from './notificationReducer';
+import { setUserData } from '../reducers/userReducer';
+import userService from '../services/userService';
 
 export const authenticationActions = {
     LOGOUT_SUCCESS: 'LOGOUT_SUCCESS',

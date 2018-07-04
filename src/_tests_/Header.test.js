@@ -1,7 +1,7 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
 import { Header } from '../components/sections/Header';
 import Enzyme from 'enzyme';
+import React from 'react';
+import ReactDOM from 'react-dom';
 import renderer from 'react-test-renderer';
 /**
  * Mock

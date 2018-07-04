@@ -1,11 +1,11 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { showModal } from '../../reducers/modalReducer';
-import { setFilter, setCategorySelected } from '../../reducers/productReducer';
-import ProductPopup from '../modals/ProductPopup';
-import Loader from '../loaders/Loader';
 import './styles/ProductBrowser.css';
-import moneyFormatter from './../../services/moneyFormatter';
+import { connect } from 'react-redux';
+import { setCategorySelected, setFilter } from '../../reducers/productReducer';
+import { showModal } from '../../reducers/modalReducer';
+import Loader from '../loaders/Loader';
+import ProductPopup from '../modals/ProductPopup';
+import React from 'react';
+import moneyFormatter from '../../services/moneyFormatter';
 
 export class ProductBrowser extends React.Component {
     sortProducts = (products) => {

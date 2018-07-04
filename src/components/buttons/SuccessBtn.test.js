@@ -1,7 +1,7 @@
-import React from 'react';
 import { shallow } from 'enzyme';
+import Loader from '../loaders/Loader';
+import React from 'react';
 import SuccessBtn from './SuccessBtn';
-import Loader from './../loaders/Loader';
 import renderer from 'react-test-renderer';
 
 describe.only('<SuccessBtn />', () => {

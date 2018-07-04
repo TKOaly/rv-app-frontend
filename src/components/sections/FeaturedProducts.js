@@ -1,9 +1,9 @@
-import React from 'react';
 import './styles/FeaturedProducts.css';
-import { connect } from 'react-redux';
 import { buyProduct } from '../../reducers/productReducer';
+import { connect } from 'react-redux';
 import Loader from '../loaders/Loader';
-import moneyFormatter from './../../services/moneyFormatter';
+import React from 'react';
+import moneyFormatter from '../../services/moneyFormatter';
 
 const FeaturedProductsList = (props) => {
     const products = props.products;

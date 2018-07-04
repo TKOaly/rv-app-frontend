@@ -1,5 +1,5 @@
+import { buyProduct, getCategories, getProducts, setCategorySelected, setFilter } from '../reducers/productReducer';
 import productReducer from '../reducers/productReducer';
-import { setFilter, setCategorySelected, getProducts, getCategories, buyProduct } from '../reducers/productReducer';
 
 describe('productReducer', () => {
     it('setFilter-action changes state', () => {

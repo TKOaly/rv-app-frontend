@@ -1,16 +1,16 @@
-import React, { Component } from 'react';
-import Header from '../sections/Header';
-import Content from '../sections/Content';
-import { connect } from 'react-redux';
-import { logout } from './../../reducers/authenticationReducer';
 import {
-    successMessage,
-    errorMessage,
     addProductToNotification,
-    clearProductsFromNotification
-} from './../../reducers/notificationReducer';
-import { increaseBalance, decreaseBalance, resetUserData } from './../../reducers/userReducer';
-import { getProducts, getCategories } from './../../reducers/productReducer';
+    clearProductsFromNotification,
+    errorMessage,
+    successMessage
+} from '../../reducers/notificationReducer';
+import { connect } from 'react-redux';
+import { decreaseBalance, increaseBalance, resetUserData } from '../../reducers/userReducer';
+import { getCategories, getProducts } from '../../reducers/productReducer';
+import { logout } from '../../reducers/authenticationReducer';
+import Content from '../sections/Content';
+import Header from '../sections/Header';
+import React, { Component } from 'react';
 import userService from '../../services/userService';
 
 class MainPage extends Component {

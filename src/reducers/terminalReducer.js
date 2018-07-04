@@ -1,7 +1,7 @@
-import eanValidator from './../services/eanValidator';
-import productService from './../services/productService';
 import { addProductToNotification, errorMessage } from './notificationReducer';
 import { setBalance } from './userReducer';
+import eanValidator from '../services/eanValidator';
+import productService from '../services/productService';
 
 export const initialState = {
     terminalInput: '',

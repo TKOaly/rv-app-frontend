@@ -1,7 +1,7 @@
+import Enzyme from 'enzyme';
+import LoginHeader from '../components/sections/LoginHeader';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import LoginHeader from '../components/sections/LoginHeader';
-import Enzyme from 'enzyme';
 import renderer from 'react-test-renderer';
 
 it('renders without crashing', () => {

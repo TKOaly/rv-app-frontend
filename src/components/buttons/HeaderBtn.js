@@ -1,8 +1,8 @@
-import React from 'react';
 import './styles/Button.css';
 import './styles/HeaderBtn.css';
-import Loader from './../loaders/Loader';
+import Loader from '../loaders/Loader';
 import PropTypes from 'prop-types';
+import React from 'react';
 
 const HeaderBtn = ({ onClick, children, fill, hover, loader, ...props }) => {
     let className = 'btn';

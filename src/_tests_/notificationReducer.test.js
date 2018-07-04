@@ -1,10 +1,10 @@
-import notificationReducer from '../reducers/notificationReducer';
 import {
-    successMessage,
-    errorMessage,
     addProductToNotification,
-    clearProductsFromNotification
+    clearProductsFromNotification,
+    errorMessage,
+    successMessage
 } from '../reducers/notificationReducer';
+import notificationReducer from '../reducers/notificationReducer';
 
 describe('notificationReducer', () => {
     it('successMessage-action changes state', () => {

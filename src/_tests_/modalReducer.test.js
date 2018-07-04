@@ -1,5 +1,5 @@
+import { closeModal, showModal } from '../reducers/modalReducer';
 import modalReducer from '../reducers/modalReducer';
-import { showModal, closeModal } from '../reducers/modalReducer';
 
 describe('modalReducer', () => {
     it('showModal-action changes state', () => {

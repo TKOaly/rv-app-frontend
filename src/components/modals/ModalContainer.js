@@ -1,8 +1,8 @@
-import React from 'react';
-import { closeModal } from '../../reducers/modalReducer';
-import { connect } from 'react-redux';
 import './styles/ModalContainer.css';
 import { CSSTransition } from 'react-transition-group';
+import { closeModal } from '../../reducers/modalReducer';
+import { connect } from 'react-redux';
+import React from 'react';
 
 export class ModalContainer extends React.Component {
     handleClose = (e) => {

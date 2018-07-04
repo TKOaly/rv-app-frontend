@@ -1,14 +1,14 @@
-import RegisterReducer from '../reducers/registerReducer';
 import {
-    toggleRegisterVisibility,
-    reset,
-    handleInputEvent,
-    setRegistering,
     focusEmailField,
-    focusRealnameField,
+    focusPasswordConfirmField,
     focusPasswordField,
-    focusPasswordConfirmField
+    focusRealnameField,
+    handleInputEvent,
+    reset,
+    setRegistering,
+    toggleRegisterVisibility
 } from '../reducers/registerReducer';
+import RegisterReducer from '../reducers/registerReducer';
 
 describe('RegisterReducer', () => {
     it('action creators return correct actions', () => {

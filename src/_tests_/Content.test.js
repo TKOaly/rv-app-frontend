@@ -1,9 +1,9 @@
+import { Provider } from 'react-redux';
+import Content from '../components/sections/Content';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Content from '../components/sections/Content';
 import configureStore from 'redux-mock-store';
 import initialState from './initialState.js';
-import { Provider } from 'react-redux';
 
 describe('Content component', () => {
     const mockStore = configureStore();

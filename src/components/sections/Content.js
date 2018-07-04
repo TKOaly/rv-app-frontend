@@ -1,13 +1,11 @@
-import React from 'react';
 import './styles/Content.css';
 import { Col, Row } from 'react-flexbox-grid';
-import FeaturedProducts from './FeaturedProducts';
-import Terminal from './Terminal';
-import ProductBrowser from './ProductBrowser';
-
 import { connect } from 'react-redux';
-
-import { successMessage, errorMessage } from './../../reducers/notificationReducer';
+import { errorMessage, successMessage } from '../../reducers/notificationReducer';
+import FeaturedProducts from './FeaturedProducts';
+import ProductBrowser from './ProductBrowser';
+import React from 'react';
+import Terminal from './Terminal';
 
 export class Content extends React.Component {
     render = () => {

@@ -1,26 +1,25 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './reset.css';
 import './components/animations/animations.css';
 import './index.css';
-
-import App from './App';
-import { createStore, combineReducers, applyMiddleware } from 'redux';
-import { logger } from './reducers/middleware';
+import './reset.css';
 import { Provider } from 'react-redux';
+import { applyMiddleware, combineReducers, createStore } from 'redux';
+import { logger } from './reducers/middleware';
+import App from './App';
+import React from 'react';
+import ReactDOM from 'react-dom';
 import thunk from 'redux-thunk';
 
 // Import reducers
-import notificationReducer from './reducers/notificationReducer';
+import { reducer as formReducer } from 'redux-form';
 import authenticationReducer, { authenticationActions } from './reducers/authenticationReducer';
-import registerReducer from './reducers/registerReducer';
+import depositReducer from './reducers/depositReducer';
 import loginReducer from './reducers/loginReducer';
+import modalReducer from './reducers/modalReducer';
+import notificationReducer from './reducers/notificationReducer';
+import productReducer from './reducers/productReducer';
+import registerReducer from './reducers/registerReducer';
 import terminalReducer from './reducers/terminalReducer';
 import userReducer from './reducers/userReducer';
-import productReducer from './reducers/productReducer';
-import depositReducer from './reducers/depositReducer';
-import modalReducer from './reducers/modalReducer';
-import { reducer as formReducer } from 'redux-form';
 
 // Combine reducers
 const reducer = combineReducers({

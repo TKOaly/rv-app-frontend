@@ -1,6 +1,6 @@
-import React from 'react';
 import { shallow } from 'enzyme';
 import Margin from './Margin';
+import React from 'react';
 import renderer from 'react-test-renderer';
 
 describe.only('<Margin />', () => {

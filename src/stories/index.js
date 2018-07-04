@@ -1,21 +1,18 @@
-import React from 'react';
-import '../reset.css';
-
-import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
-
-import DangerBtn from './../components/buttons/DangerBtn';
-import SuccessBtn from './../components/buttons/SuccessBtn';
-import PurchaseNotification from '../components/notifications/PurchaseNotification';
-import Loader from '../components/loaders/Loader';
-import { Header } from './../components/sections/Header';
-import Content from './../components/sections/Content';
-import LoginPage from './../components/pages/LoginPage';
-import MainPage from './../components/pages/MainPage';
-import LoginForm from './../components/forms/LoginForm';
-import TopBalanceUsers from './../components/sections/TopBalanceUsers';
-
 import '../index.css';
+import '../reset.css';
+import { Header } from '../components/sections/Header';
+import { action } from '@storybook/addon-actions';
+import { storiesOf } from '@storybook/react';
+import Content from '../components/sections/Content';
+import DangerBtn from '../components/buttons/DangerBtn';
+import Loader from '../components/loaders/Loader';
+import LoginForm from '../components/forms/LoginForm';
+import LoginPage from '../components/pages/LoginPage';
+import MainPage from '../components/pages/MainPage';
+import PurchaseNotification from '../components/notifications/PurchaseNotification';
+import React from 'react';
+import SuccessBtn from '../components/buttons/SuccessBtn';
+import TopBalanceUsers from '../components/sections/TopBalanceUsers';
 
 storiesOf('Danger button', module)
     .add('With fill', () => (

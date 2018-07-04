@@ -1,8 +1,8 @@
-import React from 'react';
-import './styles/Button.css';
 import './styles/BasicBtn.css';
-import Loader from './../loaders/Loader';
+import './styles/Button.css';
+import Loader from '../loaders/Loader';
 import PropTypes from 'prop-types';
+import React from 'react';
 
 /**
  * Basic button.

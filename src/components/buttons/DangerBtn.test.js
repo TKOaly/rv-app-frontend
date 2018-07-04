@@ -1,7 +1,7 @@
-import React from 'react';
 import { shallow } from 'enzyme';
 import DangerBtn from './DangerBtn';
-import Loader from './../loaders/Loader';
+import Loader from '../loaders/Loader';
+import React from 'react';
 import renderer from 'react-test-renderer';
 
 describe.only('<DangerBtn />', () => {

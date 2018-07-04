@@ -1,11 +1,9 @@
-import React from 'react';
 import './styles/PurchaseNotification.css';
-import SuccessNotification from './SuccessNotification';
-
+import { Fade } from '../animations/Animations';
 import { TransitionGroup } from 'react-transition-group';
-
-import { Fade } from './../animations/Animations';
-import moneyFormatter from './../../services/moneyFormatter';
+import React from 'react';
+import SuccessNotification from './SuccessNotification';
+import moneyFormatter from '../../services/moneyFormatter';
 
 const PurchaseNotificationProduct = ({ product }) => {
     return (

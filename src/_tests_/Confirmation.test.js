@@ -1,7 +1,7 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
 import Confirmation from '../components/sections/Confirmation';
 import Enzyme from 'enzyme';
+import React from 'react';
+import ReactDOM from 'react-dom';
 import renderer from 'react-test-renderer';
 
 it('renders without crashing', () => {

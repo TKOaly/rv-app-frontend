@@ -1,7 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-
 import './styles/ErrorNotification.css';
+import PropTypes from 'prop-types';
+import React from 'react';
 
 /**
  * Error notification component.

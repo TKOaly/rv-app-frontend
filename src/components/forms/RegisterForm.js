@@ -1,17 +1,12 @@
-import React from 'react';
 import './styles/LoginForm.css';
 import './styles/RegisterForm.css';
-import SuccessBtn from './../buttons/SuccessBtn';
-import { connect } from 'react-redux';
-
-import { Link } from 'react-router-dom';
-
-import { successMessage, errorMessage } from '../../reducers/notificationReducer';
-
-import { loggedIn } from '../../reducers/authenticationReducer';
-
 import { Field, reduxForm } from 'redux-form';
-
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { errorMessage, successMessage } from '../../reducers/notificationReducer';
+import { loggedIn } from '../../reducers/authenticationReducer';
+import React from 'react';
+import SuccessBtn from '../buttons/SuccessBtn';
 import validator from 'validator';
 
 const required = (value) => (value ? undefined : 'Field is required');

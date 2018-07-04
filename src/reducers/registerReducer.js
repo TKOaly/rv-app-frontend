@@ -1,6 +1,6 @@
-import userService from './../services/userService';
 import { errorMessage, successMessage } from './notificationReducer';
 import { loggedIn } from './authenticationReducer';
+import userService from '../services/userService';
 
 export const initialState = {
     registerVisible: false,

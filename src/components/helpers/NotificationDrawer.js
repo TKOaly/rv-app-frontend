@@ -1,13 +1,10 @@
-import React from 'react';
 import './styles/NotificationDrawer.css';
-
-import SuccessNotification from './../notifications/SuccessNotification';
-import ErrorNotification from './../notifications/ErrorNotification';
-import PurchaseNotification from './../notifications/PurchaseNotification';
-
+import { Fade } from '../animations/Animations';
 import { TransitionGroup } from 'react-transition-group';
-
-import { Fade } from './../animations/Animations';
+import ErrorNotification from '../notifications/ErrorNotification';
+import PurchaseNotification from '../notifications/PurchaseNotification';
+import React from 'react';
+import SuccessNotification from '../notifications/SuccessNotification';
 
 const NotificationDrawer = ({ notifications, products }) => (
     <div className="notificationDrawer">

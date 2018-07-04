@@ -1,11 +1,11 @@
-import React from 'react';
-import { Grid, Row, Col } from 'react-flexbox-grid';
-import LoginForm from '../forms/LoginForm';
-import Header from '../sections/Header';
 import './styles/LoginPage.css';
-import { connect } from 'react-redux';
-import { toggleRegisterVisibility } from './../../reducers/registerReducer';
+import { Col, Grid, Row } from 'react-flexbox-grid';
 import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { toggleRegisterVisibility } from '../../reducers/registerReducer';
+import Header from '../sections/Header';
+import LoginForm from '../forms/LoginForm';
+import React from 'react';
 
 class LoginPage extends React.Component {
     render = () => {

@@ -1,6 +1,6 @@
+import { errorMessage, successMessage } from './notificationReducer';
+import moneyFormatter from '../services/moneyFormatter';
 import userService from '../services/userService';
-import { successMessage, errorMessage } from './notificationReducer';
-import moneyFormatter from './../services/moneyFormatter';
 
 export const initialState = {
     username: '',

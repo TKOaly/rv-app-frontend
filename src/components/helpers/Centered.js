@@ -1,5 +1,5 @@
-import React from 'react';
 import './styles/Centered.css';
+import React from 'react';
 
 const Centered = (props) => (
     <div className="centered" style={props.zIndex && { zIndex: props.zIndex }}>

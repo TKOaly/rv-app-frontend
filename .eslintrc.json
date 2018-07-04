@@ -15,7 +15,7 @@
         "sourceType": "module"
     },
     "parser": "babel-eslint",
-    "plugins": ["react"],
+    "plugins": ["react", "sort-imports-es6-autofix"],
     "rules": {
         "indent": ["error", 4, { "SwitchCase": 1 }],
         "linebreak-style": ["error", "unix"],
@@ -25,7 +25,10 @@
         "arrow-parens": ["error", "always"],
         "no-trailing-spaces": "error",
         "no-unused-vars": "warn",
+        "react/jsx-uses-vars": "warn",
+        "react/jsx-uses-react": "warn",
         "no-console": "warn",
-        "no-undef": "warn"
+        "no-undef": "warn",
+        "sort-imports-es6-autofix/sort-imports-es6": "warn"
     }
 }

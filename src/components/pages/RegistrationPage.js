@@ -1,11 +1,11 @@
-import React from 'react';
-import { Row, Col } from 'react-flexbox-grid';
 import './styles/RegistrationPage.css';
-import RegisterForm from '../forms/RegisterForm';
-import Header from '../sections/Header';
-import { connect } from 'react-redux';
+import { Col, Row } from 'react-flexbox-grid';
 import { Redirect } from 'react-router-dom';
-import { registerUser } from './../../reducers/registerReducer';
+import { connect } from 'react-redux';
+import { registerUser } from '../../reducers/registerReducer';
+import Header from '../sections/Header';
+import React from 'react';
+import RegisterForm from '../forms/RegisterForm';
 
 class RegistrationPage extends React.Component {
     submit = (values) => {

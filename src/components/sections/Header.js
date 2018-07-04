@@ -1,13 +1,13 @@
-import React from 'react';
-import HeaderBtn from '../buttons/HeaderBtn';
-import Margin from '../helpers/Margin';
-import Logo from '../../images/tkoaly2.svg';
-import { connect } from 'react-redux';
-import { showModal, closeModal } from '../../reducers/modalReducer';
-import Deposit from '../sections/Deposit';
 import './styles/Header.css';
+import { closeModal, showModal } from '../../reducers/modalReducer';
+import { connect } from 'react-redux';
+import Deposit from '../sections/Deposit';
 import FontAwesome from 'react-fontawesome';
-import moneyFormatter from './../../services/moneyFormatter';
+import HeaderBtn from '../buttons/HeaderBtn';
+import Logo from '../../images/tkoaly2.svg';
+import Margin from '../helpers/Margin';
+import React from 'react';
+import moneyFormatter from '../../services/moneyFormatter';
 
 export class Header extends React.Component {
     handleDepositClick = (event) => {

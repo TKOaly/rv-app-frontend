@@ -1,7 +1,7 @@
+import Enzyme from 'enzyme';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import TopBalanceUsers from '../components/sections/TopBalanceUsers';
-import Enzyme from 'enzyme';
 import renderer from 'react-test-renderer';
 
 it('renders without crashing', () => {

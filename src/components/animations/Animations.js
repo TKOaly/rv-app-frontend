@@ -1,6 +1,6 @@
-import React from 'react';
 import './animations.css';
 import { CSSTransition } from 'react-transition-group';
+import React from 'react';
 
 export const SlideIn = ({ children, ...props }) => (
     <CSSTransition {...props} timeout={1000} classNames="slide" unmountOnExit={true} mountOnEnter={true}>

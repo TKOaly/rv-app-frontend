@@ -1,13 +1,13 @@
 // NOT TO BE USED
 
-import notificationReducer from '../reducers/notificationReducer';
+import { combineReducers, createStore } from 'redux';
 import authenticationReducer from '../reducers/authenticationReducer';
-import shoppingCartReducer from '../reducers/shoppingCartReducer';
-import registerReducer from '../reducers/registerReducer';
 import loginReducer from '../reducers/loginReducer';
+import notificationReducer from '../reducers/notificationReducer';
+import registerReducer from '../reducers/registerReducer';
+import shoppingCartReducer from '../reducers/shoppingCartReducer';
 import terminalReducer from '../reducers/terminalReducer';
 import userReducer from '../reducers/userReducer';
-import { createStore, combineReducers } from 'redux';
 
 // Combine reducers
 const reducer = combineReducers({

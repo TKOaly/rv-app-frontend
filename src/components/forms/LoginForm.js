@@ -1,15 +1,12 @@
-import React from 'react';
 import './styles/LoginForm.css';
-
-import SuccessBtn from './../buttons/SuccessBtn';
-
-import { connect } from 'react-redux';
-import { loggingIn, loggedIn, loginFailed } from './../../reducers/authenticationReducer';
-import { errorMessage } from './../../reducers/notificationReducer';
-import userService from './../../services/userService';
-import { handleInputEvent, reset, focusPasswordField, focusUsernameField } from './../../reducers/loginReducer';
-
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { errorMessage } from '../../reducers/notificationReducer';
+import { focusPasswordField, focusUsernameField, handleInputEvent, reset } from '../../reducers/loginReducer';
+import { loggedIn, loggingIn, loginFailed } from '../../reducers/authenticationReducer';
+import React from 'react';
+import SuccessBtn from '../buttons/SuccessBtn';
+import userService from '../../services/userService';
 
 // Remove for something smarter
 let timeout;

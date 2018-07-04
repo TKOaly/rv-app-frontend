@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
 import './styles/Confirmation.css';
-import moneyFormatter from './../../services/moneyFormatter';
+import React, { Component } from 'react';
+import moneyFormatter from '../../services/moneyFormatter';
 
 export class Confirmation extends Component {
     handleConfirm = (event) => {

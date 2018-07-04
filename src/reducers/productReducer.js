@@ -1,6 +1,6 @@
-import productService from '../services/productService';
-import { errorMessage, addProductToNotification } from './notificationReducer';
+import { addProductToNotification, errorMessage } from './notificationReducer';
 import { setBalance } from './userReducer';
+import productService from '../services/productService';
 
 export const productActions = {
     SET_GETTING_PRODUCTS: 'GETTING_PRODUCTS',

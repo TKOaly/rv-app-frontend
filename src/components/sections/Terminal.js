@@ -1,14 +1,11 @@
-import React from 'react';
-
-import { connect } from 'react-redux';
-
 import './styles/Terminal.css';
-
-import { setTerminalText, handleTerminalSubmit } from './../../reducers/terminalReducer';
-import Deposit from './Deposit';
 import { closeModal, showModal } from '../../reducers/modalReducer';
-import { logout } from './../../reducers/authenticationReducer';
-import { resetUserData } from './../../reducers/userReducer';
+import { connect } from 'react-redux';
+import { handleTerminalSubmit, setTerminalText } from '../../reducers/terminalReducer';
+import { logout } from '../../reducers/authenticationReducer';
+import { resetUserData } from '../../reducers/userReducer';
+import Deposit from './Deposit';
+import React from 'react';
 
 class Terminal extends React.Component {
     handleSubmit = (event) => {

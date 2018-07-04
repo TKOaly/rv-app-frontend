@@ -1,7 +1,7 @@
+import Enzyme from 'enzyme';
+import MainPage from '../components/pages/MainPage';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import MainPage from '../components/pages/MainPage';
-import Enzyme from 'enzyme';
 
 it('renders without crashing', () => {
     /*

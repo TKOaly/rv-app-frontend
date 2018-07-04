@@ -1,7 +1,7 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
 import BasicBtn from '../components/buttons/BasicBtn';
 import Enzyme from 'enzyme';
+import React from 'react';
+import ReactDOM from 'react-dom';
 import renderer from 'react-test-renderer';
 
 it('renders without crashing', () => {
