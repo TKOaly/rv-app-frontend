@@ -35,7 +35,7 @@ class Header extends React.Component {
                             <HeaderBtn fill>
                                 <FontAwesome name="user-circle" />{' '}
                                 <span>
-                                    <b>{this.props.user.full_name}</b>{' '}
+                                    <b>{this.props.user.username}</b>{' '}
                                     {moneyFormatter.centsToString(this.props.user.account_balance)} €
                                 </span>
                             </HeaderBtn>
