@@ -41,7 +41,7 @@ class Deposit extends React.Component {
         };
     };
 
-    handleOK = () => {
+    handleSubmit = () => {
         const cents = Deposit.depositAmountTextToCents(this.props.depositAmountText);
         if (Number.isNaN(cents)) {
             this.props.errorMessage('Invalid deposit amount in text field. Use format 10.00');
@@ -57,7 +57,19 @@ class Deposit extends React.Component {
         this.props.closeModal();
     };
 
-    handleValueChange = (event) => this.props.setAmountText(event.target.value);
+    handleKeyDown = (event) => {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            this.handleSubmit();
+        } else if (event.key === 'Escape') {
+            event.preventDefault();
+            this.handleCancel();
+        }
+    };
+
+    handleValueChange = (event) => {
+        this.props.setAmountText(event.target.value);
+    };
 
     depositRef = (input) => {
         this.textField = input;
@@ -73,6 +85,7 @@ class Deposit extends React.Component {
                             type="text"
                             placeholder="0.00"
                             value={this.props.depositAmountText}
+                            onKeyDown={this.handleKeyDown}
                             onChange={this.handleValueChange}
                             ref={this.depositRef}
                         />
@@ -109,13 +122,13 @@ class Deposit extends React.Component {
                         + 20.00 €
                     </button>
                     <button className="btn number cancel" onClick={this.handleCancel}>
-                        Cancel
+                        Cancel (ESC)
                     </button>
                     <button className="btn number increment" onClick={this.createIncrementHandler(5000)}>
                         + 50.00 €
                     </button>
-                    <button className="btn number success" onClick={this.handleOK}>
-                        OK
+                    <button className="btn number success" onClick={this.handleSubmit}>
+                        OK (ENTER)
                     </button>
                 </div>
                 <TransitionGroup>
