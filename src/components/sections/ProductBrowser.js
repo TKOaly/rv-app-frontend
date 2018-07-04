@@ -7,7 +7,7 @@ import ProductPopup from '../modals/ProductPopup';
 import React from 'react';
 import moneyFormatter from '../../services/moneyFormatter';
 
-export class ProductBrowser extends React.Component {
+class ProductBrowser extends React.Component {
     sortProducts = (products) => {
         return products.sort((a, b) => {
             const [aname, bname] = [a.product_name.toLowerCase(), b.product_name.toLowerCase()];

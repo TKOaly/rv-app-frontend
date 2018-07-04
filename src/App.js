@@ -4,7 +4,7 @@ import LoginPage from './components/pages/LoginPage';
 import MainPage from './components/pages/MainPage';
 import ModalContainer from './components/modals/ModalContainer';
 import NotificationDrawer from './components/helpers/NotificationDrawer';
-import React, { Component } from 'react';
+import React from 'react';
 import RegistrationPage from './components/pages/RegistrationPage';
 
 const AuthenticatedRoute = ({ component: Component, ...rest }) => (
@@ -25,7 +25,7 @@ const AuthenticatedRoute = ({ component: Component, ...rest }) => (
     />
 );
 
-class App extends Component {
+class App extends React.Component {
     render = () => {
         // let page = this.props.loggedIn ? <MainPage /> : <LoginPage />;
         return (

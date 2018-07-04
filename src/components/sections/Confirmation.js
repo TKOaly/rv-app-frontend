@@ -1,8 +1,8 @@
 import './styles/Confirmation.css';
-import React, { Component } from 'react';
+import React from 'react';
 import moneyFormatter from '../../services/moneyFormatter';
 
-export class Confirmation extends Component {
+class Confirmation extends React.Component {
     handleConfirm = (event) => {
         this.props.increaseBalance(this.props.token, this.props.depositAmount);
         this.props.resetAmount();

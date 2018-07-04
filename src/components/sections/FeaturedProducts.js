@@ -27,7 +27,7 @@ const FeaturedProductsList = (props) => {
     return <ul>{productsList}</ul>;
 };
 
-export class FeaturedProducts extends React.Component {
+class FeaturedProducts extends React.Component {
     buyProduct = (product) => {
         this.props.buyProduct(product, 1);
     };

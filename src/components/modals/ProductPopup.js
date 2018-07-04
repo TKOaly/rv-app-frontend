@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import React from 'react';
 import moneyFormatter from '../../services/moneyFormatter';
 
-export class ProductPopup extends React.Component {
+class ProductPopup extends React.Component {
     constructor(props) {
         super(props);
         this.state = {

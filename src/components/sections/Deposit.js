@@ -6,10 +6,10 @@ import { errorMessage } from '../../reducers/notificationReducer';
 import { increaseBalance } from '../../reducers/userReducer';
 import { resetAmount, setAmountText, toggleConfirmationVisibility } from '../../reducers/depositReducer';
 import Confirmation from './Confirmation';
-import React, { Component } from 'react';
+import React from 'react';
 import moneyFormatter from '../../services/moneyFormatter';
 
-export class Deposit extends Component {
+class Deposit extends React.Component {
     static depositAmountTextToCents = (text) => {
         if (text === '') {
             return 0;

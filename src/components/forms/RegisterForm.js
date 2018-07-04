@@ -36,7 +36,7 @@ const renderField = ({ input, label, type, className, ref, meta: { touched, erro
     </div>
 );
 
-export class RegisterForm extends React.Component {
+class RegisterForm extends React.Component {
     render = () => {
         return (
             <form
@@ -168,9 +168,7 @@ const mapStateToProps = (state) => {
     };
 };
 
-const ConnectedRegisterForm = connect(mapStateToProps, mapDispatchToProps)(RegisterForm);
-
 export default reduxForm({
     // a unique name for the form
     form: 'register'
-})(ConnectedRegisterForm);
+})(connect(mapStateToProps, mapDispatchToProps)(RegisterForm));

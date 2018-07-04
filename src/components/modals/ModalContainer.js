@@ -4,7 +4,7 @@ import { closeModal } from '../../reducers/modalReducer';
 import { connect } from 'react-redux';
 import React from 'react';
 
-export class ModalContainer extends React.Component {
+class ModalContainer extends React.Component {
     handleClose = (e) => {
         this.props.closeModal();
     };

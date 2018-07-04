@@ -10,10 +10,10 @@ import { getCategories, getProducts } from '../../reducers/productReducer';
 import { logout } from '../../reducers/authenticationReducer';
 import Content from '../sections/Content';
 import Header from '../sections/Header';
-import React, { Component } from 'react';
+import React from 'react';
 import userService from '../../services/userService';
 
-class MainPage extends Component {
+class MainPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {

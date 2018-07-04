@@ -9,7 +9,7 @@ import Margin from '../helpers/Margin';
 import React from 'react';
 import moneyFormatter from '../../services/moneyFormatter';
 
-export class Header extends React.Component {
+class Header extends React.Component {
     handleDepositClick = (event) => {
         event.preventDefault();
         this.props.showModal(Deposit, {

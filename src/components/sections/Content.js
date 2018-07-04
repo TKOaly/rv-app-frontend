@@ -7,7 +7,7 @@ import ProductBrowser from './ProductBrowser';
 import React from 'react';
 import Terminal from './Terminal';
 
-export class Content extends React.Component {
+class Content extends React.Component {
     render = () => {
         return (
             <main>
