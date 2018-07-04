@@ -28,7 +28,7 @@ class Header extends React.Component {
                     <div className="header-right">
                         <Margin margin={5} inlineBlock>
                             <HeaderBtn onClick={this.handleDepositClick} fill>
-                                Deposit
+                                Deposit (D)
                             </HeaderBtn>
                         </Margin>
                         <Margin margin={5} inlineBlock>
