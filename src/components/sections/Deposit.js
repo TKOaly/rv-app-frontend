@@ -19,10 +19,15 @@ class Deposit extends React.Component {
     };
 
     componentDidMount = () => {
+        this.oldFocusedElement = document.activeElement;
         this.textField.focus();
     };
 
-    componentWillUnmount = () => {};
+    componentWillUnmount = () => {
+        if (this.oldFocusedElement) {
+            this.oldFocusedElement.focus();
+        }
+    };
 
     createIncrementHandler = (increment) => {
         return (event) => {
