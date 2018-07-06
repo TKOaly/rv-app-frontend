@@ -8,6 +8,10 @@ import React from 'react';
 import moneyFormatter from '../../services/moneyFormatter';
 
 class ProductBrowser extends React.Component {
+    getVisibleCategories = () => {
+        return this.props.categories.filter((categ) => categ.category_id !== 65535);
+    };
+
     sortProducts = (products) => {
         return products.sort((a, b) => {
             const [aname, bname] = [a.product_name.toLowerCase(), b.product_name.toLowerCase()];
@@ -69,7 +73,7 @@ class ProductBrowser extends React.Component {
                 <div className="product-filter">
                     <select value={this.props.selectedCategory} onChange={this.handleChangeCategory}>
                         <option value={-1}>All products</option>
-                        {this.props.categories.map((category) => (
+                        {this.getVisibleCategories().map((category) => (
                             <option value={category.category_id} key={category.category_id}>
                                 {category.category_description}
                             </option>
@@ -101,7 +105,7 @@ const mapStateToProps = (state) => ({
     loading: state.products.gettingProducts,
     filter: state.products.filter,
     selectedCategory: state.products.selectedCategory,
-    categories: state.products.categories.filter((categ) => categ.category_id !== 65535)
+    categories: state.products.categories
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductBrowser);
