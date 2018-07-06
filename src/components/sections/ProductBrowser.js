@@ -1,55 +1,38 @@
 import './styles/ProductBrowser.css';
 import { connect } from 'react-redux';
 import { setCategorySelected, setFilter } from '../../reducers/productReducer';
-import { showModal } from '../../reducers/modalReducer';
 import Loader from '../loaders/Loader';
-import ProductPopup from '../modals/ProductPopup';
+import ProductBrowserItem from './ProductBrowserItem';
 import React from 'react';
-import moneyFormatter from '../../services/moneyFormatter';
+
+const sortProducts = (products) => {
+    return products.sort((a, b) => {
+        const aname = a.product_name.toLowerCase();
+        const bname = b.product_name.toLowerCase();
+
+        return aname < bname ? -1 : aname === bname ? 0 : 1;
+    });
+};
+
+const filterProducts = (products, selectedCategory, filter) => {
+    return products.filter((p) => {
+        return (
+            (selectedCategory === -1 || p.product_group === selectedCategory) &&
+            p.product_name
+                .toLowerCase()
+                .trim()
+                .includes(filter.toLowerCase().trim())
+        );
+    });
+};
 
 class ProductBrowser extends React.Component {
+    getVisibleProducts = () => {
+        return sortProducts(filterProducts(this.props.products, this.props.selectedCategory, this.props.filter));
+    };
+
     getVisibleCategories = () => {
         return this.props.categories.filter((categ) => categ.category_id !== 65535);
-    };
-
-    sortProducts = (products) => {
-        return products.sort((a, b) => {
-            const [aname, bname] = [a.product_name.toLowerCase(), b.product_name.toLowerCase()];
-
-            return aname < bname ? -1 : aname === bname ? 0 : 1;
-        });
-    };
-
-    filterProducts = (products) => {
-        return products.filter((p) => {
-            return (
-                (this.props.selectedCategory === -1 || p.product_group === this.props.selectedCategory) &&
-                p.product_name
-                    .toLowerCase()
-                    .trim()
-                    .includes(this.props.filter.toLowerCase().trim())
-            );
-        });
-    };
-
-    createElements = (products) => {
-        return products.map((p) => (
-            <li key={p.product_id} className="product-list-item">
-                <a
-                    role="button"
-                    href="/"
-                    onClick={(e) => {
-                        e.preventDefault();
-                        this.props.showModal(ProductPopup, {
-                            product: p
-                        });
-                    }}
-                >
-                    <span className="product-list-item-name">{p.product_name}</span>
-                    <span className="product-list-item-price">{moneyFormatter.centsToString(p.sellprice)} €</span>
-                </a>
-            </li>
-        ));
     };
 
     handleChangeFilter = (e) => {
@@ -58,13 +41,6 @@ class ProductBrowser extends React.Component {
 
     handleChangeCategory = (e) => {
         this.props.setCategorySelected(parseInt(e.target.value, 10));
-    };
-
-    createProductList = () => {
-        const prods = this.props.products.slice();
-        const sortedProds = this.sortProducts(prods);
-        const sortedFilteredProds = this.filterProducts(sortedProds);
-        return this.createElements(sortedFilteredProds);
     };
 
     render = () => {
@@ -87,7 +63,15 @@ class ProductBrowser extends React.Component {
                     />
                 </div>
                 <div className="product-browser-list">
-                    {this.props.loading ? <Loader /> : <ul>{this.createProductList()}</ul>}
+                    {this.props.loading ? (
+                        <Loader />
+                    ) : (
+                        <ul>
+                            {this.getVisibleProducts().map((p) => (
+                                <ProductBrowserItem key={p.product_id} product={p} />
+                            ))}
+                        </ul>
+                    )}
                 </div>
             </div>
         );
@@ -95,7 +79,6 @@ class ProductBrowser extends React.Component {
 }
 
 const mapDispatchToProps = {
-    showModal,
     setFilter,
     setCategorySelected
 };
