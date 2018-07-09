@@ -150,11 +150,13 @@ class Deposit extends React.Component {
     };
 }
 
-const mapStateToProps = (state) => ({
-    depositAmountText: state.deposit.depositAmountText,
-    token: state.authentication.access_token,
-    confirmationVisibility: state.deposit.confirmationVisibility
-});
+const mapStateToProps = (state) => {
+    return {
+        depositAmountText: state.deposit.depositAmountText,
+        token: state.authentication.access_token,
+        confirmationVisibility: state.deposit.confirmationVisibility
+    };
+};
 
 const mapDispatchToProps = {
     setAmountText,

@@ -78,17 +78,19 @@ class ProductBrowser extends React.Component {
     };
 }
 
+const mapStateToProps = (state) => {
+    return {
+        products: state.products.products,
+        loading: state.products.gettingProducts,
+        filter: state.products.filter,
+        selectedCategory: state.products.selectedCategory,
+        categories: state.products.categories
+    };
+};
+
 const mapDispatchToProps = {
     setFilter,
     setCategorySelected
 };
-
-const mapStateToProps = (state) => ({
-    products: state.products.products,
-    loading: state.products.gettingProducts,
-    filter: state.products.filter,
-    selectedCategory: state.products.selectedCategory,
-    categories: state.products.categories
-});
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductBrowser);

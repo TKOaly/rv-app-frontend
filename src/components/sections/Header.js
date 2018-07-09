@@ -52,13 +52,15 @@ class Header extends React.Component {
     };
 }
 
+const mapStateToProps = (state) => {
+    return {
+        loggedIn: state.authentication.loggedIn
+    };
+};
+
 const mapDispatchToProps = {
     showModal,
     closeModal
 };
-
-const mapStateToProps = (state) => ({
-    loggedIn: state.authentication.loggedIn
-});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

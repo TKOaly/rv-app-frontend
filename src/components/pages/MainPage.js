@@ -90,6 +90,18 @@ class MainPage extends React.Component {
     };
 }
 
+const mapStateToProps = (state) => {
+    return {
+        token: state.authentication.access_token,
+        purchaseNotificationTimeout: state.notification.purchaseNotificationTimeout,
+        purchaseNotificationStartTime: state.notification.purchaseNotificationStartTime,
+        user: state.user,
+        terminalInput: state.terminal.terminalInput,
+        filter: state.products.filter,
+        modalVisibility: state.modal.modalVisibility
+    };
+};
+
 const mapDispatchToProps = {
     successMessage,
     errorMessage,
@@ -101,18 +113,6 @@ const mapDispatchToProps = {
     resetUserData,
     getProducts,
     getCategories
-};
-
-const mapStateToProps = (state) => {
-    return {
-        token: state.authentication.access_token,
-        purchaseNotificationTimeout: state.notification.purchaseNotificationTimeout,
-        purchaseNotificationStartTime: state.notification.purchaseNotificationStartTime,
-        user: state.user,
-        terminalInput: state.terminal.terminalInput,
-        filter: state.products.filter,
-        modalVisibility: state.modal.modalVisibility
-    };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainPage);

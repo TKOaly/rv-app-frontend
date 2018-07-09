@@ -52,13 +52,15 @@ class FeaturedProducts extends React.Component {
     };
 }
 
+const mapStateToProps = (state) => {
+    return {
+        products: state.products.products,
+        loading: state.products.gettingProducts
+    };
+};
+
 const mapDispatchToProps = {
     buyProduct
 };
-
-const mapStateToProps = (state) => ({
-    products: state.products.products,
-    loading: state.products.gettingProducts
-});
 
 export default connect(mapStateToProps, mapDispatchToProps)(FeaturedProducts);

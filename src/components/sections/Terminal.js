@@ -60,6 +60,14 @@ class Terminal extends React.Component {
     };
 }
 
+const mapStateToProps = (state) => {
+    return {
+        terminalInput: state.terminal.terminalInput,
+        inputValid: state.terminal.inputValid,
+        token: state.authentication.access_token
+    };
+};
+
 const mapDispatchToProps = {
     setTerminalText,
     handleTerminalSubmit,
@@ -67,14 +75,6 @@ const mapDispatchToProps = {
     closeModal,
     logout,
     resetUserData
-};
-
-const mapStateToProps = (state) => {
-    return {
-        terminalInput: state.terminal.terminalInput,
-        inputValid: state.terminal.inputValid,
-        token: state.authentication.access_token
-    };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Terminal);

@@ -164,17 +164,6 @@ class LoginForm extends React.Component {
     };
 }
 
-const mapDispatchToProps = {
-    reset,
-    handleInputEvent,
-    focusPasswordField,
-    focusUsernameField,
-    loggingIn,
-    loggedIn,
-    errorMessage,
-    loginFailed
-};
-
 const mapStateToProps = (state) => {
     return {
         username: state.login.username,
@@ -186,6 +175,17 @@ const mapStateToProps = (state) => {
         submitDisabled: state.login.submitDisabled,
         isLoggingIn: state.authentication.isLoggingIn
     };
+};
+
+const mapDispatchToProps = {
+    reset,
+    handleInputEvent,
+    focusPasswordField,
+    focusUsernameField,
+    loggingIn,
+    loggedIn,
+    errorMessage,
+    loginFailed
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);

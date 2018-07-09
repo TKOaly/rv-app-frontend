@@ -31,14 +31,14 @@ class RegistrationPage extends React.Component {
     };
 }
 
-const mapDispatchToProps = {
-    registerUser
-};
-
 const mapStateToProps = (state) => {
     return {
         loggedIn: state.authentication.loggedIn
     };
+};
+
+const mapDispatchToProps = {
+    registerUser
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(RegistrationPage);

@@ -33,14 +33,16 @@ class ModalContainer extends React.Component {
     };
 }
 
+const mapStateToProps = (state) => {
+    return {
+        contentComponent: state.modal.modalContent,
+        modalProps: state.modal.props,
+        modalVisible: state.modal.modalVisible
+    };
+};
+
 const mapDispatchToProps = {
     closeModal
 };
-
-const mapStateToProps = (state) => ({
-    contentComponent: state.modal.modalContent,
-    modalProps: state.modal.props,
-    modalVisible: state.modal.modalVisible
-});
 
 export default connect(mapStateToProps, mapDispatchToProps)(ModalContainer);

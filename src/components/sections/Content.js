@@ -31,16 +31,16 @@ class Content extends React.Component {
     };
 }
 
-const mapDispatchToProps = {
-    successMessage,
-    errorMessage
-};
-
 const mapStateToProps = (state) => {
     return {
         success: state.notification.success,
         error: state.notification.error
     };
+};
+
+const mapDispatchToProps = {
+    successMessage,
+    errorMessage
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

@@ -28,15 +28,15 @@ class LoginPage extends React.Component {
     };
 }
 
-const mapDispatchToProps = {
-    toggleRegisterVisibility
-};
-
 const mapStateToProps = (state) => {
     return {
         registerVisible: state.register.registerVisible,
         loggedIn: state.authentication.loggedIn
     };
+};
+
+const mapDispatchToProps = {
+    toggleRegisterVisibility
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);

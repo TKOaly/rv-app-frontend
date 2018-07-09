@@ -155,17 +155,17 @@ class RegisterForm extends React.Component {
     };
 }
 
-const mapDispatchToProps = {
-    successMessage,
-    errorMessage,
-    loggedIn
-};
-
 const mapStateToProps = (state) => {
     return {
         submitDisabled: state.register.submitDisabled,
         loader: state.register.loader
     };
+};
+
+const mapDispatchToProps = {
+    successMessage,
+    errorMessage,
+    loggedIn
 };
 
 export default reduxForm({
