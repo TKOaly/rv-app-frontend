@@ -7,6 +7,14 @@ import renderer from 'react-test-renderer';
 it('renders without crashing', () => {
     const div = document.createElement('div');
     ReactDOM.render(<Confirmation />, div);
-    const cmpnt = renderer.create(<Confirmation />).toJSON();
+    const cmpnt = renderer
+        .create(<Confirmation />, {
+            createNodeMock: () => {
+                return {
+                    focus: () => {}
+                };
+            }
+        })
+        .toJSON();
     expect(cmpnt).toMatchSnapshot();
 });

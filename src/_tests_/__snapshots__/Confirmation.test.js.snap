@@ -6,29 +6,28 @@ exports[`renders without crashing 1`] = `
 >
   <div
     className="confirm"
+    onKeyDown={[Function]}
+    tabIndex="0"
   >
-    Confirm
-     
+    Confirm 
     <b>
       NaN.NaN
-       
-      €
+       €
     </b>
-     
-    deposit
+     deposit
     <br />
     <br />
     <button
       className="btn number cancel cancelBtn"
       onClick={[Function]}
     >
-      Cancel
+      Cancel (ESC)
     </button>
     <button
       className="btn number success confirmBtn"
       onClick={[Function]}
     >
-      OK
+      OK (ENTER)
     </button>
   </div>
 </div>
