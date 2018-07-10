@@ -8,7 +8,8 @@ export const productActions = {
     SET_FILTER: 'SET_FILTER',
     SET_GETTING_CATEGORIES: 'GETTING_CATEGORIES',
     SET_CATEGORIES: 'SET_CATEGORIES',
-    SET_SELECTED_CATEGORY: 'SET_SELECTED_CATEGORY'
+    SET_SELECTED_CATEGORY: 'SET_SELECTED_CATEGORY',
+    SET_BUY_AMOUNT: 'SET_BUY_AMOUNT'
 };
 
 export const initialState = {
@@ -17,7 +18,8 @@ export const initialState = {
     gettingCategories: false,
     categories: [],
     filter: '',
-    selectedCategory: -1
+    selectedCategory: -1,
+    buyAmount: 1
 };
 
 export const setFilter = (filter) => {
@@ -31,6 +33,13 @@ export const setCategorySelected = (category) => {
     return {
         type: productActions.SET_SELECTED_CATEGORY,
         category
+    };
+};
+
+export const setBuyAmount = (amount) => {
+    return {
+        type: productActions.SET_BUY_AMOUNT,
+        amount
     };
 };
 
@@ -123,6 +132,10 @@ const productReducer = (state = initialState, action) => {
         case productActions.SET_SELECTED_CATEGORY:
             return Object.assign({}, state, {
                 selectedCategory: action.category
+            });
+        case productActions.SET_BUY_AMOUNT:
+            return Object.assign({}, state, {
+                buyAmount: action.amount
             });
         default:
             return state;

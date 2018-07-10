@@ -1,24 +1,19 @@
 import './styles/ProductPopup.css';
-import { buyProduct } from '../../reducers/productReducer';
+import { buyProduct, setBuyAmount } from '../../reducers/productReducer';
 import { closeModal } from '../../reducers/modalReducer';
 import { connect } from 'react-redux';
 import React from 'react';
 import moneyFormatter from '../../services/moneyFormatter';
 
 class ProductPopup extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            quantity: 1
-        };
-    }
-
-    changeQuantity = (delta) => {
-        if (this.state.quantity + delta >= 1) {
-            this.setState({
-                quantity: this.state.quantity + delta
-            });
+    changeQuantity = (change) => {
+        if (this.props.buyAmount + change >= 1) {
+            this.props.setBuyAmount(this.props.buyAmount + change);
         }
+    };
+
+    componentWillUnmount = () => {
+        this.props.setBuyAmount(1);
     };
 
     render = () => {
@@ -36,13 +31,13 @@ class ProductPopup extends React.Component {
                     <div>Amount:</div>
                     <div className="quantity-picker">
                         <button onClick={() => this.changeQuantity(-1)}>-</button>
-                        <span>{this.state.quantity} pcs</span>
+                        <span>{this.props.buyAmount} pcs</span>
                         <button onClick={() => this.changeQuantity(1)}>+</button>
                     </div>
                     <div className="total">
                         <div>Total</div>
                         <div className="sum">
-                            {moneyFormatter.centsToString(prod.sellprice * this.state.quantity)} €
+                            {moneyFormatter.centsToString(prod.sellprice * this.props.buyAmount)} €
                         </div>
                     </div>
                 </div>
@@ -53,7 +48,7 @@ class ProductPopup extends React.Component {
                     <button
                         className="purchase-btn"
                         onClick={() => {
-                            this.props.buyProduct(prod, this.state.quantity);
+                            this.props.buyProduct(prod, this.props.buyAmount);
                             this.props.closeModal();
                         }}
                     >
@@ -65,9 +60,16 @@ class ProductPopup extends React.Component {
     };
 }
 
-const mapDispatchToProps = {
-    closeModal,
-    buyProduct
+const mapStateToProps = (state) => {
+    return {
+        buyAmount: state.products.buyAmount
+    };
 };
 
-export default connect(null, mapDispatchToProps)(ProductPopup);
+const mapDispatchToProps = {
+    closeModal,
+    buyProduct,
+    setBuyAmount
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductPopup);
