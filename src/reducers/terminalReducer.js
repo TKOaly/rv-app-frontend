@@ -1,6 +1,6 @@
 import { addProductToNotification, errorMessage } from './notificationReducer';
 import { setBalance } from './userReducer';
-import eanValidator from '../services/eanValidator';
+import gtinValidator from '../services/gtinValidator';
 import productService from '../services/productService';
 
 export const initialState = {
@@ -28,7 +28,7 @@ export const resetTerminal = () => {
 
 export const handleTerminalSubmit = (barcode, token) => {
     return async (dispatch) => {
-        if (eanValidator.validateEan(barcode)) {
+        if (gtinValidator.validateGtin(barcode)) {
             try {
                 const res = await productService.buyProduct(barcode, 1, token);
 
@@ -62,7 +62,7 @@ const terminalReducer = (state = initialState, action) => {
         case terminalActions.SET_TERMINAL_TEXT:
             return Object.assign({}, state, {
                 terminalInput: action.text,
-                inputValid: eanValidator.validateEan(action.text)
+                inputValid: gtinValidator.validateGtin(action.text)
             });
         case terminalActions.RESET_TERMINAL:
             return Object.assign({}, initialState);
