@@ -19,7 +19,7 @@ class LoginPage extends React.Component {
                 <Grid fluid>
                     <Row center="xs">
                         <Col xs={5}>
-                            <LoginForm shadow={true} />
+                            <LoginForm />
                         </Col>
                     </Row>
                 </Grid>
