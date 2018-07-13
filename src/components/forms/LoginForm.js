@@ -2,15 +2,20 @@ import './styles/LoginForm.css';
 import { Field, reduxForm } from 'redux-form';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { errorMessage } from '../../reducers/notificationReducer';
-import { loggedIn, loggingIn, loginFailed } from '../../reducers/authenticationReducer';
+import { tryLogin } from '../../reducers/authenticationReducer';
 import React from 'react';
 import SuccessBtn from '../buttons/SuccessBtn';
-import userService from '../../services/userService';
 
 class LoginForm extends React.Component {
     componentDidMount = () => {
         this.usernameField.getRenderedComponent().focus();
+    };
+
+    componentDidUpdate = (prevProps) => {
+        // If login failed, focus username field again
+        if (prevProps.isLoggingIn && !this.props.isLoggingIn) {
+            this.usernameField.getRenderedComponent().focus();
+        }
     };
 
     handleUsernameKeyDown = (event) => {
@@ -21,48 +26,7 @@ class LoginForm extends React.Component {
     };
 
     handleSubmit = (values) => {
-        this.tryLogin(values);
-    };
-
-    tryLogin = async (values) => {
-        // Set loggingIn
-        this.props.loggingIn();
-        // Try to login
-        try {
-            const res = await userService.authenticate({
-                username: values.username,
-                password: values.password
-            });
-            // If access token is found, set it and login
-            if (res.data.access_token) {
-                this.props.loggedIn(res.data.access_token);
-            } else {
-                // Reset form
-                this.props.reset();
-                // Login has failed
-                this.props.loginFailed();
-                // Focus username input
-                this.usernameField.getRenderedComponent().focus();
-                // Send error message
-                this.props.errorMessage('Unknown error while logging in.', 2500);
-            }
-        } catch (err) {
-            // Reset form
-            this.props.reset();
-            // Send login failed
-            this.props.loginFailed();
-            // Focus username input
-            this.usernameField.getRenderedComponent().focus();
-            // Send error message
-            const errorResponse = err.response;
-            if (errorResponse.status === 500 || errorResponse.status === 404) {
-                // Server error
-                this.props.errorMessage('Server error', 2500);
-            } else if (errorResponse.status === 403 || errorResponse.status === 400) {
-                // Validation error
-                this.props.errorMessage(errorResponse.data.message, 2500);
-            }
-        }
+        this.props.tryLogin(values.username, values.password);
     };
 
     usernameRef = (field) => {
@@ -130,10 +94,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = {
-    loggingIn,
-    loggedIn,
-    errorMessage,
-    loginFailed
+    tryLogin
 };
 
 export default reduxForm({

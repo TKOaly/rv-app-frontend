@@ -13,7 +13,6 @@ import thunk from 'redux-thunk';
 import { reducer as formReducer } from 'redux-form';
 import authenticationReducer, { authenticationActions } from './reducers/authenticationReducer';
 import depositReducer from './reducers/depositReducer';
-import loginReducer from './reducers/loginReducer';
 import modalReducer from './reducers/modalReducer';
 import notificationReducer from './reducers/notificationReducer';
 import productReducer from './reducers/productReducer';
@@ -26,7 +25,6 @@ const reducer = combineReducers({
     notification: notificationReducer,
     authentication: authenticationReducer,
     register: registerReducer,
-    login: loginReducer,
     terminal: terminalReducer,
     user: userReducer,
     products: productReducer,

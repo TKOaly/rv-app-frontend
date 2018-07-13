@@ -2,7 +2,6 @@
 
 import { combineReducers, createStore } from 'redux';
 import authenticationReducer from '../reducers/authenticationReducer';
-import loginReducer from '../reducers/loginReducer';
 import notificationReducer from '../reducers/notificationReducer';
 import registerReducer from '../reducers/registerReducer';
 import shoppingCartReducer from '../reducers/shoppingCartReducer';
@@ -15,7 +14,6 @@ const reducer = combineReducers({
     authentication: authenticationReducer,
     shoppingCart: shoppingCartReducer,
     register: registerReducer,
-    login: loginReducer,
     terminal: terminalReducer,
     user: userReducer
 });
