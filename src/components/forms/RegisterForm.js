@@ -4,7 +4,6 @@ import { Field, reduxForm } from 'redux-form';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { errorMessage, successMessage } from '../../reducers/notificationReducer';
-import { loggedIn } from '../../reducers/authenticationReducer';
 import React from 'react';
 import SuccessBtn from '../buttons/SuccessBtn';
 import validator from 'validator';
@@ -164,8 +163,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
     successMessage,
-    errorMessage,
-    loggedIn
+    errorMessage
 };
 
 export default reduxForm({

@@ -34,19 +34,28 @@ export const loginFailed = () => {
     };
 };
 
+export const loggedIn = (token) => {
+    return {
+        type: authenticationActions.LOGGED_IN,
+        token: token
+    };
+};
+
 export const tryLogin = (username, password) => {
     return async (dispatch) => {
         // Set loggingIn
         dispatch(loggingIn());
         // Try to login
         try {
-            const res = await userService.authenticate({
+            const response = await userService.authenticate({
                 username,
                 password
             });
             // If access token is found, set it and login
-            if (res.data.access_token) {
-                dispatch(loggedIn(res.data.access_token));
+            if (response.data.access_token) {
+                const userData = await userService.getUser(response.data.access_token);
+                dispatch(setUserData(userData));
+                dispatch(loggedIn(response.data.access_token));
             } else {
                 // Login has failed
                 dispatch(loginFailed());
@@ -69,21 +78,6 @@ export const tryLogin = (username, password) => {
                 // Validation error
                 dispatch(errorMessage(errorResponse.data.message, 2500));
             }
-        }
-    };
-};
-
-export const loggedIn = (token) => {
-    return async (dispatch) => {
-        try {
-            const userData = await userService.getUser(token);
-            dispatch(setUserData(userData));
-            dispatch({
-                type: authenticationActions.LOGGED_IN,
-                token
-            });
-        } catch (err) {
-            dispatch(errorMessage('Failed to fetch user data from server'));
         }
     };
 };

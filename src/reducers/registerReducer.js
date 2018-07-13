@@ -1,5 +1,6 @@
 import { errorMessage, successMessage } from './notificationReducer';
 import { loggedIn } from './authenticationReducer';
+import { setUserData } from './userReducer';
 import userService from '../services/userService';
 
 export const initialState = {
@@ -44,6 +45,8 @@ export const registerUser = (userData) => {
                         username: userData.username,
                         password: userData.password
                     });
+                    const fetchedUserData = await userService.getUser(loginResponse.data.access_token);
+                    dispatch(setUserData(fetchedUserData));
                     dispatch(loggedIn(loginResponse.data.access_token));
                 } catch (err) {
                     dispatch(errorMessage('Error logging user in'));
