@@ -2,7 +2,6 @@ import './styles/LoginPage.css';
 import { Col, Grid, Row } from 'react-flexbox-grid';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { toggleRegisterVisibility } from '../../reducers/registerReducer';
 import Header from '../sections/Header';
 import LoginForm from '../forms/LoginForm';
 import React from 'react';
@@ -30,13 +29,8 @@ class LoginPage extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        registerVisible: state.register.registerVisible,
         loggedIn: state.authentication.loggedIn
     };
 };
 
-const mapDispatchToProps = {
-    toggleRegisterVisibility
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);
+export default connect(mapStateToProps)(LoginPage);

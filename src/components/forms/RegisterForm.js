@@ -3,20 +3,20 @@ import './styles/RegisterForm.css';
 import { Field, reduxForm } from 'redux-form';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { errorMessage, successMessage } from '../../reducers/notificationReducer';
+import { tryRegister } from '../../reducers/registerReducer';
 import React from 'react';
 import SuccessBtn from '../buttons/SuccessBtn';
 import validator from 'validator';
 
 const required = (value) => (value ? undefined : 'Field is required');
-const minLength = (field, min) => (value) =>
-    value && value.length < min ? `${field} must be longer than ${min} characters` : undefined;
+
 const passwordLength = (value) => (value && value.length < 12 ? 'Consider using a stronger password' : undefined);
+
 const email = (value) => (value && !validator.isEmail(value) ? 'Invalid E-mail address' : undefined);
 
 const passwordsMatch = (value, allValues) => (value !== allValues.password ? 'Passwords do not match' : undefined);
 
-const renderField = ({ input, label, type, className, ref, meta: { touched, error, warning }, ...props }) => (
+const renderField = ({ input, label, type, className, inputRef, meta: { touched, error, warning }, ...props }) => (
     <div>
         <label>{label}</label>
         <div>
@@ -25,7 +25,7 @@ const renderField = ({ input, label, type, className, ref, meta: { touched, erro
                 placeholder={label}
                 type={type}
                 {...props}
-                ref={ref}
+                ref={inputRef}
                 className={className + (touched && error ? ' error-field' : '')}
             />
             {touched &&
@@ -36,12 +36,21 @@ const renderField = ({ input, label, type, className, ref, meta: { touched, erro
 );
 
 class RegisterForm extends React.Component {
+    componentDidMount = () => {
+        this.usernameInput.focus();
+    };
+
+    handleSubmit = (values) => {
+        this.props.tryRegister(values);
+    };
+
+    usernameRef = (input) => {
+        this.usernameInput = input;
+    };
+
     render = () => {
         return (
-            <form
-                onSubmit={this.props.handleSubmit}
-                className={this.props.shadow ? 'form form-shadow loginForm' : 'form loginForm'}
-            >
+            <form onSubmit={this.props.handleSubmit(this.handleSubmit)} className="form form-shadow loginForm">
                 <legend>
                     Register &nbsp;&nbsp;&nbsp;<span style={{ fontSize: 13 }}>Tip: Use TAB to change form fields</span>
                 </legend>
@@ -56,26 +65,21 @@ class RegisterForm extends React.Component {
                         autoCorrect="off"
                         autoCapitalize="off"
                         className="input fullWidth"
-                        ref={(input) => {
-                            this.registerUsernameInput = input;
-                        }}
-                        validate={[required, minLength('Username', 4)]}
+                        inputRef={this.usernameRef}
+                        validate={required}
                     />
                 </div>
                 <div className="formControl">
                     <Field
                         name="email"
                         component={renderField}
-                        type="text"
+                        type="email"
                         id="registerEmail"
                         placeholder="E-mail address"
                         autoComplete="off"
                         autoCorrect="off"
                         autoCapitalize="off"
                         className="input fullWidth"
-                        ref={(input) => {
-                            this.registerEmailInput = input;
-                        }}
                         validate={[required, email]}
                     />
                 </div>
@@ -90,9 +94,6 @@ class RegisterForm extends React.Component {
                         autoCorrect="off"
                         autoCapitalize="off"
                         className="input fullWidth"
-                        ref={(input) => {
-                            this.registerRealnameInput = input;
-                        }}
                         validate={[required]}
                     />
                 </div>
@@ -107,10 +108,7 @@ class RegisterForm extends React.Component {
                         autoCorrect="off"
                         autoCapitalize="off"
                         className="input fullWidth"
-                        ref={(input) => {
-                            this.registerPasswordInput = input;
-                        }}
-                        validate={[required, minLength('Password', 4)]}
+                        validate={required}
                         warn={passwordLength}
                     />
                 </div>
@@ -125,24 +123,13 @@ class RegisterForm extends React.Component {
                         autoCorrect="off"
                         autoCapitalize="off"
                         className="input fullWidth"
-                        ref={(input) => {
-                            this.registerPasswordConfirmInput = input;
-                        }}
                         validate={[required, passwordsMatch]}
                     />
                 </div>
                 <div className="formControl">
-                    <Field
-                        name="submit"
-                        component={SuccessBtn}
-                        fill
-                        loader={this.props.loader}
-                        disabled={this.props.submitDisabled}
-                        style={{ width: '100%' }}
-                        type="submit"
-                    >
+                    <SuccessBtn type="submit" fill loader={this.props.registering} style={{ width: '100%' }}>
                         Register (ENTER)
-                    </Field>
+                    </SuccessBtn>
                 </div>
                 <div style={{ textAlign: 'center' }}>
                     <Link to="/" className="backbutton">
@@ -156,17 +143,14 @@ class RegisterForm extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        submitDisabled: state.register.submitDisabled,
-        loader: state.register.loader
+        registering: state.register.registering
     };
 };
 
 const mapDispatchToProps = {
-    successMessage,
-    errorMessage
+    tryRegister
 };
 
 export default reduxForm({
-    // a unique name for the form
     form: 'register'
 })(connect(mapStateToProps, mapDispatchToProps)(RegisterForm));
