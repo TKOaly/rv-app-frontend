@@ -70,13 +70,16 @@ export const tryLogin = (username, password) => {
             // Reset form
             dispatch(reset('login'));
             // Send error message
-            const errorResponse = err.response;
-            if (errorResponse.status === 500 || errorResponse.status === 404) {
-                // Server error
-                dispatch(errorMessage('Server error', 2500));
-            } else if (errorResponse.status === 403 || errorResponse.status === 400) {
-                // Validation error
-                dispatch(errorMessage(errorResponse.data.message, 2500));
+            if (err.response) {
+                if (err.response.status === 500 || err.response.status === 404) {
+                    // Server error
+                    dispatch(errorMessage('Server error', 2500));
+                } else if (err.response.status === 403 || err.response.status === 400) {
+                    // Validation error
+                    dispatch(errorMessage(err.response.data.message, 2500));
+                }
+            } else {
+                dispatch(errorMessage(err.message, 2500));
             }
         }
     };
