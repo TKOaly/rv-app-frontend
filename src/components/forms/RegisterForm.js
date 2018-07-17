@@ -41,7 +41,12 @@ class RegisterForm extends React.Component {
     };
 
     handleSubmit = (values) => {
-        this.props.tryRegister(values);
+        this.props.tryRegister({
+            username: values.username ? values.username : '',
+            password: values.password ? values.password : '',
+            email: values.email ? values.email : '',
+            realname: values.realname ? values.realname : ''
+        });
     };
 
     usernameRef = (input) => {

@@ -26,7 +26,9 @@ class LoginForm extends React.Component {
     };
 
     handleSubmit = (values) => {
-        this.props.tryLogin(values.username, values.password);
+        const username = values.username ? values.username : '';
+        const password = values.password ? values.password : '';
+        this.props.tryLogin(username, password);
     };
 
     usernameRef = (field) => {
