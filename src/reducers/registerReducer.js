@@ -14,21 +14,21 @@ export const tryRegister = (userData) => {
     return async (dispatch) => {
         dispatch(registering());
         try {
-            const registerRequest = await userService.registerUser({
+            await userService.registerUser({
                 username: userData.username,
                 password: userData.password,
                 email: userData.email,
                 realname: userData.realname
             });
             dispatch(endRegistering());
-            if (registerRequest.status === 201) {
-                dispatch(successMessage('User registered'));
-            } else {
-                dispatch(errorMessage('Error registering user'));
-            }
+            dispatch(successMessage('User registered'));
         } catch (err) {
             dispatch(endRegistering());
-            dispatch(errorMessage('Error registering user'));
+            if (err.response) {
+                dispatch(errorMessage(err.response.data.message));
+            } else {
+                dispatch(errorMessage(err.message));
+            }
         }
     };
 };
