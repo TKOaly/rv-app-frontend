@@ -1,4 +1,4 @@
-import './styles/Shadow.css';
+import './styles/Shadow.scss';
 import React from 'react';
 
 const Shadow = (props) => {

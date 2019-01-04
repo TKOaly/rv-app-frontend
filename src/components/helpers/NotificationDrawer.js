@@ -1,4 +1,4 @@
-import './styles/NotificationDrawer.css';
+import './styles/NotificationDrawer.scss';
 import { Fade } from '../animations/Animations';
 import { TransitionGroup } from 'react-transition-group';
 import ErrorNotification from '../notifications/ErrorNotification';

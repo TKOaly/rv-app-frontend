@@ -1,4 +1,4 @@
-import './styles/ProductBrowser.css';
+import './styles/ProductBrowser.scss';
 import { connect } from 'react-redux';
 import { showModal } from '../../reducers/modalReducer';
 import ProductPopup from '../modals/ProductPopup';

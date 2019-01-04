@@ -1,4 +1,4 @@
-import './styles/Terminal.css';
+import './styles/Terminal.scss';
 import { closeModal, showModal } from '../../reducers/modalReducer';
 import { connect } from 'react-redux';
 import { handleTerminalSubmit, setTerminalText } from '../../reducers/terminalReducer';

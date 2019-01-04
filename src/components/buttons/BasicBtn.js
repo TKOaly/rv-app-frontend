@@ -1,5 +1,5 @@
-import './styles/BasicBtn.css';
-import './styles/Button.css';
+import './styles/BasicBtn.scss';
+import './styles/Button.scss';
 import Loader from '../loaders/Loader';
 import PropTypes from 'prop-types';
 import React from 'react';

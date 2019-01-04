@@ -1,4 +1,4 @@
-import './styles/ProductBrowser.css';
+import './styles/ProductBrowser.scss';
 import { connect } from 'react-redux';
 import { setCategorySelected, setFilter } from '../../reducers/productReducer';
 import Loader from '../loaders/Loader';

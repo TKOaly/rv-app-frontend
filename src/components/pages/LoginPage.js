@@ -1,4 +1,4 @@
-import './styles/LoginPage.css';
+import './styles/LoginPage.scss';
 import { Col, Grid, Row } from 'react-flexbox-grid';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';

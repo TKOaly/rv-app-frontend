@@ -1,4 +1,4 @@
-import './styles/RegistrationPage.css';
+import './styles/RegistrationPage.scss';
 import { Col, Row } from 'react-flexbox-grid';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';

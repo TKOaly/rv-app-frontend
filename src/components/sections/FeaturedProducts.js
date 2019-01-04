@@ -1,4 +1,4 @@
-import './styles/FeaturedProducts.css';
+import './styles/FeaturedProducts.scss';
 import { connect } from 'react-redux';
 import FeaturedProductItem from './FeaturedProductItem';
 import Loader from '../loaders/Loader';

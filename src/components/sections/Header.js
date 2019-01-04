@@ -1,4 +1,4 @@
-import './styles/Header.css';
+import './styles/Header.scss';
 import { closeModal, showModal } from '../../reducers/modalReducer';
 import { connect } from 'react-redux';
 import Deposit from '../sections/Deposit';

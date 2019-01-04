@@ -1,4 +1,4 @@
-import './styles/Content.css';
+import './styles/Content.scss';
 import { Col, Row } from 'react-flexbox-grid';
 import { connect } from 'react-redux';
 import { errorMessage, successMessage } from '../../reducers/notificationReducer';

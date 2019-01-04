@@ -1,4 +1,4 @@
-import './styles/Centered.css';
+import './styles/Centered.scss';
 import React from 'react';
 
 const Centered = (props) => (

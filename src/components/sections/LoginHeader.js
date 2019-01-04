@@ -1,4 +1,4 @@
-import './styles/LoginHeader.css';
+import './styles/LoginHeader.scss';
 import React from 'react';
 
 const LoginHeader = () => (

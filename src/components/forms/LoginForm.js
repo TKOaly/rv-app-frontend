@@ -1,4 +1,4 @@
-import './styles/LoginForm.css';
+import './styles/LoginForm.scss';
 import { Field, reduxForm } from 'redux-form';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';

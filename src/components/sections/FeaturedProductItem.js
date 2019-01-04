@@ -1,4 +1,4 @@
-import './styles/FeaturedProducts.css';
+import './styles/FeaturedProducts.scss';
 import { buyProduct } from '../../reducers/productReducer';
 import { connect } from 'react-redux';
 import React from 'react';

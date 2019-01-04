@@ -1,4 +1,4 @@
-import './styles/Confirmation.css';
+import './styles/Confirmation.scss';
 import React from 'react';
 import moneyFormatter from '../../services/moneyFormatter';
 

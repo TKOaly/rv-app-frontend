@@ -1,4 +1,4 @@
-import './styles/SuccessNotification.css';
+import './styles/SuccessNotification.scss';
 import PropTypes from 'prop-types';
 import React from 'react';
 

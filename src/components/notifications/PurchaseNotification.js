@@ -1,4 +1,4 @@
-import './styles/PurchaseNotification.css';
+import './styles/PurchaseNotification.scss';
 import { Fade } from '../animations/Animations';
 import { TransitionGroup } from 'react-transition-group';
 import React from 'react';

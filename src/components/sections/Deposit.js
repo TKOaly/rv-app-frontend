@@ -1,4 +1,4 @@
-import './styles/Deposit.css';
+import './styles/Deposit.scss';
 import { Fade } from '../animations/Animations';
 import { TransitionGroup } from 'react-transition-group';
 import { connect } from 'react-redux';

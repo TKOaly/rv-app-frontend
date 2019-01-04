@@ -1,6 +1,6 @@
-import './components/animations/animations.css';
-import './index.css';
-import './reset.css';
+import './components/animations/animations.scss';
+import './index.scss';
+import './reset.scss';
 import { Provider } from 'react-redux';
 import { applyMiddleware, combineReducers, createStore } from 'redux';
 import { logger } from './reducers/middleware';
@@ -10,6 +10,7 @@ import ReactDOM from 'react-dom';
 import thunk from 'redux-thunk';
 
 // Import reducers
+import { composeWithDevTools } from 'redux-devtools-extension';
 import { reducer as formReducer } from 'redux-form';
 import authenticationReducer, { authenticationActions } from './reducers/authenticationReducer';
 import depositReducer from './reducers/depositReducer';
@@ -41,17 +42,10 @@ const rootReducer = (state, action) => {
     return reducer(state, action);
 };
 
-const middleware =
-    process.env.NODE_ENV !== 'production'
-        ? [require('redux-immutable-state-invariant').default(), thunk, logger]
-        : [thunk];
+const middleware = process.env.NODE_ENV !== 'production' ? [thunk, logger] : [thunk];
 
 // Create store
-const store = createStore(
-    rootReducer,
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
-    applyMiddleware(...middleware)
-);
+const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(...middleware)));
 
 // Load config
 if (process.env.NODE_ENV !== 'production') {

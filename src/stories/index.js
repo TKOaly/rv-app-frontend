@@ -1,5 +1,5 @@
-import '../index.css';
-import '../reset.css';
+import '../index.scss';
+import '../reset.scss';
 import { Header } from '../components/sections/Header';
 import { action } from '@storybook/addon-actions';
 import { storiesOf } from '@storybook/react';

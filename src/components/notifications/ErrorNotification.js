@@ -1,4 +1,4 @@
-import './styles/ErrorNotification.css';
+import './styles/ErrorNotification.scss';
 import PropTypes from 'prop-types';
 import React from 'react';
 

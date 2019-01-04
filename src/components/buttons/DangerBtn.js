@@ -1,5 +1,5 @@
-import './styles/Button.css';
-import './styles/DangerBtn.css';
+import './styles/Button.scss';
+import './styles/DangerBtn.scss';
 import Loader from '../loaders/Loader';
 import PropTypes from 'prop-types';
 import React from 'react';

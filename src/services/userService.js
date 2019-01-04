@@ -1,6 +1,6 @@
 /* User service */
 
-const axios = require('axios');
+import axios from "axios";
 
 /**
  * Register new user with backend to database

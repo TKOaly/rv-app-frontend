@@ -1,4 +1,4 @@
-import './styles/ProductPopup.css';
+import './styles/ProductPopup.scss';
 import { buyProduct, setBuyAmount } from '../../reducers/productReducer';
 import { closeModal } from '../../reducers/modalReducer';
 import { connect } from 'react-redux';

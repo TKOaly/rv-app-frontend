@@ -1,4 +1,4 @@
-import './styles/ModalContainer.css';
+import './styles/ModalContainer.scss';
 import { CSSTransition } from 'react-transition-group';
 import { closeModal } from '../../reducers/modalReducer';
 import { connect } from 'react-redux';
