@@ -5,7 +5,6 @@ import { action } from '@storybook/addon-actions';
 import { storiesOf } from '@storybook/react';
 import Content from '../components/sections/Content';
 import DangerBtn from '../components/buttons/DangerBtn';
-import Loader from '../components/loaders/Loader';
 import LoginForm from '../components/forms/LoginForm';
 import LoginPage from '../components/pages/LoginPage';
 import MainPage from '../components/pages/MainPage';
@@ -101,7 +100,9 @@ storiesOf('TopBalanceUsers', module)
  * Authentication mock
  * @param {*} user
  */
-const authenticate = (user) => {};
+const authenticate = (user) => {
+    console.log(user);
+};
 
 storiesOf('LoginForm', module)
     .add('Without loader', () => <LoginForm authenticate={authenticate} />)
