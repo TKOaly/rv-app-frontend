@@ -11,7 +11,6 @@ import MainPage from '../components/pages/MainPage';
 import PurchaseNotification from '../components/notifications/PurchaseNotification';
 import React from 'react';
 import SuccessBtn from '../components/buttons/SuccessBtn';
-import TopBalanceUsers from '../components/sections/TopBalanceUsers';
 
 storiesOf('Danger button', module)
     .add('With fill', () => (
@@ -67,34 +66,6 @@ storiesOf('Content', module).add('Initial', () => <Content />);
 storiesOf('LoginPage', module).add('Initial', () => <LoginPage />);
 
 storiesOf('MainPage', module).add('Initial', () => <MainPage />);
-
-storiesOf('TopBalanceUsers', module)
-    .add('Initial', () => <TopBalanceUsers />)
-    .add('With data', () => {
-        const users = [
-            {
-                name: 'Testaaja 1',
-                balance: 150
-            },
-            {
-                name: 'Testaaja 2',
-                balance: 250
-            },
-            {
-                name: 'Testaaja 3',
-                balance: 0
-            },
-            {
-                name: 'Testaaja 4',
-                balance: 10
-            },
-            {
-                name: 'Testaaja 5',
-                balance: 550
-            }
-        ];
-        return <TopBalanceUsers users={users} />;
-    });
 
 /**
  * Authentication mock

@@ -3,7 +3,7 @@
 exports[`<DangerBtn /> onClick event works correctly 1`] = `
 <button
   className="btn danger"
-  onClick={[Function]}
+  onClick={[MockFunction]}
 >
   <span
     className="btnContent"

@@ -26,7 +26,7 @@
   "scripts": {
     "start": "react-scripts start",
     "lint-js": "eslint 'src/**/*.{js,jsx}'",
-    "fix-js": "eslint --fix src/**/*.{js,jsx}'",
+    "fix-js": "eslint --fix 'src/**/*.{js,jsx}'",
     "build": "react-scripts build",
     "lint-scss": "stylelint src/**/*.scss --syntax=scss",
     "test": "react-scripts test --env=jsdom",
@@ -37,11 +37,14 @@
     "stylehuide:build": "styleguidist build"
   },
   "devDependencies": {
+    "@babel/core": "^7.2.2",
     "@storybook/addon-actions": "^4.1.4",
     "@storybook/addon-links": "^4.1.4",
     "@storybook/addons": "^4.1.4",
     "@storybook/react": "^4.1.4",
     "babel-eslint": "9.0.0",
+    "babel-loader": "8.0.4",
+    "css-loader": "^2.1.0",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "eslint": "5.6.0",
@@ -53,9 +56,12 @@
     "react-test-renderer": "^16.2.0",
     "redux-devtools-extension": "^2.13.7",
     "redux-mock-store": "^1.5.1",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.1",
     "stylelint": "^9.9.0",
     "stylelint-config-standard": "^18.0.0",
-    "stylelint-scss": "^3.4.4"
+    "stylelint-scss": "^3.4.4",
+    "url-loader": "^1.1.2"
   },
   "husky": {
     "hooks": {

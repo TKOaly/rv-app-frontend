@@ -3,6 +3,5 @@
 exports[`<Centered /> renders correctly 1`] = `
 <div
   className="centered"
-  style={undefined}
 />
 `;

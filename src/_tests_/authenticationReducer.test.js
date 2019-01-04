@@ -12,29 +12,33 @@ describe('authenticationReducer', () => {
     });
 
     it('loggingIn-action changes state', () => {
-        const state = [];
+        const state = { isLoggingIn: false };
         const action = loggingIn();
 
         const newState = authenticationReducer(state, action);
-
-        expect(Object.keys(newState).length).toBeTruthy();
+        expect(newState.isLoggingIn).toBeTruthy();
     });
 
     it('loggedIn-action changes state', () => {
-        const state = [];
-        const action = loggedIn();
+        const state = { loggedIn: false };
+        const action = loggedIn('token_test');
 
         const newState = authenticationReducer(state, action);
-
-        expect(Object.keys(newState).length).toBeFalsy();
+        expect(newState.loggedIn).toBeTruthy();
+        expect(newState.access_token).toBe('token_test');
     });
 
     it('loginFailed-action changes state', () => {
-        const state = [];
+        const state = {
+            loggingIn: true,
+            access_token: 'test'
+        };
         const action = loginFailed();
 
         const newState = authenticationReducer(state, action);
 
-        expect(Object.keys(newState).length).toBeTruthy();
+        expect(newState.loggedIn).toBeFalsy();
+        expect(newState.isLoggingIn).toBeFalsy();
+        expect(newState.access_token).toBe('');
     });
 });
