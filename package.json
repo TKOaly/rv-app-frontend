@@ -25,8 +25,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "lint-js": "eslint src/**/*.{js,jsx}",
-    "fix-js": "eslint --fix src/**/*.{js,jsx}",
+    "lint-js": "eslint 'src/**/*.{js,jsx}'",
+    "fix-js": "eslint --fix 'src/**/*.{js,jsx}'",
     "build": "react-scripts build",
     "lint-css": "stylelint src/**/*.scss --syntax=scss",
     "test": "react-scripts test --env=jsdom",
