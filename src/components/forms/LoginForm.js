@@ -4,24 +4,31 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { tryLogin } from '../../reducers/authenticationReducer';
 import React from 'react';
+import ReactDOM from 'react-dom';
 import SuccessBtn from '../buttons/SuccessBtn';
 
 class LoginForm extends React.Component {
-    componentDidMount = () => {
-        this.usernameField.getRenderedComponent().focus();
-    };
+    constructor(props) {
+        super(props);
+        this.usernameRef = React.createRef();
+        this.passwordRef = React.createRef();
+    }
 
-    componentDidUpdate = (prevProps) => {
+    componentDidMount() {
+        ReactDOM.findDOMNode(this.usernameRef.current).focus();
+    }
+
+    componentDidUpdate(prevProps) {
         // If login failed, focus username field again
         if (prevProps.isLoggingIn && !this.props.isLoggingIn) {
-            this.usernameField.getRenderedComponent().focus();
+            ReactDOM.findDOMNode(this.usernameRef.current).focus();
         }
-    };
+    }
 
     handleUsernameKeyDown = (event) => {
         if (event.key === 'Enter') {
             event.preventDefault();
-            this.passwordField.getRenderedComponent().focus();
+            ReactDOM.findDOMNode(this.passwordRef.current).focus();
         }
     };
 
@@ -29,14 +36,6 @@ class LoginForm extends React.Component {
         const username = values.username ? values.username : '';
         const password = values.password ? values.password : '';
         this.props.tryLogin(username, password);
-    };
-
-    usernameRef = (field) => {
-        this.usernameField = field;
-    };
-
-    passwordRef = (field) => {
-        this.passwordField = field;
     };
 
     render = () => {
@@ -101,4 +100,9 @@ const mapDispatchToProps = {
 
 export default reduxForm({
     form: 'login'
-})(connect(mapStateToProps, mapDispatchToProps)(LoginForm));
+})(
+    connect(
+        mapStateToProps,
+        mapDispatchToProps
+    )(LoginForm)
+);
