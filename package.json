@@ -70,12 +70,12 @@
   },
   "lint-staged": {
     "*.js": [
-      "yarn lint-js",
-      "yarn fix-js",
+      "npm run lint-js",
+      "npm run fix-js",
       "git add"
     ],
     "*.scss": [
-      "yarn lint-scss"
+      "npm run lint-scss"
     ]
   },
   "jest": {
