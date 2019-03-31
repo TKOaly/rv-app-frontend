@@ -18,7 +18,7 @@ export const tryRegister = (userData) => {
                 username: userData.username,
                 password: userData.password,
                 email: userData.email,
-                realname: userData.realname
+                fullName: userData.realname
             });
             dispatch(endRegistering());
             dispatch(successMessage('User registered'));

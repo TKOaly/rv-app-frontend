@@ -1,7 +1,6 @@
-import { addProductToNotification, errorMessage } from './notificationReducer';
-import { setBalance } from './userReducer';
+import { buyProduct } from './productReducer';
+import { errorMessage } from './notificationReducer';
 import gtinValidator from '../services/gtinValidator';
-import productService from '../services/productService';
 
 export const initialState = {
     terminalInput: '',
@@ -27,23 +26,13 @@ export const resetTerminal = () => {
 };
 
 export const handleTerminalSubmit = (barcode, token) => {
-    return async (dispatch) => {
+    return async (dispatch, getState) => {
         if (gtinValidator.validateGtin(barcode)) {
-            try {
-                const res = await productService.buyProduct(barcode, 1, token);
-
-                const accountBalance = res.data.account_balance;
-                dispatch(setBalance(accountBalance));
-
-                const prod = {
-                    barcode: res.data.barcode,
-                    quantity: res.data.quantity,
-                    product_name: res.data.product_name,
-                    price: res.data.price
-                };
-                dispatch(addProductToNotification(prod));
-            } catch (err) {
-                dispatch(errorMessage('Error buying product: ' + err.response.data.message));
+            const foundProduct = getState().products.products.find((product) => product.product_barcode === barcode);
+            if (foundProduct !== undefined) {
+                dispatch(buyProduct(foundProduct, 1));
+            } else {
+                dispatch(errorMessage('Product not found'));
             }
         } else {
             dispatch(errorMessage('Invalid barcode'));

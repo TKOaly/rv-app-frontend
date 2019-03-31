@@ -32,8 +32,8 @@ class MainPage extends React.Component {
             }
         }, 100);
         this.setState({ notificationInterval });
-        this.props.getProducts();
-        this.props.getCategories();
+        this.props.getProducts(this.props.token);
+        this.props.getCategories(this.props.token);
     };
 
     componentWillUnmount = () => {

@@ -33,7 +33,7 @@ export const setUserData = (user) => {
 export const increaseBalance = (token, amount) => {
     return async (dispatch) => {
         try {
-            const balance = await userService.increaseBalance(token, amount);
+            const balance = await userService.deposit(token, amount);
             dispatch(setBalance(balance));
             dispatch(successMessage('Deposited into RV-account ' + moneyFormatter.centsToString(amount) + ' €'));
         } catch (err) {

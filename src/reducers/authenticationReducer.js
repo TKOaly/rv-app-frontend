@@ -47,15 +47,22 @@ export const tryLogin = (username, password) => {
         dispatch(loggingIn());
         // Try to login
         try {
-            const response = await userService.authenticate({
+            const accessToken = await userService.authenticate({
                 username,
                 password
             });
             // If access token is found, set it and login
-            if (response.data.access_token) {
-                const userData = await userService.getUser(response.data.access_token);
-                dispatch(setUserData(userData));
-                dispatch(loggedIn(response.data.access_token));
+            if (accessToken) {
+                const userData = await userService.getUser(accessToken);
+                dispatch(
+                    setUserData({
+                        username: userData.username,
+                        full_name: userData.fullName,
+                        email: userData.email,
+                        account_balance: userData.moneyBalance
+                    })
+                );
+                dispatch(loggedIn(accessToken));
             } else {
                 // Login has failed
                 dispatch(loginFailed());

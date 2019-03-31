@@ -4,15 +4,16 @@ import axios from 'axios';
 
 /**
  * Register new user with backend to database
- * @param {object} newUSer
+ * @param {object} newUser
  */
-const registerUser = (newUser) => {
-    return axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/v1/user/register`, {
+const registerUser = async (newUser) => {
+    const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/v1/register`, {
         username: newUser.username,
         password: newUser.password,
-        realname: newUser.realname,
+        fullName: newUser.fullName,
         email: newUser.email
     });
+    return res.data.user;
 };
 
 /**
@@ -20,43 +21,22 @@ const registerUser = (newUser) => {
  * @param {string} token access token
  */
 const getUser = async (token) => {
-    return axios
-        .get(`${process.env.REACT_APP_BACKEND_URL}/api/v1/user/account`, {
-            headers: { Authorization: 'Bearer ' + token }
-        })
-        .then((res) => res.data);
+    const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/v1/user`, {
+        headers: { Authorization: 'Bearer ' + token }
+    });
+    return res.data.user;
 };
 
 /**
- * Authenticates the user with back-end. Returns a promise.
+ * Authenticates the user with back-end. Returns an access token.
  * @param {object} user
  */
-const authenticate = (user) => {
-    return axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/v1/user/authenticate`, {
+const authenticate = async (user) => {
+    const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/v1/authenticate`, {
         username: user.username,
         password: user.password
     });
-};
-
-/**
- * Reduces a user's account balance.
- * @param {string} token access token
- * @param {integer} amount amount to reduce
- */
-const reduceBalance = async (token, amount) => {
-    return axios
-        .post(
-            `${process.env.REACT_APP_BACKEND_URL}/api/v1/user/account/debit`,
-            {
-                amount: amount
-            },
-            {
-                headers: {
-                    Authorization: 'Bearer ' + token
-                }
-            }
-        )
-        .then((res) => res.data.account_balance);
+    return res.data.accessToken;
 };
 
 /**
@@ -64,26 +44,24 @@ const reduceBalance = async (token, amount) => {
  * @param {string} token access token
  * @param {integer} amount amount to increase
  */
-const increaseBalance = async (token, amount) => {
-    return axios
-        .post(
-            `${process.env.REACT_APP_BACKEND_URL}/api/v1/user/account/credit`,
-            {
-                amount: amount
-            },
-            {
-                headers: {
-                    Authorization: 'Bearer ' + token
-                }
+const deposit = async (token, amount) => {
+    const res = await axios.post(
+        `${process.env.REACT_APP_BACKEND_URL}/api/v1/user/deposit`,
+        {
+            amount: amount
+        },
+        {
+            headers: {
+                Authorization: 'Bearer ' + token
             }
-        )
-        .then((res) => res.data.account_balance);
+        }
+    );
+    return res.data.accountBalance;
 };
 
 export default {
     getUser,
-    reduceBalance,
-    increaseBalance,
+    deposit,
     authenticate,
     registerUser
 };

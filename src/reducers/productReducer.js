@@ -43,14 +43,24 @@ export const setBuyAmount = (amount) => {
     };
 };
 
-export const getProducts = () => {
+export const getProducts = (token) => {
     return async (dispatch) => {
         try {
             dispatch({ type: productActions.SET_GETTING_PRODUCTS });
-            const products = await productService.getAllProducts();
+            const products = await productService.getAllProducts(token);
             dispatch({
                 type: productActions.SET_PRODUCTS,
-                products
+                products: products
+                    .filter((product) => product.category.categoryId !== 65535)
+                    .map((product) => {
+                        return {
+                            product_id: product.productId,
+                            product_name: product.name,
+                            product_barcode: product.barcode,
+                            sellprice: product.sellPrice,
+                            product_group: product.category.categoryId
+                        };
+                    })
             });
         } catch (err) {
             dispatch(errorMessage('Failed to fetch products'));
@@ -58,14 +68,19 @@ export const getProducts = () => {
     };
 };
 
-export const getCategories = () => {
+export const getCategories = (token) => {
     return async (dispatch) => {
         try {
             dispatch({ type: productActions.SET_GETTING_CATEGORIES });
-            const categories = await productService.getAllCategories();
+            const categories = await productService.getAllCategories(token);
             dispatch({
                 type: productActions.SET_CATEGORIES,
-                categories
+                categories: categories.map((category) => {
+                    return {
+                        category_id: category.categoryId,
+                        category_description: category.description
+                    };
+                })
             });
         } catch (err) {
             dispatch(errorMessage('Failed to fetch categories'));
@@ -80,7 +95,7 @@ export const buyProduct = (product, quantity) => {
         try {
             const res = await productService.buyProduct(product.product_barcode, quantity, token);
 
-            dispatch(setBalance(res.data.account_balance));
+            dispatch(setBalance(res.accountBalance));
 
             dispatch(
                 addProductToNotification({
