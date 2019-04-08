@@ -1,5 +1,4 @@
 import './styles/Content.scss';
-import { Col, Row } from 'react-flexbox-grid';
 import { connect } from 'react-redux';
 import { errorMessage, successMessage } from '../../reducers/notificationReducer';
 import FeaturedProducts from './FeaturedProducts';
@@ -11,21 +10,13 @@ class Content extends React.Component {
     render = () => {
         return (
             <main>
-                <Row className="products-container">
-                    <Col xs={3}>
-                        <FeaturedProducts />
-                    </Col>
-                    <Col xs={9}>
-                        <ProductBrowser />
-                    </Col>
-                </Row>
-                <Row className="terminal-container">
-                    <Col xs={2} />
-                    <Col xs={8}>
-                        <Terminal />
-                    </Col>
-                    <Col xs={2} />
-                </Row>
+                <div className="products-container">
+                    <FeaturedProducts />
+                    <ProductBrowser />
+                </div>
+                <div className="terminal-container">
+                    <Terminal />
+                </div>
             </main>
         );
     };
@@ -43,4 +34,7 @@ const mapDispatchToProps = {
     errorMessage
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Content);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Content);

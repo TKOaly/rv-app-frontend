@@ -1,16 +1,17 @@
 main {
-  margin-top: 15px;
-  width: 100%;
-  height: calc(100% - 90px);
-  display: block;
-  box-sizing: border-box;
-  padding: 0 16px;
-  
+  flex-grow: 1;
+  margin: 16px;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+
   .products-container {
-    height: 75%;
+    flex-grow: 1;
+    display: flex;
+    min-height: 0;
   }
 
   .terminal-container {
-    height: 25%;
+    margin-top: 25px;
   }
 }
