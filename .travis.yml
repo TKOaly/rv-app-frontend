@@ -9,7 +9,6 @@ cache:
 
 install:
   - yarn
-  - yarn build-css
   - yarn global add codecov
 
 script:
