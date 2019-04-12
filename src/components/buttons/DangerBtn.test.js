@@ -11,7 +11,7 @@ describe.only('<DangerBtn />', () => {
         };
 
         const dangerBtnComponent = shallow(<DangerBtn>{data.text}</DangerBtn>);
-        console.log(dangerBtnComponent.debug());
+        // console.log(dangerBtnComponent.debug());
         const contentDiv = dangerBtnComponent.find('.btnContent');
         expect(contentDiv.text()).toContain(data.text);
 
@@ -21,17 +21,13 @@ describe.only('<DangerBtn />', () => {
 
     it('shows loader correctly', () => {
         const dangerBtnComponent = shallow(<DangerBtn loader />);
-        console.log(dangerBtnComponent.debug());
+        // console.log(dangerBtnComponent.debug());
         expect(dangerBtnComponent.contains(<Loader />)).toBe(true);
         const cmpnt = renderer.create(<DangerBtn loader />).toJSON();
         expect(cmpnt).toMatchSnapshot();
     });
 
     it('onClick event works correctly', () => {
-        const data = {
-            text: 'Hello world'
-        };
-
         const mockHandler = jest.fn();
 
         const dangerBtnComponent = shallow(<DangerBtn onClick={mockHandler} />);

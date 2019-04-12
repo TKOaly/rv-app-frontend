@@ -12,7 +12,7 @@ const NotificationDrawer = ({ notifications, products }) => (
             {notifications &&
                 notifications.length > 0 &&
                 notifications.map(
-                    (notification, id) =>
+                    (notification) =>
                         notification.messageType === 'SUCCESS' ? (
                             <Fade key={notification.id}>
                                 <SuccessNotification message={notification.message} shadow />

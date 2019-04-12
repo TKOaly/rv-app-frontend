@@ -1,4 +1,3 @@
-import { shallow } from 'enzyme';
 import Loader from './Loader';
 import React from 'react';
 import renderer from 'react-test-renderer';

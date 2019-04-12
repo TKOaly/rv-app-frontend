@@ -1,4 +1,3 @@
-import { shallow } from 'enzyme';
 import NotificationDrawer from './NotificationDrawer';
 import React from 'react';
 import renderer from 'react-test-renderer';

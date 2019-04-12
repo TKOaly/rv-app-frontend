@@ -11,7 +11,7 @@ describe.only('<SuccessBtn />', () => {
         };
 
         const successBtnComponent = shallow(<SuccessBtn>{data.text}</SuccessBtn>);
-        console.log(successBtnComponent.debug());
+        // console.log(successBtnComponent.debug());
         const contentDiv = successBtnComponent.find('.btnContent');
         expect(contentDiv.text()).toContain(data.text);
         const cmpnt = renderer.create(<SuccessBtn>{data.text}</SuccessBtn>).toJSON();
@@ -20,17 +20,13 @@ describe.only('<SuccessBtn />', () => {
 
     it('shows loader correctly', () => {
         const successBtnComponent = shallow(<SuccessBtn loader={true} />);
-        console.log(successBtnComponent.debug());
+        // console.log(successBtnComponent.debug());
         expect(successBtnComponent.contains(<Loader />)).toBe(true);
         const cmpnt = renderer.create(<SuccessBtn loader />).toJSON();
         expect(cmpnt).toMatchSnapshot();
     });
 
     it('onClick event works correctly', () => {
-        const data = {
-            text: 'Hello world'
-        };
-
         const mockHandler = jest.fn();
 
         const successBtnComponent = shallow(<SuccessBtn onClick={mockHandler} />);

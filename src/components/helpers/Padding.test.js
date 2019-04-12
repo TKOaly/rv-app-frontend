@@ -1,4 +1,3 @@
-import { shallow } from 'enzyme';
 import Padding from './Padding';
 import React from 'react';
 import renderer from 'react-test-renderer';

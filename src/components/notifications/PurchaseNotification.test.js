@@ -1,4 +1,3 @@
-import { shallow } from 'enzyme';
 import PurchaseNotification from './PurchaseNotification';
 import React from 'react';
 import renderer from 'react-test-renderer';

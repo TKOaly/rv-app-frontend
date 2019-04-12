@@ -1,4 +1,3 @@
-import { shallow } from 'enzyme';
 import ErrorNotification from './ErrorNotification';
 import React from 'react';
 import renderer from 'react-test-renderer';

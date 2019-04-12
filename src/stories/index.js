@@ -71,8 +71,9 @@ storiesOf('MainPage', module).add('Initial', () => <MainPage />);
  * Authentication mock
  * @param {*} user
  */
+// eslint-disable-next-line no-unused-vars
 const authenticate = (user) => {
-    console.log(user);
+    // console.log(user);
 };
 
 storiesOf('LoginForm', module)

@@ -1,4 +1,3 @@
-import { shallow } from 'enzyme';
 import Centered from './Centered';
 import React from 'react';
 import renderer from 'react-test-renderer';

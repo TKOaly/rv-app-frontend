@@ -38,7 +38,7 @@ class LoginForm extends React.Component {
         this.props.tryLogin(username, password);
     };
 
-    render = () => {
+    render() {
         return (
             <div className="form form-shadow loginForm">
                 <form onSubmit={this.props.handleSubmit(this.handleSubmit)}>
@@ -56,7 +56,6 @@ class LoginForm extends React.Component {
                             className="input fullWidth"
                             onKeyDown={this.handleUsernameKeyDown}
                             ref={this.usernameRef}
-                            withRef
                         />
                     </div>
                     <div className="formControl">
@@ -71,7 +70,6 @@ class LoginForm extends React.Component {
                             autoCapitalize="off"
                             className="input fullWidth"
                             ref={this.passwordRef}
-                            withRef
                         />
                     </div>
                     <div className="formControl">
@@ -85,7 +83,7 @@ class LoginForm extends React.Component {
                 </div>
             </div>
         );
-    };
+    }
 }
 
 const mapStateToProps = (state) => {

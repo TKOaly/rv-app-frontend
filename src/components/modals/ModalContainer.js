@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import './styles/ModalContainer.scss';
 import { CSSTransition } from 'react-transition-group';
 import { closeModal } from '../../reducers/modalReducer';
@@ -6,6 +7,7 @@ import React from 'react';
 
 class ModalContainer extends React.Component {
     handleClose = (e) => {
+        e.preventDefault();
         this.props.closeModal();
     };
 

@@ -9,6 +9,9 @@ class Confirmation extends React.Component {
     };
 
     handleConfirm = (event) => {
+        if(event !== undefined) {
+            event.preventDefault();
+        }
         this.props.increaseBalance(this.props.token, this.props.depositAmount);
         this.props.resetAmount();
         this.props.toggleConfirmationVisibility(false);
@@ -16,6 +19,9 @@ class Confirmation extends React.Component {
     };
 
     handleCancel = (event) => {
+        if(event !== undefined) {
+            event.preventDefault();
+        }
         this.props.toggleConfirmationVisibility(false);
         if (this.oldFocusedElement) {
             this.oldFocusedElement.focus();

@@ -25,24 +25,21 @@ const AuthenticatedRoute = ({ component: Component, ...rest }) => (
     />
 );
 
-class App extends React.Component {
-    render = () => {
-        // let page = this.props.loggedIn ? <MainPage /> : <LoginPage />;
-        return (
-            <div className="App">
-                <NotificationDrawer notifications={this.props.notifications} products={this.props.products} />
-                <Router>
-                    <div className="pages">
-                        <AuthenticatedRoute exact path="/" authenticated={this.props.loggedIn} component={MainPage} />
-                        <Route path="/login" component={LoginPage} />
-                        <Route path="/register" component={RegistrationPage} />
-                    </div>
-                </Router>
-                <ModalContainer />
+// App component passes notifications and products down the prop tree
+
+export const App = ({ notifications, products, loggedIn }) => (
+    <div className="App">
+        <NotificationDrawer notifications={notifications} products={products} />
+        <Router>
+            <div className="pages">
+                <AuthenticatedRoute exact path="/" authenticated={loggedIn} component={MainPage} />
+                <Route path="/login" authenticated={loggedIn} component={LoginPage} />
+                <Route path="/register" authenticated={loggedIn} component={RegistrationPage} />
             </div>
-        );
-    };
-}
+        </Router>
+        <ModalContainer />
+    </div>
+);
 
 const mapStateToProps = (state) => {
     return {

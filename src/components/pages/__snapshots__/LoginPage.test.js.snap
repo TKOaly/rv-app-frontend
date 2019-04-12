@@ -1,0 +1,533 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<LoginPage /> renders correctly when authenticated 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <Provider
+    store={
+      Object {
+        "dispatch": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+        Symbol(observable): [Function],
+      }
+    }
+  >
+    <MemoryRouter>
+      <LoginPage
+        authenticated={true}
+      />
+    </MemoryRouter>
+  </Provider>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "function",
+    "props": Object {
+      "children": <MemoryRouter>
+        <LoginPage
+          authenticated={true}
+        />
+      </MemoryRouter>,
+      "value": Object {
+        "store": Object {
+          "dispatch": [Function],
+          "getState": [Function],
+          "replaceReducer": [Function],
+          "subscribe": [Function],
+          Symbol(observable): [Function],
+        },
+        "storeState": Object {
+          "authentication": Object {
+            "access_token": "",
+            "isLoggingIn": false,
+            "loggedIn": false,
+          },
+          "deposit": Object {
+            "confirmationVisibility": false,
+            "depositAmountText": "",
+          },
+          "form": Object {},
+          "modal": Object {
+            "modalContent": null,
+            "modalVisible": false,
+            "props": null,
+          },
+          "notification": Object {
+            "notifications": Array [],
+            "purchaseNotificationStartTime": null,
+            "purchaseNotificationTimeout": 2500,
+            "purchasedItems": Array [],
+          },
+          "products": Object {
+            "buyAmount": 1,
+            "categories": Array [],
+            "filter": "",
+            "gettingCategories": false,
+            "gettingProducts": false,
+            "products": Array [],
+            "selectedCategory": -1,
+          },
+          "register": Object {
+            "registering": false,
+          },
+          "terminal": Object {
+            "inputValid": false,
+            "terminalInput": "",
+          },
+          "user": Object {
+            "account_balance": 0,
+            "email": "",
+            "full_name": "",
+            "username": "",
+          },
+        },
+      },
+    },
+    "ref": null,
+    "rendered": Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": <LoginPage
+          authenticated={true}
+        />,
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "authenticated": true,
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      "type": [Function],
+    },
+    "type": Object {
+      "$$typeof": Symbol(react.provider),
+      "_context": Object {
+        "$$typeof": Symbol(react.context),
+        "Consumer": Object {
+          "$$typeof": Symbol(react.context),
+          "_calculateChangedBits": null,
+          "_context": [Circular],
+        },
+        "Provider": [Circular],
+        "_calculateChangedBits": null,
+        "_currentRenderer": null,
+        "_currentRenderer2": null,
+        "_currentValue": null,
+        "_currentValue2": null,
+        "_threadCount": 0,
+      },
+    },
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "function",
+      "props": Object {
+        "children": <MemoryRouter>
+          <LoginPage
+            authenticated={true}
+          />
+        </MemoryRouter>,
+        "value": Object {
+          "store": Object {
+            "dispatch": [Function],
+            "getState": [Function],
+            "replaceReducer": [Function],
+            "subscribe": [Function],
+            Symbol(observable): [Function],
+          },
+          "storeState": Object {
+            "authentication": Object {
+              "access_token": "",
+              "isLoggingIn": false,
+              "loggedIn": false,
+            },
+            "deposit": Object {
+              "confirmationVisibility": false,
+              "depositAmountText": "",
+            },
+            "form": Object {},
+            "modal": Object {
+              "modalContent": null,
+              "modalVisible": false,
+              "props": null,
+            },
+            "notification": Object {
+              "notifications": Array [],
+              "purchaseNotificationStartTime": null,
+              "purchaseNotificationTimeout": 2500,
+              "purchasedItems": Array [],
+            },
+            "products": Object {
+              "buyAmount": 1,
+              "categories": Array [],
+              "filter": "",
+              "gettingCategories": false,
+              "gettingProducts": false,
+              "products": Array [],
+              "selectedCategory": -1,
+            },
+            "register": Object {
+              "registering": false,
+            },
+            "terminal": Object {
+              "inputValid": false,
+              "terminalInput": "",
+            },
+            "user": Object {
+              "account_balance": 0,
+              "email": "",
+              "full_name": "",
+              "username": "",
+            },
+          },
+        },
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": <LoginPage
+            authenticated={true}
+          />,
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "authenticated": true,
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        "type": [Function],
+      },
+      "type": Object {
+        "$$typeof": Symbol(react.provider),
+        "_context": Object {
+          "$$typeof": Symbol(react.context),
+          "Consumer": Object {
+            "$$typeof": Symbol(react.context),
+            "_calculateChangedBits": null,
+            "_context": [Circular],
+          },
+          "Provider": [Circular],
+          "_calculateChangedBits": null,
+          "_currentRenderer": null,
+          "_currentRenderer2": null,
+          "_currentValue": null,
+          "_currentValue2": null,
+          "_threadCount": 0,
+        },
+      },
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+  },
+}
+`;
+
+exports[`<LoginPage /> renders correctly when not authenticated 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <Provider
+    store={
+      Object {
+        "dispatch": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+        Symbol(observable): [Function],
+      }
+    }
+  >
+    <MemoryRouter>
+      <LoginPage
+        authenticated={false}
+      />
+    </MemoryRouter>
+  </Provider>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "function",
+    "props": Object {
+      "children": <MemoryRouter>
+        <LoginPage
+          authenticated={false}
+        />
+      </MemoryRouter>,
+      "value": Object {
+        "store": Object {
+          "dispatch": [Function],
+          "getState": [Function],
+          "replaceReducer": [Function],
+          "subscribe": [Function],
+          Symbol(observable): [Function],
+        },
+        "storeState": Object {
+          "authentication": Object {
+            "access_token": "",
+            "isLoggingIn": false,
+            "loggedIn": false,
+          },
+          "deposit": Object {
+            "confirmationVisibility": false,
+            "depositAmountText": "",
+          },
+          "form": Object {},
+          "modal": Object {
+            "modalContent": null,
+            "modalVisible": false,
+            "props": null,
+          },
+          "notification": Object {
+            "notifications": Array [],
+            "purchaseNotificationStartTime": null,
+            "purchaseNotificationTimeout": 2500,
+            "purchasedItems": Array [],
+          },
+          "products": Object {
+            "buyAmount": 1,
+            "categories": Array [],
+            "filter": "",
+            "gettingCategories": false,
+            "gettingProducts": false,
+            "products": Array [],
+            "selectedCategory": -1,
+          },
+          "register": Object {
+            "registering": false,
+          },
+          "terminal": Object {
+            "inputValid": false,
+            "terminalInput": "",
+          },
+          "user": Object {
+            "account_balance": 0,
+            "email": "",
+            "full_name": "",
+            "username": "",
+          },
+        },
+      },
+    },
+    "ref": null,
+    "rendered": Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": <LoginPage
+          authenticated={false}
+        />,
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "authenticated": false,
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      "type": [Function],
+    },
+    "type": Object {
+      "$$typeof": Symbol(react.provider),
+      "_context": Object {
+        "$$typeof": Symbol(react.context),
+        "Consumer": Object {
+          "$$typeof": Symbol(react.context),
+          "_calculateChangedBits": null,
+          "_context": [Circular],
+        },
+        "Provider": [Circular],
+        "_calculateChangedBits": null,
+        "_currentRenderer": null,
+        "_currentRenderer2": null,
+        "_currentValue": null,
+        "_currentValue2": null,
+        "_threadCount": 0,
+      },
+    },
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "function",
+      "props": Object {
+        "children": <MemoryRouter>
+          <LoginPage
+            authenticated={false}
+          />
+        </MemoryRouter>,
+        "value": Object {
+          "store": Object {
+            "dispatch": [Function],
+            "getState": [Function],
+            "replaceReducer": [Function],
+            "subscribe": [Function],
+            Symbol(observable): [Function],
+          },
+          "storeState": Object {
+            "authentication": Object {
+              "access_token": "",
+              "isLoggingIn": false,
+              "loggedIn": false,
+            },
+            "deposit": Object {
+              "confirmationVisibility": false,
+              "depositAmountText": "",
+            },
+            "form": Object {},
+            "modal": Object {
+              "modalContent": null,
+              "modalVisible": false,
+              "props": null,
+            },
+            "notification": Object {
+              "notifications": Array [],
+              "purchaseNotificationStartTime": null,
+              "purchaseNotificationTimeout": 2500,
+              "purchasedItems": Array [],
+            },
+            "products": Object {
+              "buyAmount": 1,
+              "categories": Array [],
+              "filter": "",
+              "gettingCategories": false,
+              "gettingProducts": false,
+              "products": Array [],
+              "selectedCategory": -1,
+            },
+            "register": Object {
+              "registering": false,
+            },
+            "terminal": Object {
+              "inputValid": false,
+              "terminalInput": "",
+            },
+            "user": Object {
+              "account_balance": 0,
+              "email": "",
+              "full_name": "",
+              "username": "",
+            },
+          },
+        },
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": <LoginPage
+            authenticated={false}
+          />,
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "authenticated": false,
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        "type": [Function],
+      },
+      "type": Object {
+        "$$typeof": Symbol(react.provider),
+        "_context": Object {
+          "$$typeof": Symbol(react.context),
+          "Consumer": Object {
+            "$$typeof": Symbol(react.context),
+            "_calculateChangedBits": null,
+            "_context": [Circular],
+          },
+          "Provider": [Circular],
+          "_calculateChangedBits": null,
+          "_currentRenderer": null,
+          "_currentRenderer2": null,
+          "_currentValue": null,
+          "_currentValue2": null,
+          "_threadCount": 0,
+        },
+      },
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+  },
+}
+`;

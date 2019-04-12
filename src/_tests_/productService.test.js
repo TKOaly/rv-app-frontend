@@ -1,4 +1,4 @@
-import productService from '../services/productService';
+// import productService from '../services/productService';
 
 describe('productService', () => {
     it('buy is successful on correct parametres', () => {
