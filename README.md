@@ -12,6 +12,34 @@ Production URL for the application is https://rv-frontend.herokuapp.com, while s
 
 Please login with ```normal_user::hunter2``` to use the application.
 
+## New updated starting instructions May 2019
+
+### On the first time
+
+- install node.js
+- install npm
+- install docker
+- add your user to the docker group
+- install docker-compose
+- install vs code
+- install plugins to vs code
+- clone backend from github
+- clone frontend from github
+- run npm install in backend
+- run npm install in frontend
+- create a working .env into frontend
+- run docker-compose up in backend
+- run npm run db-migrate in the backend container
+- run npm run db-seed in the backend container
+- run npm start in frontend
+
+### On every time you open the project
+
+- run docker-compose up in backend
+- run npm start in frontend
+
+## Old instructions below
+
 ## How to get started
 
 1. Clone the repo
