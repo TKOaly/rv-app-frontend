@@ -26,6 +26,7 @@ class Terminal extends React.Component {
 
     terminalInputRef = (input) => {
         this.terminalFocus = input;
+        this.props.setTerminalRef(input);
     };
 
     handleKeyDown = (event) => {
@@ -34,6 +35,11 @@ class Terminal extends React.Component {
             this.props.showModal(Deposit, {
                 closeModal: this.props.closeModal
             });
+        }
+
+        if (event.key === 'f') {
+            event.preventDefault();
+            this.props.filterInputRef().focus();
         }
     };
 
@@ -77,4 +83,7 @@ const mapDispatchToProps = {
     resetUserData
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Terminal);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Terminal);

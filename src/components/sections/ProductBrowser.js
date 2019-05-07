@@ -43,6 +43,18 @@ class ProductBrowser extends React.Component {
         this.props.setCategorySelected(parseInt(e.target.value, 10));
     };
 
+    filterInputRef = (input) => {
+        this.filterFocus = input;
+        this.props.setFilterRef(input);
+    };
+
+    handleKeyDown = (event) => {
+        if (event.keyCode === 13) {
+            event.preventDefault();
+            this.props.terminalInputRef().focus();
+        }
+    };
+
     render = () => {
         return (
             <div className="product-browser-container">
@@ -60,6 +72,8 @@ class ProductBrowser extends React.Component {
                         placeholder="Find product..."
                         value={this.props.filter}
                         onChange={this.handleChangeFilter}
+                        onKeyDown={this.handleKeyDown}
+                        ref={this.filterInputRef}
                     />
                 </div>
                 <div className="product-browser-list">
@@ -93,4 +107,7 @@ const mapDispatchToProps = {
     setCategorySelected
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProductBrowser);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(ProductBrowser);
