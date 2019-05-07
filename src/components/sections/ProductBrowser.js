@@ -18,10 +18,11 @@ const filterProducts = (products, selectedCategory, filter) => {
     return products.filter((p) => {
         return (
             (selectedCategory === -1 || p.product_group === selectedCategory) &&
-            p.product_name
+            (p.product_name
                 .toLowerCase()
                 .trim()
-                .includes(filter.toLowerCase().trim())
+                .includes(filter.toLowerCase().trim()) ||
+                p.product_barcode === filter.trim())
         );
     });
 };
