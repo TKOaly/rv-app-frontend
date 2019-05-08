@@ -1,25 +1,21 @@
 language: node_js
 node_js:
 - '9'
-
 cache:
   yarn: true
   directories:
   - node_modules
-
 install:
-  - yarn
-  - yarn build-css
-  - yarn global add codecov
-
+- yarn
+- yarn build-css
+- yarn global add codecov
 script:
-  - yarn test --coverage
-  - codecov
-
+- yarn test --coverage
+- codecov
 deploy:
   provider: heroku
   api_key:
-    secure: QN3kwoi8nYS+AlHXibMQwIpiKF6RoV63e+Oxr61glgb66OtsTV6kVM1LxiqfM1S7Spje0KFEMhW8yHbreSe+uIkSrnaj8BhGeBCYIyXR4yjrf+YbgrVy0Teseq5vz92ScbTveqyVdHmy+OGqC+GMfAeCPasVJZAKnU8NEGL1QsgAzKDo/Ue+6D81SJblu1Yjm44aTxI8KzMKf5bKuX+ZHY3fOQ9JfdeS2plClBwled/7SSLjy62DSKKfwUdJ5pQ3tWf0i47cjh7L30RaB7/LJzz7dwtvc9kOUforPwdDpB9O/0lJyUDSP2Mf3tHgjh4ZI/Meo8PQbjFBuTlpbgxNgAAIyODEY3uUrn4OIICaPCNf8O1eidyXQvRpLzZiQgHiyQV1Tgw9kr7REiBP1sxOYCRW1UPRE6bog5FF8SdCKYcd1+pf93v2PPtk3znz3Lia4r03W7CqEEpPSBN1Nz8x6kZlTrOWHTYxNV4/B9AGeythvUE7I7hCOioHGI83Hwn/RY/6B8cXoRtMe90CYXyAiv3Msf004Vcd68RrtPF2dBepbUAy5lpkeZ2gvAnncdirlpQFTydhG/u75FsybFKG1Ajm2bXvNiE0Sk2zNqnEZxNro/Vta1smlwVoW/nHmNim5541qp8RjQbDUZQbeHUCm1dT4MVrpu1jqi8eWLr1xt8=
+    secure: XbFDPfqd0SkhXwDaAftwnYNiwRcEqljTJkS+OleOWamOyqnYp2d1Q2XXofLppcauUleLj0vp6vLhZBlHJ2zd7b8X4+SM9XHnW9eD1uIGLG8cbdUoedS05fGB2MDL0v03ZWO8tehjJBz0voTCtRSaVSdNO2BBm1o546f3eZCN8kISggYVZNl7uyiL/BoSZ/kBuBAPWq8xDE130BipUNx7ukBT3L81R428v7kID0WNKMxPntvp2N7yM2cHrQAGM+saPseAAlV1v4O3Kopf9AY5UiuRKGoz/EzDRaf6+GBEaDxFv71qFRVpVoU5FtfGhmACHPO88Klj2OObauYPV03bktEAzcvCFlJZOC7rp+SJoYaSDWpPov24zXPRewbx3HHE7Q2NtKA75vBeefWcDaC6NueSZSOXpdNRWKiwYmBfcusZVOhBHeLur+4W61TPehO4YHuunkpepHOI/4yPiV3T6pS7MfF4XML8n1kkI02+qkJSdK9rcAE454ogTuGEV5yT+uPbgwEDOREA+yYdVwHeQ7/ZLH1GmfSXhrgWpCec0IX/1I8SLWQ0YR1jLoeEDKwybl5w3wV0PwOleQBMSVpaDepk3jC5zguexWtAWKvk6wmrv7XVoK3PQIuiwTc/nv5WFQwjL/7pNXtkfLUZqNhtDQuhMmq74D+G5mL+TaLy6AY=
   app:
     develop: rv-frontend-dev
     master: rv-frontend
