@@ -39,7 +39,7 @@ class Terminal extends React.Component {
 
         if (event.key === 'f') {
             event.preventDefault();
-            this.props.filterInputRef().focus();
+            this.props.getFilterRef().focus();
         }
     };
 

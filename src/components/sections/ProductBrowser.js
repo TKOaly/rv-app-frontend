@@ -50,9 +50,9 @@ class ProductBrowser extends React.Component {
     };
 
     handleKeyDown = (event) => {
-        if (event.keyCode === 13) {
+        if (event.key === 'Enter') {
             event.preventDefault();
-            this.props.terminalInputRef().focus();
+            this.props.getTerminalRef().focus();
         }
     };
 

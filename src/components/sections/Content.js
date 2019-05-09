@@ -7,9 +7,7 @@ import React from 'react';
 import Terminal from './Terminal';
 
 class Content extends React.Component {
-    filterInputRef = undefined;
-    terminalInputRef = undefined;
-
+    /* Hack to give terminal and filter fields a reference to each other so they can switch focus. */
     setFilterRef = (element) => {
         this.filterInputRef = element;
     };
@@ -31,10 +29,10 @@ class Content extends React.Component {
             <main>
                 <div className="products-container">
                     <FeaturedProducts />
-                    <ProductBrowser setFilterRef={this.setFilterRef} terminalInputRef={this.getTerminalRef} />
+                    <ProductBrowser setFilterRef={this.setFilterRef} getTerminalRef={this.getTerminalRef} />
                 </div>
                 <div className="terminal-container">
-                    <Terminal setTerminalRef={this.setTerminalRef} filterInputRef={this.getFilterRef} />
+                    <Terminal setTerminalRef={this.setTerminalRef} getFilterRef={this.getFilterRef} />
                 </div>
             </main>
         );
