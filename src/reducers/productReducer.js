@@ -65,12 +65,7 @@ export const getCategories = (token) => {
             const categories = await productService.getAllCategories(token);
             dispatch({
                 type: productActions.SET_CATEGORIES,
-                categories: categories.map((category) => {
-                    return {
-                        category_id: category.categoryId,
-                        category_description: category.description
-                    };
-                })
+                categories
             });
         } catch (err) {
             dispatch(errorMessage('Failed to fetch categories'));

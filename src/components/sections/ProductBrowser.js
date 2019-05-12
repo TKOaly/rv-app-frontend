@@ -33,7 +33,7 @@ class ProductBrowser extends React.Component {
     };
 
     getVisibleCategories = () => {
-        return this.props.categories.filter((categ) => categ.category_id !== 65535);
+        return this.props.categories.filter((categ) => categ.categoryId !== 65535);
     };
 
     handleChangeFilter = (e) => {
@@ -63,8 +63,8 @@ class ProductBrowser extends React.Component {
                     <select value={this.props.selectedCategory} onChange={this.handleChangeCategory}>
                         <option value={-1}>All products</option>
                         {this.getVisibleCategories().map((category) => (
-                            <option value={category.category_id} key={category.category_id}>
-                                {category.category_description}
+                            <option value={category.categoryId} key={category.categoryId}>
+                                {category.description}
                             </option>
                         ))}
                     </select>
