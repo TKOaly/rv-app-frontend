@@ -14,8 +14,8 @@ class FeaturedProductItem extends React.Component {
         return (
             <li>
                 <a href="/" role="button" onClick={this.handleClick}>
-                    <div className="featured-name">{this.props.product.product_name}</div>
-                    <div className="featured-price">{moneyFormatter.centsToString(this.props.product.sellprice)} €</div>
+                    <div className="featured-name">{this.props.product.name}</div>
+                    <div className="featured-price">{moneyFormatter.centsToString(this.props.product.sellPrice)} €</div>
                 </a>
             </li>
         );
@@ -26,4 +26,7 @@ const mapDispatchToProps = {
     buyProduct
 };
 
-export default connect(null, mapDispatchToProps)(FeaturedProductItem);
+export default connect(
+    null,
+    mapDispatchToProps
+)(FeaturedProductItem);

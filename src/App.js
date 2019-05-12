@@ -30,7 +30,7 @@ class App extends React.Component {
         // let page = this.props.loggedIn ? <MainPage /> : <LoginPage />;
         return (
             <div className="App">
-                <NotificationDrawer notifications={this.props.notifications} products={this.props.products} />
+                <NotificationDrawer notifications={this.props.notifications} purchases={this.props.purchases} />
                 <Router>
                     <div className="pages">
                         <AuthenticatedRoute exact path="/" authenticated={this.props.loggedIn} component={MainPage} />
@@ -49,7 +49,7 @@ const mapStateToProps = (state) => {
         access_token: state.authentication.access_token,
         loggedIn: state.authentication.loggedIn,
         notifications: state.notification.notifications,
-        products: state.notification.purchasedItems
+        purchases: state.notification.purchasedItems
     };
 };
 

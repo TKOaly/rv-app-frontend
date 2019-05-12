@@ -50,17 +50,7 @@ export const getProducts = (token) => {
             const products = await productService.getAllProducts(token);
             dispatch({
                 type: productActions.SET_PRODUCTS,
-                products: products
-                    .filter((product) => product.category.categoryId !== 65535)
-                    .map((product) => {
-                        return {
-                            product_id: product.productId,
-                            product_name: product.name,
-                            product_barcode: product.barcode,
-                            sellprice: product.sellPrice,
-                            product_group: product.category.categoryId
-                        };
-                    })
+                products: products.filter((product) => product.category.categoryId !== 65535)
             });
         } catch (err) {
             dispatch(errorMessage('Failed to fetch products'));
@@ -93,18 +83,11 @@ export const buyProduct = (product, quantity) => {
         const token = getState().authentication.access_token;
 
         try {
-            const res = await productService.buyProduct(product.product_barcode, quantity, token);
+            const res = await productService.buyProduct(product.barcode, quantity, token);
 
             dispatch(setBalance(res.accountBalance));
 
-            dispatch(
-                addProductToNotification({
-                    product_name: product.product_name,
-                    barcode: product.product_barcode,
-                    quantity: quantity,
-                    price: product.sellprice
-                })
-            );
+            dispatch(addProductToNotification(product, quantity));
         } catch (err) {
             if (err.response) {
                 dispatch(errorMessage(err.response.data.message));

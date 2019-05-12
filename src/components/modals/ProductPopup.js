@@ -37,7 +37,7 @@ class ProductPopup extends React.Component {
                     <h3>Buy product</h3>
                 </div>
                 <div className="product-info">
-                    <div className="product-name">{this.props.product.product_name}</div>
+                    <div className="product-name">{this.props.product.name}</div>
                 </div>
                 <div className="product-quantity">
                     <div>Amount:</div>
@@ -49,7 +49,7 @@ class ProductPopup extends React.Component {
                     <div className="total">
                         <div>Total</div>
                         <div className="sum">
-                            {moneyFormatter.centsToString(this.props.product.sellprice * this.props.buyAmount)} €
+                            {moneyFormatter.centsToString(this.props.product.sellPrice * this.props.buyAmount)} €
                         </div>
                     </div>
                 </div>
@@ -78,4 +78,7 @@ const mapDispatchToProps = {
     setBuyAmount
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProductPopup);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(ProductPopup);

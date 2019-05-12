@@ -5,11 +5,11 @@ import React from 'react';
 import SuccessNotification from './SuccessNotification';
 import moneyFormatter from '../../services/moneyFormatter';
 
-const PurchaseNotificationProduct = ({ product }) => {
+const PurchaseNotificationProduct = ({ purchase }) => {
     return (
-        <div className="product" key={product.barcode}>
-            {product.quantity} x {product.product_name}{' '}
-            <b>{moneyFormatter.centsToString(product.price * product.quantity)} €</b>
+        <div className="product" key={purchase.product.barcode}>
+            {purchase.count} x {purchase.product.name}{' '}
+            <b>{moneyFormatter.centsToString(purchase.product.sellPrice * purchase.count)} €</b>
         </div>
     );
 };
@@ -17,16 +17,16 @@ const PurchaseNotificationProduct = ({ product }) => {
 /**
  * Purchase notification.
  */
-const PurchaseNotification = ({ products, shadow }) => {
+const PurchaseNotification = ({ purchases, shadow }) => {
     return (
         <SuccessNotification shadow={shadow}>
             <div className="products">
                 <TransitionGroup>
-                    {products &&
-                        products.length > 0 &&
-                        products.map((product, id) => (
+                    {purchases &&
+                        purchases.length > 0 &&
+                        purchases.map((purchase, id) => (
                             <Fade key={id}>
-                                <PurchaseNotificationProduct product={product} key={product.barcode} />
+                                <PurchaseNotificationProduct purchase={purchase} key={purchase.product.barcode} />
                             </Fade>
                         ))}
                 </TransitionGroup>

@@ -42,21 +42,23 @@ storiesOf('Success button', module)
         </SuccessBtn>
     ));
 
-const products = [
+const purchases = [
     {
-        barcode: '0001',
-        quantity: 1,
-        price: 180,
-        product_name: 'Coca-cola Zero'
+        product: {
+            barcode: '0001',
+            sellPrice: 180,
+            name: 'Coca-cola Zero'
+        },
+        count: 1
     }
 ];
 
 storiesOf('Purchase notification (with shadow)', module).add('Coca-Cola Zero, 1.85 eur', () => (
-    <PurchaseNotification shadow products={products} />
+    <PurchaseNotification shadow purchases={purchases} />
 ));
 
 storiesOf('Purchase notification (without shadow)', module).add('Coca-Cola Zero, 1.85 eur', () => (
-    <PurchaseNotification products={products} />
+    <PurchaseNotification purchases={purchases} />
 ));
 
 storiesOf('Header', module).add('Initial', () => <Header />);

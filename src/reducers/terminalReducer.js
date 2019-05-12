@@ -28,7 +28,7 @@ export const resetTerminal = () => {
 export const handleTerminalSubmit = (barcode, token) => {
     return async (dispatch, getState) => {
         if (gtinValidator.validateGtin(barcode)) {
-            const foundProduct = getState().products.products.find((product) => product.product_barcode === barcode);
+            const foundProduct = getState().products.products.find((product) => product.barcode === barcode);
             if (foundProduct !== undefined) {
                 dispatch(buyProduct(foundProduct, 1));
             } else {

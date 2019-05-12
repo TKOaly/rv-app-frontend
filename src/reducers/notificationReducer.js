@@ -69,10 +69,10 @@ export const errorMessage = (message, duration = 4000) => {
  * Adds an item to the product purchase notification.
  * @param {object} product
  */
-export const addProductToNotification = (product) => {
+export const addProductToNotification = (product, count) => {
     return {
         type: notificationActions.ADD_PRODUCT_TO_PURCHASE,
-        data: product
+        data: { product, count }
     };
 };
 
@@ -115,27 +115,29 @@ const notificationReducer = (state = initialState, action) => {
         }
         case notificationActions.ADD_PRODUCT_TO_PURCHASE: {
             // Product
-            const product = state.purchasedItems.find((product) => product.barcode === action.data.barcode);
+            const purchase = state.purchasedItems.find(
+                (purchase) => purchase.product.barcode === action.data.product.barcode
+            );
 
-            if (!product) {
+            if (!purchase) {
                 return Object.assign({}, state, {
                     purchasedItems: [...state.purchasedItems, action.data],
                     purchaseNotificationStartTime: new Date()
                 });
             } else {
                 // Product exists, increment amount
-                let products = Object.assign([], state.purchasedItems);
-                products = products.map((product) => {
-                    if (product.barcode !== action.data.barcode) {
-                        return product;
+                let purchases = Object.assign([], state.purchasedItems);
+                purchases = purchases.map((purchase) => {
+                    if (purchase.product.barcode !== action.data.product.barcode) {
+                        return purchase;
                     } else {
-                        return Object.assign({}, product, {
-                            quantity: product.quantity + action.data.quantity
+                        return Object.assign({}, purchase, {
+                            count: purchase.count + action.data.count
                         });
                     }
                 });
                 return Object.assign({}, state, {
-                    purchasedItems: [...products],
+                    purchasedItems: [...purchases],
                     purchaseNotificationStartTime: new Date()
                 });
             }

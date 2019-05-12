@@ -8,7 +8,7 @@ class FeaturedProducts extends React.Component {
     getFeaturedProducts = () => {
         // these will some day come from backend, hardcoded for now
         const featuredProductIds = [56, 58, 54, 50, 52, 626, 344];
-        return this.props.products.filter((p) => featuredProductIds.includes(p.product_id));
+        return this.props.products.filter((p) => featuredProductIds.includes(p.productId));
     };
 
     render = () => {
@@ -21,7 +21,9 @@ class FeaturedProducts extends React.Component {
                     <Loader />
                 ) : (
                     <ul>
-                        {this.getFeaturedProducts().map((p) => <FeaturedProductItem key={p.product_id} product={p} />)}
+                        {this.getFeaturedProducts().map((p) => (
+                            <FeaturedProductItem key={p.productId} product={p} />
+                        ))}
                     </ul>
                 )}
             </div>

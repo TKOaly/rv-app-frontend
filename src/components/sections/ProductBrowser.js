@@ -7,8 +7,8 @@ import React from 'react';
 
 const sortProducts = (products) => {
     return products.sort((a, b) => {
-        const aname = a.product_name.toLowerCase();
-        const bname = b.product_name.toLowerCase();
+        const aname = a.name.toLowerCase();
+        const bname = b.name.toLowerCase();
 
         return aname < bname ? -1 : aname === bname ? 0 : 1;
     });
@@ -17,12 +17,12 @@ const sortProducts = (products) => {
 const filterProducts = (products, selectedCategory, filter) => {
     return products.filter((p) => {
         return (
-            (selectedCategory === -1 || p.product_group === selectedCategory) &&
-            (p.product_name
+            (selectedCategory === -1 || p.category.categoryId === selectedCategory) &&
+            (p.name
                 .toLowerCase()
                 .trim()
                 .includes(filter.toLowerCase().trim()) ||
-                p.product_barcode === filter.trim())
+                p.barcode === filter.trim())
         );
     });
 };
@@ -83,7 +83,7 @@ class ProductBrowser extends React.Component {
                     ) : (
                         <ul>
                             {this.getVisibleProducts().map((p) => (
-                                <ProductBrowserItem key={p.product_id} product={p} />
+                                <ProductBrowserItem key={p.productId} product={p} />
                             ))}
                         </ul>
                     )}

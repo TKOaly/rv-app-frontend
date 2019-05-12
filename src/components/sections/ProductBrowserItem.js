@@ -17,9 +17,9 @@ class ProductBrowserItem extends React.Component {
         return (
             <li className="product-list-item">
                 <a role="button" href="/" onClick={this.handleClick}>
-                    <span className="product-list-item-name">{this.props.product.product_name}</span>
+                    <span className="product-list-item-name">{this.props.product.name}</span>
                     <span className="product-list-item-price">
-                        {moneyFormatter.centsToString(this.props.product.sellprice)} €
+                        {moneyFormatter.centsToString(this.props.product.sellPrice)} €
                     </span>
                 </a>
             </li>
@@ -31,4 +31,7 @@ const mapDispatchToProps = {
     showModal
 };
 
-export default connect(null, mapDispatchToProps)(ProductBrowserItem);
+export default connect(
+    null,
+    mapDispatchToProps
+)(ProductBrowserItem);
