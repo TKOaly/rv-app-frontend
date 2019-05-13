@@ -1,9 +1,4 @@
-import {
-    addProductToNotification,
-    clearProductsFromNotification,
-    errorMessage,
-    successMessage
-} from '../reducers/notificationReducer';
+import { addProductToNotification, errorMessage, successMessage } from '../reducers/notificationReducer';
 import notificationReducer from '../reducers/notificationReducer';
 
 describe('notificationReducer', () => {
@@ -28,15 +23,6 @@ describe('notificationReducer', () => {
     it('addProductToNotification-action changes state', () => {
         const state = { purchasedItems: [] };
         const action = addProductToNotification({ barcode: 111 });
-
-        const newState = notificationReducer(state, action);
-
-        expect(Object.keys(newState).length).toBeTruthy();
-    });
-
-    it('clearProductsFromNotification-action changes state', () => {
-        const state = [];
-        const action = clearProductsFromNotification();
 
         const newState = notificationReducer(state, action);
 

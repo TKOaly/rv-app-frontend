@@ -1,4 +1,3 @@
-import { clearProductsFromNotification } from '../../reducers/notificationReducer';
 import { connect } from 'react-redux';
 import { getCategories, getProducts } from '../../reducers/productReducer';
 import { logout } from '../../reducers/authenticationReducer';
@@ -15,22 +14,8 @@ class MainPage extends React.Component {
     }
 
     componentDidMount = () => {
-        const notificationInterval = setInterval(() => {
-            if (this.props.purchaseNotificationStartTime != null) {
-                const delta = new Date().getTime() - this.props.purchaseNotificationStartTime.getTime();
-                if (delta > this.props.purchaseNotificationTimeout) {
-                    this.props.clearProductsFromNotification();
-                }
-            }
-        }, 100);
-        this.setState({ notificationInterval });
         this.props.getProducts(this.props.token);
         this.props.getCategories(this.props.token);
-    };
-
-    componentWillUnmount = () => {
-        clearInterval(this.state.notificationInterval);
-        this.setState({ notificationInterval: null });
     };
 
     render = () => {
@@ -46,15 +31,12 @@ class MainPage extends React.Component {
 const mapStateToProps = (state) => {
     return {
         token: state.authentication.access_token,
-        purchaseNotificationTimeout: state.notification.purchaseNotificationTimeout,
-        purchaseNotificationStartTime: state.notification.purchaseNotificationStartTime,
         user: state.user
     };
 };
 
 const mapDispatchToProps = {
     logout,
-    clearProductsFromNotification,
     getProducts,
     getCategories
 };

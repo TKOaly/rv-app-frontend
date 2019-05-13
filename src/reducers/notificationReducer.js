@@ -4,7 +4,7 @@ export const notificationActions = {
     MESSAGE: 'MESSAGE',
     CLEAR_MESSAGE: 'CLEAR_MESSAGE',
     ADD_PRODUCT_TO_PURCHASE: 'ADD_PRODUCT_TO_PURCHASE',
-    CLEAR_ITEMS: 'CLEAR_ITEMS'
+    CLEAR_PURCHASES: 'CLEAR_PURCHASES'
 };
 
 export const notificationTypes = {
@@ -15,8 +15,7 @@ export const notificationTypes = {
 export const initialState = {
     notifications: [],
     purchasedItems: [],
-    purchaseNotificationTimeout: 2500,
-    purchaseNotificationStartTime: null
+    lastPurchaseNotificationId: null
 };
 
 const getId = () => uuidv1();
@@ -70,15 +69,18 @@ export const errorMessage = (message, duration = 4000) => {
  * @param {object} product
  */
 export const addProductToNotification = (product, count) => {
-    return {
-        type: notificationActions.ADD_PRODUCT_TO_PURCHASE,
-        data: { product, count }
-    };
-};
-
-export const clearProductsFromNotification = () => {
-    return {
-        type: notificationActions.CLEAR_ITEMS
+    return async (dispatch) => {
+        const id = getId();
+        dispatch({
+            type: notificationActions.ADD_PRODUCT_TO_PURCHASE,
+            id,
+            data: { product, count }
+        });
+        await wait(2500);
+        dispatch({
+            type: notificationActions.CLEAR_PURCHASES,
+            id
+        });
     };
 };
 
@@ -115,19 +117,18 @@ const notificationReducer = (state = initialState, action) => {
         }
         case notificationActions.ADD_PRODUCT_TO_PURCHASE: {
             // Product
-            const purchase = state.purchasedItems.find(
+            const sameProductPurchase = state.purchasedItems.find(
                 (purchase) => purchase.product.barcode === action.data.product.barcode
             );
 
-            if (!purchase) {
+            if (!sameProductPurchase) {
                 return Object.assign({}, state, {
                     purchasedItems: [...state.purchasedItems, action.data],
-                    purchaseNotificationStartTime: new Date()
+                    lastPurchaseNotificationId: action.id
                 });
             } else {
                 // Product exists, increment amount
-                let purchases = Object.assign([], state.purchasedItems);
-                purchases = purchases.map((purchase) => {
+                const purchases = state.purchasedItems.map((purchase) => {
                     if (purchase.product.barcode !== action.data.product.barcode) {
                         return purchase;
                     } else {
@@ -137,16 +138,22 @@ const notificationReducer = (state = initialState, action) => {
                     }
                 });
                 return Object.assign({}, state, {
-                    purchasedItems: [...purchases],
-                    purchaseNotificationStartTime: new Date()
+                    purchasedItems: purchases,
+                    lastPurchaseNotificationId: action.id
                 });
             }
         }
-        case notificationActions.CLEAR_ITEMS:
-            return Object.assign({}, state, {
-                purchasedItems: [],
-                purchaseNotificationStartTime: null
-            });
+        case notificationActions.CLEAR_PURCHASES: {
+            /* Only clear purchase notifications if it is called for the last notification. */
+            if (action.id === state.lastPurchaseNotificationId) {
+                return Object.assign({}, state, {
+                    purchasedItems: [],
+                    lastPurchaseNotificationId: null
+                });
+            } else {
+                return state;
+            }
+        }
         default:
             return state;
     }
