@@ -6,13 +6,6 @@ import Header from '../sections/Header';
 import React from 'react';
 
 class MainPage extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            notificationInterval: null
-        };
-    }
-
     componentDidMount = () => {
         this.props.getProducts(this.props.token);
         this.props.getCategories(this.props.token);
