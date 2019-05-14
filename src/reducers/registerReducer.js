@@ -53,13 +53,9 @@ export const endRegistering = () => {
 const registerReducer = (state = initialState, action) => {
     switch (action.type) {
         case registerActions.REGISTERING:
-            return Object.assign({}, state, {
-                registering: true
-            });
+            return { ...state, registering: true };
         case registerActions.END_REGISTERING:
-            return Object.assign({}, state, {
-                registering: false
-            });
+            return { ...state, registering: false };
         default:
             return state;
     }

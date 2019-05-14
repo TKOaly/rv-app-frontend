@@ -32,17 +32,11 @@ export const setAmountText = (text) => {
 const depositReducer = (state = initialState, action) => {
     switch (action.type) {
         case depositActions.TOGGLE_CONFIRMATION_VISIBILITY:
-            return Object.assign({}, state, {
-                confirmationVisibility: action.value
-            });
+            return { ...state, confirmationVisibility: action.value };
         case depositActions.RESET_DEPOSIT:
-            return Object.assign({}, state, {
-                depositAmountText: ''
-            });
+            return { ...state, depositAmountText: '' };
         case depositActions.SET_AMOUNT_TEXT:
-            return Object.assign({}, state, {
-                depositAmountText: action.text
-            });
+            return { ...state, depositAmountText: action.text };
         default:
             return state;
     }

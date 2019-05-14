@@ -49,12 +49,9 @@ export const handleTerminalSubmit = (barcode, token) => {
 const terminalReducer = (state = initialState, action) => {
     switch (action.type) {
         case terminalActions.SET_TERMINAL_TEXT:
-            return Object.assign({}, state, {
-                terminalInput: action.text,
-                inputValid: gtinValidator.validateGtin(action.text)
-            });
+            return { ...state, terminalInput: action.text, inputValid: gtinValidator.validateGtin(action.text) };
         case terminalActions.RESET_TERMINAL:
-            return Object.assign({}, initialState);
+            return { ...initialState };
         default:
             return state;
     }

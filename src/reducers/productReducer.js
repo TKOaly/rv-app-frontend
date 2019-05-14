@@ -101,35 +101,19 @@ export const buyProduct = (product, quantity) => {
 const productReducer = (state = initialState, action) => {
     switch (action.type) {
         case productActions.SET_GETTING_PRODUCTS:
-            return Object.assign({}, state, {
-                gettingProducts: true
-            });
+            return { ...state, gettingProducts: true };
         case productActions.SET_GETTING_CATEGORIES:
-            return Object.assign({}, state, {
-                gettingCategories: true
-            });
+            return { ...state, gettingCategories: true };
         case productActions.SET_PRODUCTS:
-            return Object.assign({}, state, {
-                products: action.products,
-                gettingProducts: false
-            });
+            return { ...state, products: action.products, gettingProducts: false };
         case productActions.SET_CATEGORIES:
-            return Object.assign({}, state, {
-                categories: action.categories,
-                gettingCategories: false
-            });
+            return { ...state, categories: action.categories, gettingCategories: false };
         case productActions.SET_FILTER:
-            return Object.assign({}, state, {
-                filter: action.filter
-            });
+            return { ...state, filter: action.filter };
         case productActions.SET_SELECTED_CATEGORY:
-            return Object.assign({}, state, {
-                selectedCategory: action.category
-            });
+            return { ...state, selectedCategory: action.category };
         case productActions.SET_BUY_AMOUNT:
-            return Object.assign({}, state, {
-                buyAmount: action.amount
-            });
+            return { ...state, buyAmount: action.amount };
         default:
             return state;
     }

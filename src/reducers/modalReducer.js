@@ -22,15 +22,9 @@ export const closeModal = () => ({
 const modalReducer = (state = initialState, action) => {
     switch (action.type) {
         case modalActions.SHOW_MODAL:
-            return Object.assign({}, state, {
-                modalVisible: true,
-                modalContent: action.contentComponent,
-                props: action.props
-            });
+            return { ...state, modalVisible: true, modalContent: action.contentComponent, props: action.props };
         case modalActions.CLOSE_MODAL:
-            return Object.assign({}, state, {
-                modalVisible: false
-            });
+            return { ...state, modalVisible: false };
         default:
             return state;
     }

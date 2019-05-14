@@ -98,7 +98,8 @@ const wait = (duration) => new Promise((resolve) => setTimeout(() => resolve(), 
 const notificationReducer = (state = initialState, action) => {
     switch (action.type) {
         case notificationActions.MESSAGE: {
-            return Object.assign({}, state, {
+            return {
+                ...state,
                 notifications: [
                     ...state.notifications,
                     {
@@ -107,13 +108,11 @@ const notificationReducer = (state = initialState, action) => {
                         message: action.message
                     }
                 ]
-            });
+            };
         }
         case notificationActions.CLEAR_MESSAGE: {
             const newNotifications = state.notifications.filter((notification) => notification.id !== action.id);
-            return Object.assign({}, state, {
-                notifications: [...newNotifications]
-            });
+            return { ...state, notifications: [...newNotifications] };
         }
         case notificationActions.ADD_PRODUCT_TO_PURCHASE: {
             // Product
@@ -122,34 +121,27 @@ const notificationReducer = (state = initialState, action) => {
             );
 
             if (!sameProductPurchase) {
-                return Object.assign({}, state, {
+                return {
+                    ...state,
                     purchasedItems: [...state.purchasedItems, action.data],
                     lastPurchaseNotificationId: action.id
-                });
+                };
             } else {
                 // Product exists, increment amount
                 const purchases = state.purchasedItems.map((purchase) => {
                     if (purchase.product.barcode !== action.data.product.barcode) {
                         return purchase;
                     } else {
-                        return Object.assign({}, purchase, {
-                            count: purchase.count + action.data.count
-                        });
+                        return { ...purchase, count: purchase.count + action.data.count };
                     }
                 });
-                return Object.assign({}, state, {
-                    purchasedItems: purchases,
-                    lastPurchaseNotificationId: action.id
-                });
+                return { ...state, purchasedItems: purchases, lastPurchaseNotificationId: action.id };
             }
         }
         case notificationActions.CLEAR_PURCHASES: {
             /* Only clear purchase notifications if it is called for the last notification. */
             if (action.id === state.lastPurchaseNotificationId) {
-                return Object.assign({}, state, {
-                    purchasedItems: [],
-                    lastPurchaseNotificationId: null
-                });
+                return { ...state, purchasedItems: [], lastPurchaseNotificationId: null };
             } else {
                 return state;
             }

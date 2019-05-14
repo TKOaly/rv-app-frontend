@@ -64,23 +64,15 @@ export const setBalance = (balance) => {
 const userReducer = (state = initialState, action) => {
     switch (action.type) {
         case userActions.SET_USER_DATA:
-            return Object.assign({}, state, {
-                ...action.user
-            });
+            return { ...state, ...action.user };
         case userActions.RESET_USER_DATA:
-            return Object.assign({}, state, initialState);
+            return { ...state, initialState };
         case userActions.INCREASE_BALANCE:
-            return Object.assign({}, state, {
-                account_balance: state.account_balance + action.amount
-            });
+            return { ...state, account_balance: state.account_balance + action.amount };
         case userActions.DECREASE_BALANCE:
-            return Object.assign({}, state, {
-                account_balance: state.account_balance - action.balance
-            });
+            return { ...state, account_balance: state.account_balance - action.balance };
         case userActions.SET_BALANCE:
-            return Object.assign({}, state, {
-                account_balance: action.balance
-            });
+            return { ...state, account_balance: action.balance };
         default:
             return state;
     }
