@@ -84,7 +84,7 @@ export const tryLogin = (username, password) => {
                 if (err.response.status === 500 || err.response.status === 404) {
                     // Server error
                     dispatch(errorMessage('Server error', 2500));
-                } else if (err.response.status === 403 || err.response.status === 400) {
+                } else if (err.response.status === 401 || err.response.status === 400) {
                     // Validation error
                     dispatch(errorMessage(err.response.data.message, 2500));
                 }
