@@ -24,29 +24,27 @@ class Header extends React.Component {
                     <img src={Logo} alt="logo" />
                     <h1>Ruokavälitys</h1>
                 </div>
-                {this.props.loggedIn && (
-                    <div className="header-right">
-                        <Margin margin={5} inlineBlock>
-                            <HeaderBtn onClick={this.handleDepositClick} fill>
-                                Deposit (D)
-                            </HeaderBtn>
-                        </Margin>
-                        <Margin margin={5} inlineBlock>
-                            <HeaderBtn fill>
-                                <FontAwesome name="user-circle" />{' '}
-                                <span>
-                                    <b>{this.props.user.username}</b>{' '}
-                                    {moneyFormatter.centsToString(this.props.user.account_balance)} €
-                                </span>
-                            </HeaderBtn>
-                        </Margin>
-                        <Margin margin={5} inlineBlock>
-                            <HeaderBtn onClick={this.props.logout} hover>
-                                <FontAwesome name="sign-out" /> Log out (ENTER)
-                            </HeaderBtn>
-                        </Margin>
-                    </div>
-                )}
+                <div className="header-right">
+                    <Margin margin={5} inlineBlock>
+                        <HeaderBtn onClick={this.handleDepositClick} fill>
+                            Deposit (D)
+                        </HeaderBtn>
+                    </Margin>
+                    <Margin margin={5} inlineBlock>
+                        <HeaderBtn fill>
+                            <FontAwesome name="user-circle" />{' '}
+                            <span>
+                                <b>{this.props.user.username}</b>{' '}
+                                {moneyFormatter.centsToString(this.props.user.account_balance)} €
+                            </span>
+                        </HeaderBtn>
+                    </Margin>
+                    <Margin margin={5} inlineBlock>
+                        <HeaderBtn onClick={this.props.logout} hover>
+                            <FontAwesome name="sign-out" /> Log out (ENTER)
+                        </HeaderBtn>
+                    </Margin>
+                </div>
             </header>
         );
     };
@@ -63,4 +61,7 @@ const mapDispatchToProps = {
     closeModal
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Header);

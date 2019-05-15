@@ -1,20 +1,15 @@
 import './styles/LoginPage.scss';
 import { Col, Grid, Row } from 'react-flexbox-grid';
-import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import Header from '../sections/Header';
 import LoginForm from '../forms/LoginForm';
+import LoginHeader from '../sections/LoginHeader';
 import React from 'react';
 
 class LoginPage extends React.Component {
     render = () => {
-        if (this.props.loggedIn) {
-            return <Redirect to="/" />;
-        }
-
         return (
             <div className="loginPage">
-                <Header />
+                <LoginHeader />
                 <Grid fluid>
                     <Row center="xs">
                         <Col xs={5}>

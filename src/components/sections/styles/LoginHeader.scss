@@ -1,14 +1,34 @@
-.loginHeader {
-  width: 100%;
-  margin-bottom: 20px;
+@import "vars";
 
-  h1 {
-    display: inline-block;
-    font-weight: bold;
-    font-size: 24pt;
-  }
+header {
+  padding-top: 4px;
+  padding-bottom: 4px;
+  vertical-align: middle;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  background-color: $header-bgcolor;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-bottom: 2px solid #fc3;
+  margin: 0 16px;
 
-  img {
-    display: inline-block;
+  .header-title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: -7px;
+
+    h1 {
+      font-size: 1.6em;
+      font-weight: normal;
+      color: #fff;
+    }
+
+    img {
+      margin-left: -22px;
+      width: 100px;
+      height: auto;
+    }
   }
 }

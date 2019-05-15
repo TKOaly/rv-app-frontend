@@ -3,6 +3,7 @@ import './index.scss';
 import './reset.scss';
 import { Provider } from 'react-redux';
 import { applyMiddleware, combineReducers, createStore } from 'redux';
+import { createBrowserHistory } from 'history';
 import { logger } from './reducers/middleware';
 import App from './App';
 import React from 'react';
@@ -11,6 +12,7 @@ import thunk from 'redux-thunk';
 
 // Import reducers
 import { composeWithDevTools } from 'redux-devtools-extension';
+import { connectRouter, routerMiddleware } from 'connected-react-router';
 import { reducer as formReducer } from 'redux-form';
 import authenticationReducer, { authenticationActions } from './reducers/authenticationReducer';
 import depositReducer from './reducers/depositReducer';
@@ -20,6 +22,10 @@ import productReducer from './reducers/productReducer';
 import registerReducer from './reducers/registerReducer';
 import terminalReducer from './reducers/terminalReducer';
 import userReducer from './reducers/userReducer';
+
+const history = createBrowserHistory();
+
+const routerReducer = connectRouter(history);
 
 // Combine reducers
 const reducer = combineReducers({
@@ -31,7 +37,8 @@ const reducer = combineReducers({
     products: productReducer,
     deposit: depositReducer,
     modal: modalReducer,
-    form: formReducer
+    form: formReducer,
+    router: routerReducer
 });
 
 const rootReducer = (state, action) => {
@@ -42,7 +49,8 @@ const rootReducer = (state, action) => {
     return reducer(state, action);
 };
 
-const middleware = process.env.NODE_ENV !== 'production' ? [thunk, logger] : [thunk];
+const router = routerMiddleware(history);
+const middleware = process.env.NODE_ENV !== 'production' ? [thunk, router, logger] : [thunk, router];
 
 // Create store
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(...middleware)));
@@ -57,7 +65,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 ReactDOM.render(
     <Provider store={store}>
-        <App />
+        <App history={history} />
     </Provider>,
     document.getElementById('root')
 );

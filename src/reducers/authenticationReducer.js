@@ -1,4 +1,5 @@
 import { errorMessage } from './notificationReducer';
+import { push } from 'connected-react-router';
 import { reset } from 'redux-form';
 import { setUserData } from '../reducers/userReducer';
 import userService from '../services/userService';
@@ -63,6 +64,8 @@ export const tryLogin = (username, password) => {
                     })
                 );
                 dispatch(loggedIn(accessToken));
+                /* Redirect to main page */
+                dispatch(push('/'));
             } else {
                 // Login has failed
                 dispatch(loginFailed());

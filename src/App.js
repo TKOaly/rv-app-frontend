@@ -1,4 +1,5 @@
-import { Redirect, Route, BrowserRouter as Router } from 'react-router-dom';
+import { ConnectedRouter } from 'connected-react-router';
+import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import LoginPage from './components/pages/LoginPage';
 import MainPage from './components/pages/MainPage';
@@ -7,37 +8,19 @@ import NotificationDrawer from './components/helpers/NotificationDrawer';
 import React from 'react';
 import RegistrationPage from './components/pages/RegistrationPage';
 
-const AuthenticatedRoute = ({ component: Component, ...rest }) => (
-    <Route
-        {...rest}
-        render={(props) =>
-            rest.authenticated ? (
-                <Component {...props} />
-            ) : (
-                <Redirect
-                    to={{
-                        pathname: '/login',
-                        state: { from: props.location }
-                    }}
-                />
-            )
-        }
-    />
-);
-
 class App extends React.Component {
     render = () => {
         // let page = this.props.loggedIn ? <MainPage /> : <LoginPage />;
         return (
             <div className="App">
                 <NotificationDrawer notifications={this.props.notifications} purchases={this.props.purchases} />
-                <Router>
+                <ConnectedRouter history={this.props.history}>
                     <div className="pages">
-                        <AuthenticatedRoute exact path="/" authenticated={this.props.loggedIn} component={MainPage} />
+                        <Route exact path="/" component={MainPage} />
                         <Route path="/login" component={LoginPage} />
                         <Route path="/register" component={RegistrationPage} />
                     </div>
-                </Router>
+                </ConnectedRouter>
                 <ModalContainer />
             </div>
         );
