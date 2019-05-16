@@ -10,8 +10,6 @@ class Confirmation extends React.Component {
 
     handleConfirm = (event) => {
         this.props.increaseBalance(this.props.token, this.props.depositAmount);
-        this.props.resetAmount();
-        this.props.toggleConfirmationVisibility(false);
         this.props.closeModal();
     };
 

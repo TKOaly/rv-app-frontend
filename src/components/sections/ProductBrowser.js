@@ -28,6 +28,11 @@ const filterProducts = (products, selectedCategory, filter) => {
 };
 
 class ProductBrowser extends React.Component {
+    componentWillUnmount = () => {
+        this.props.setFilter('');
+        this.props.setCategorySelected(-1);
+    };
+
     getVisibleProducts = () => {
         return sortProducts(filterProducts(this.props.products, this.props.selectedCategory, this.props.filter));
     };

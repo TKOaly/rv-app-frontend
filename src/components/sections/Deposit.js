@@ -4,7 +4,7 @@ import { TransitionGroup } from 'react-transition-group';
 import { connect } from 'react-redux';
 import { errorMessage } from '../../reducers/notificationReducer';
 import { increaseBalance } from '../../reducers/userReducer';
-import { resetAmount, setAmountText, toggleConfirmationVisibility } from '../../reducers/depositReducer';
+import { resetAmount, resetDeposit, setAmountText, toggleConfirmationVisibility } from '../../reducers/depositReducer';
 import Confirmation from './Confirmation';
 import React from 'react';
 import moneyFormatter from '../../services/moneyFormatter';
@@ -24,6 +24,7 @@ class Deposit extends React.Component {
     };
 
     componentWillUnmount = () => {
+        this.props.resetDeposit();
         if (this.oldFocusedElement) {
             this.oldFocusedElement.focus();
         }
@@ -53,7 +54,6 @@ class Deposit extends React.Component {
     };
 
     handleCancel = () => {
-        this.props.resetAmount();
         this.props.closeModal();
     };
 
@@ -161,9 +161,13 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
     setAmountText,
     resetAmount,
+    resetDeposit,
     increaseBalance,
     toggleConfirmationVisibility,
     errorMessage
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Deposit);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Deposit);

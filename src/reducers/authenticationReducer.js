@@ -1,4 +1,4 @@
-import { errorMessage } from './notificationReducer';
+import { clearAllNotifications, errorMessage } from './notificationReducer';
 import { push } from 'connected-react-router';
 import { reset } from 'redux-form';
 import { resetUserData, setUserData } from '../reducers/userReducer';
@@ -19,8 +19,7 @@ export const initialState = {
 
 export const doLogout = () => {
     return (dispatch) => {
-        dispatch(resetUserData());
-        dispatch(logout());
+        dispatch(doLogoutWithoutRedirect());
         dispatch(push('/login'));
     };
 };
@@ -28,6 +27,7 @@ export const doLogout = () => {
 export const doLogoutWithoutRedirect = () => {
     return (dispatch) => {
         dispatch(resetUserData());
+        dispatch(clearAllNotifications());
         dispatch(logout());
     };
 };
@@ -124,7 +124,7 @@ const authenticationReducer = (state = initialState, action) => {
         case authenticationActions.LOGIN_FAILED:
             return { ...state, loggedIn: false, access_token: '', isLoggingIn: false };
         case authenticationActions.LOGOUT:
-            return { ...state, loggedIn: false, access_token: '' };
+            return initialState;
         default:
             return state;
     }

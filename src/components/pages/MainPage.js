@@ -1,3 +1,4 @@
+import { closeModal } from '../../reducers/modalReducer';
 import { connect } from 'react-redux';
 import { doLogout } from '../../reducers/authenticationReducer';
 import { getCategories, getProducts, resetCategories, resetProducts } from '../../reducers/productReducer';
@@ -20,6 +21,7 @@ class MainPage extends React.Component {
     componentWillUnmount = () => {
         this.props.resetProducts();
         this.props.resetCategories();
+        this.props.closeModal();
     };
 
     render = () => {
@@ -46,7 +48,8 @@ const mapDispatchToProps = {
     getCategories,
     resetCategories,
     resetProducts,
-    replace
+    replace,
+    closeModal
 };
 
 export default connect(

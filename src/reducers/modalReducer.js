@@ -24,7 +24,7 @@ const modalReducer = (state = initialState, action) => {
         case modalActions.SHOW_MODAL:
             return { ...state, modalVisible: true, modalContent: action.contentComponent, props: action.props };
         case modalActions.CLOSE_MODAL:
-            return { ...state, modalVisible: false };
+            return initialState;
         default:
             return state;
     }

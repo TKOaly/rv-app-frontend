@@ -2,7 +2,7 @@ import './styles/Terminal.scss';
 import { closeModal, showModal } from '../../reducers/modalReducer';
 import { connect } from 'react-redux';
 import { doLogout } from '../../reducers/authenticationReducer';
-import { handleTerminalSubmit, setTerminalText } from '../../reducers/terminalReducer';
+import { handleTerminalSubmit, resetTerminal, setTerminalText } from '../../reducers/terminalReducer';
 import Deposit from './Deposit';
 import React from 'react';
 
@@ -20,6 +20,10 @@ class Terminal extends React.Component {
 
     componentDidMount = () => {
         this.terminalFocus.focus();
+    };
+
+    componentWillUnmount = () => {
+        this.props.resetTerminal();
     };
 
     terminalInputRef = (input) => {
@@ -77,7 +81,8 @@ const mapDispatchToProps = {
     handleTerminalSubmit,
     showModal,
     closeModal,
-    doLogout
+    doLogout,
+    resetTerminal
 };
 
 export default connect(
