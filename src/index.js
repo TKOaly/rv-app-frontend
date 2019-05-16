@@ -49,7 +49,6 @@ const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(...mi
 
 // Load config
 if (process.env.NODE_ENV !== 'production') {
-    require('dotenv').config();
     // Log initial state
     console.log(store.getState());
     console.log('Back-end url: %s', process.env.REACT_APP_BACKEND_URL);

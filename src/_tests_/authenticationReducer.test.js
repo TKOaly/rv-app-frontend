@@ -3,12 +3,16 @@ import authenticationReducer from '../reducers/authenticationReducer';
 
 describe('authenticationReducer', () => {
     it('logout-action changes state', () => {
-        const state = [];
+        const state = {
+            loggedIn: true,
+            access_token: 'test'
+        };
         const action = logout();
 
         const newState = authenticationReducer(state, action);
 
-        expect(Object.keys(newState).length).toBeTruthy();
+        expect(newState.loggedIn).toBeFalsy();
+        expect(newState.access_token).toBe('');
     });
 
     it('loggingIn-action changes state', () => {

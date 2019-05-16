@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
+import { doLogout } from '../../reducers/authenticationReducer';
 import { getCategories, getProducts, resetCategories, resetProducts } from '../../reducers/productReducer';
-import { logout } from '../../reducers/authenticationReducer';
 import { replace } from 'connected-react-router';
 import Content from '../sections/Content';
 import Header from '../sections/Header';
@@ -25,7 +25,7 @@ class MainPage extends React.Component {
     render = () => {
         return (
             <div className="mainpage">
-                <Header logout={this.props.logout} user={this.props.user} />
+                <Header logout={this.props.doLogout} user={this.props.user} />
                 <Content />
             </div>
         );
@@ -41,7 +41,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = {
-    logout,
+    doLogout,
     getProducts,
     getCategories,
     resetCategories,
