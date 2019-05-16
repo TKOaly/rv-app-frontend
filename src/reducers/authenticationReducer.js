@@ -1,4 +1,5 @@
 import { clearAllNotifications, errorMessage } from './notificationReducer';
+import { getCategories, getProducts, resetCategories, resetProducts } from './productReducer';
 import { push } from 'connected-react-router';
 import { reset } from 'redux-form';
 import { resetUserData, setUserData } from '../reducers/userReducer';
@@ -27,6 +28,8 @@ export const doLogout = () => {
 export const doLogoutWithoutRedirect = () => {
     return (dispatch) => {
         dispatch(resetUserData());
+        dispatch(resetProducts());
+        dispatch(resetCategories());
         dispatch(clearAllNotifications());
         dispatch(logout());
     };
@@ -69,6 +72,11 @@ export const tryLogin = (username, password) => {
             });
             // If access token is found, set it and login
             if (accessToken) {
+                /* Start loading products and categories immediately after authentication. */
+                dispatch(getProducts(accessToken));
+                dispatch(getCategories(accessToken));
+
+                /* Only move on to the main page after user data has been loaded. */
                 const userData = await userService.getUser(accessToken);
                 dispatch(
                     setUserData({
