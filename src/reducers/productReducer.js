@@ -9,7 +9,9 @@ export const productActions = {
     SET_GETTING_CATEGORIES: 'GETTING_CATEGORIES',
     SET_CATEGORIES: 'SET_CATEGORIES',
     SET_SELECTED_CATEGORY: 'SET_SELECTED_CATEGORY',
-    SET_BUY_AMOUNT: 'SET_BUY_AMOUNT'
+    SET_BUY_AMOUNT: 'SET_BUY_AMOUNT',
+    RESET_PRODUCTS: 'RESET_PRODUCTS',
+    RESET_CATEGORIES: 'RESET_CATEGORIES'
 };
 
 export const initialState = {
@@ -40,6 +42,18 @@ export const setBuyAmount = (amount) => {
     return {
         type: productActions.SET_BUY_AMOUNT,
         amount
+    };
+};
+
+export const resetProducts = () => {
+    return {
+        type: productActions.RESET_PRODUCTS
+    };
+};
+
+export const resetCategories = () => {
+    return {
+        type: productActions.RESET_CATEGORIES
     };
 };
 
@@ -114,6 +128,10 @@ const productReducer = (state = initialState, action) => {
             return { ...state, selectedCategory: action.category };
         case productActions.SET_BUY_AMOUNT:
             return { ...state, buyAmount: action.amount };
+        case productActions.RESET_PRODUCTS:
+            return { ...state, products: [] };
+        case productActions.RESET_CATEGORIES:
+            return { ...state, categories: [] };
         default:
             return state;
     }

@@ -1,7 +1,7 @@
 import { errorMessage } from './notificationReducer';
 import { push } from 'connected-react-router';
 import { reset } from 'redux-form';
-import { setUserData } from '../reducers/userReducer';
+import { resetUserData, setUserData } from '../reducers/userReducer';
 import userService from '../services/userService';
 
 export const authenticationActions = {
@@ -18,6 +18,14 @@ export const initialState = {
 };
 
 export const logout = () => {
+    return (dispatch) => {
+        dispatch(resetUserData());
+        dispatch(loggedOut());
+        dispatch(push('/login'));
+    };
+};
+
+export const loggedOut = () => {
     return {
         type: authenticationActions.LOGOUT_SUCCESS
     };

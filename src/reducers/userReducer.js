@@ -64,9 +64,9 @@ export const setBalance = (balance) => {
 const userReducer = (state = initialState, action) => {
     switch (action.type) {
         case userActions.SET_USER_DATA:
-            return { ...state, ...action.user };
+            return { ...action.user };
         case userActions.RESET_USER_DATA:
-            return { ...state, initialState };
+            return { ...initialState };
         case userActions.INCREASE_BALANCE:
             return { ...state, account_balance: state.account_balance + action.amount };
         case userActions.DECREASE_BALANCE:

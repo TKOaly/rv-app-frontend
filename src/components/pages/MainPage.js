@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { getCategories, getProducts } from '../../reducers/productReducer';
+import { getCategories, getProducts, resetCategories, resetProducts } from '../../reducers/productReducer';
 import { logout } from '../../reducers/authenticationReducer';
 import { replace } from 'connected-react-router';
 import Content from '../sections/Content';
@@ -18,9 +18,8 @@ class MainPage extends React.Component {
     };
 
     componentWillUnmount = () => {
-        if (this.props.loggedIn) {
-            this.props.logout();
-        }
+        this.props.resetProducts();
+        this.props.resetCategories();
     };
 
     render = () => {
@@ -45,6 +44,8 @@ const mapDispatchToProps = {
     logout,
     getProducts,
     getCategories,
+    resetCategories,
+    resetProducts,
     replace
 };
 

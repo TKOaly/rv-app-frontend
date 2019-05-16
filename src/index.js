@@ -14,7 +14,7 @@ import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { connectRouter, routerMiddleware } from 'connected-react-router';
 import { reducer as formReducer } from 'redux-form';
-import authenticationReducer, { authenticationActions } from './reducers/authenticationReducer';
+import authenticationReducer from './reducers/authenticationReducer';
 import depositReducer from './reducers/depositReducer';
 import modalReducer from './reducers/modalReducer';
 import notificationReducer from './reducers/notificationReducer';
@@ -28,7 +28,7 @@ const history = createBrowserHistory();
 const routerReducer = connectRouter(history);
 
 // Combine reducers
-const reducer = combineReducers({
+const rootReducer = combineReducers({
     notification: notificationReducer,
     authentication: authenticationReducer,
     register: registerReducer,
@@ -40,14 +40,6 @@ const reducer = combineReducers({
     form: formReducer,
     router: routerReducer
 });
-
-const rootReducer = (state, action) => {
-    if (action.type === authenticationActions.LOGOUT_SUCCESS) {
-        state = undefined;
-    }
-
-    return reducer(state, action);
-};
 
 const router = routerMiddleware(history);
 const middleware = process.env.NODE_ENV !== 'production' ? [thunk, router, logger] : [thunk, router];

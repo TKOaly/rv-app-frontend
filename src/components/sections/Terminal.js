@@ -3,7 +3,6 @@ import { closeModal, showModal } from '../../reducers/modalReducer';
 import { connect } from 'react-redux';
 import { handleTerminalSubmit, setTerminalText } from '../../reducers/terminalReducer';
 import { logout } from '../../reducers/authenticationReducer';
-import { resetUserData } from '../../reducers/userReducer';
 import Deposit from './Deposit';
 import React from 'react';
 
@@ -13,7 +12,6 @@ class Terminal extends React.Component {
 
         // Submitting empty string = pressing enter without content in barcode field. This should log out the user.
         if (this.props.terminalInput === '') {
-            this.props.resetUserData();
             this.props.logout();
         } else {
             this.props.handleTerminalSubmit(this.props.terminalInput, this.props.token);
@@ -79,8 +77,7 @@ const mapDispatchToProps = {
     handleTerminalSubmit,
     showModal,
     closeModal,
-    logout,
-    resetUserData
+    logout
 };
 
 export default connect(
