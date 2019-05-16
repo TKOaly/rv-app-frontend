@@ -25,6 +25,13 @@ export const doLogout = () => {
     };
 };
 
+export const doLogoutWithoutRedirect = () => {
+    return (dispatch) => {
+        dispatch(resetUserData());
+        dispatch(logout());
+    };
+};
+
 export const logout = () => {
     return {
         type: authenticationActions.LOGOUT
