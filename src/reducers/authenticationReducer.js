@@ -5,7 +5,7 @@ import { resetUserData, setUserData } from '../reducers/userReducer';
 import userService from '../services/userService';
 
 export const authenticationActions = {
-    LOGOUT_SUCCESS: 'LOGOUT_SUCCESS',
+    LOGOUT: 'LOGOUT',
     LOGGING_IN: 'LOGGING_IN',
     LOGGED_IN: 'LOGGED_IN',
     LOGIN_FAILED: 'LOGIN_FAILED'
@@ -17,17 +17,17 @@ export const initialState = {
     access_token: ''
 };
 
-export const logout = () => {
+export const doLogout = () => {
     return (dispatch) => {
         dispatch(resetUserData());
-        dispatch(loggedOut());
+        dispatch(logout());
         dispatch(push('/login'));
     };
 };
 
-export const loggedOut = () => {
+export const logout = () => {
     return {
-        type: authenticationActions.LOGOUT_SUCCESS
+        type: authenticationActions.LOGOUT
     };
 };
 
@@ -116,7 +116,7 @@ const authenticationReducer = (state = initialState, action) => {
             return { ...state, loggedIn: true, access_token: action.token, isLoggingIn: false };
         case authenticationActions.LOGIN_FAILED:
             return { ...state, loggedIn: false, access_token: '', isLoggingIn: false };
-        case authenticationActions.LOGOUT_SUCCESS:
+        case authenticationActions.LOGOUT:
             return { ...state, loggedIn: false, access_token: '' };
         default:
             return state;

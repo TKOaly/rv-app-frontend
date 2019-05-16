@@ -1,11 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders without crashing 1`] = `
-<div
-  className="loginHeader"
->
-  <h1>
-    Ruokavälitys
-  </h1>
-</div>
+<header>
+  <div
+    className="header-title"
+  >
+    <img
+      alt="logo"
+      src="tkoaly2.svg"
+    />
+    <h1>
+      Ruokavälitys
+    </h1>
+  </div>
+</header>
 `;
