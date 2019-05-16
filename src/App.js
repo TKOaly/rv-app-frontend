@@ -10,11 +10,11 @@ import RegistrationPage from './components/pages/RegistrationPage';
 
 class App extends React.Component {
     render = () => {
-        // let page = this.props.loggedIn ? <MainPage /> : <LoginPage />;
+        const { notifications, purchases, history } = this.props;
         return (
             <div className="App">
-                <NotificationDrawer notifications={this.props.notifications} purchases={this.props.purchases} />
-                <ConnectedRouter history={this.props.history}>
+                <NotificationDrawer notifications={notifications} purchases={purchases} />
+                <ConnectedRouter history={history}>
                     <div className="pages">
                         <Route exact path="/" component={MainPage} />
                         <Route path="/login" component={LoginPage} />

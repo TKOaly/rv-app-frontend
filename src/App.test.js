@@ -1,4 +1,5 @@
 import { Provider } from 'react-redux';
+import { history } from './reducers/store';
 import App from './App';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -16,7 +17,7 @@ describe('<App/>', () => {
         const div = document.createElement('div');
         ReactDOM.render(
             <Provider store={store}>
-                <App />
+                <App history={history} />
             </Provider>,
             div
         );
