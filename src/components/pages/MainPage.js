@@ -1,6 +1,5 @@
 import { closeModal } from '../../reducers/modalReducer';
 import { connect } from 'react-redux';
-import { doLogout } from '../../reducers/authenticationReducer';
 import { replace } from 'connected-react-router';
 import Content from '../sections/Content';
 import Header from '../sections/Header';
@@ -21,7 +20,7 @@ class MainPage extends React.Component {
     render = () => {
         return (
             <div className="mainpage">
-                <Header logout={this.props.doLogout} user={this.props.user} />
+                <Header />
                 <Content />
             </div>
         );
@@ -30,13 +29,11 @@ class MainPage extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        user: state.user,
         loggedIn: state.authentication.loggedIn
     };
 };
 
 const mapDispatchToProps = {
-    doLogout,
     replace,
     closeModal
 };

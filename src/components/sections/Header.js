@@ -1,6 +1,7 @@
 import './styles/Header.scss';
-import { closeModal, showModal } from '../../reducers/modalReducer';
 import { connect } from 'react-redux';
+import { doLogout } from '../../reducers/authenticationReducer';
+import { showModal } from '../../reducers/modalReducer';
 import Deposit from '../sections/Deposit';
 import FontAwesome from 'react-fontawesome';
 import HeaderBtn from '../buttons/HeaderBtn';
@@ -12,9 +13,7 @@ import moneyFormatter from '../../services/moneyFormatter';
 class Header extends React.Component {
     handleDepositClick = (event) => {
         event.preventDefault();
-        this.props.showModal(Deposit, {
-            closeModal: this.props.closeModal
-        });
+        this.props.showModal(Deposit);
     };
 
     render = () => {
@@ -34,13 +33,12 @@ class Header extends React.Component {
                         <HeaderBtn fill>
                             <FontAwesome name="user-circle" />{' '}
                             <span>
-                                <b>{this.props.user.username}</b>{' '}
-                                {moneyFormatter.centsToString(this.props.user.moneyBalance)} €
+                                <b>{this.props.username}</b> {moneyFormatter.centsToString(this.props.moneyBalance)} €
                             </span>
                         </HeaderBtn>
                     </Margin>
                     <Margin margin={5} inlineBlock>
-                        <HeaderBtn onClick={this.props.logout} hover>
+                        <HeaderBtn onClick={this.props.doLogout} hover>
                             <FontAwesome name="sign-out" /> Log out (ENTER)
                         </HeaderBtn>
                     </Margin>
@@ -52,13 +50,14 @@ class Header extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        loggedIn: state.authentication.loggedIn
+        username: state.user.username,
+        moneyBalance: state.user.moneyBalance
     };
 };
 
 const mapDispatchToProps = {
     showModal,
-    closeModal
+    doLogout
 };
 
 export default connect(
