@@ -129,9 +129,9 @@ const productReducer = (state = initialState, action) => {
         case productActions.SET_BUY_AMOUNT:
             return { ...state, buyAmount: action.amount };
         case productActions.RESET_PRODUCTS:
-            return { ...state, products: [] };
+            return { ...state, products: [], gettingProducts: false };
         case productActions.RESET_CATEGORIES:
-            return { ...state, categories: [] };
+            return { ...state, categories: [], gettingCategories: false };
         default:
             return state;
     }

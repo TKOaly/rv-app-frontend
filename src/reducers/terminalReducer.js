@@ -51,7 +51,7 @@ const terminalReducer = (state = initialState, action) => {
         case terminalActions.SET_TERMINAL_TEXT:
             return { ...state, terminalInput: action.text, inputValid: gtinValidator.validateGtin(action.text) };
         case terminalActions.RESET_TERMINAL:
-            return { ...initialState };
+            return initialState;
         default:
             return state;
     }

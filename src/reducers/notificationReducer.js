@@ -4,7 +4,8 @@ export const notificationActions = {
     MESSAGE: 'MESSAGE',
     CLEAR_MESSAGE: 'CLEAR_MESSAGE',
     ADD_PRODUCT_TO_PURCHASE: 'ADD_PRODUCT_TO_PURCHASE',
-    CLEAR_PURCHASES: 'CLEAR_PURCHASES'
+    CLEAR_PURCHASES: 'CLEAR_PURCHASES',
+    CLEAR_ALL_NOTIFICATIONS: 'CLEAR_ALL_NOTIFICATIONS'
 };
 
 export const notificationTypes = {
@@ -84,6 +85,12 @@ export const addProductToNotification = (product, count) => {
     };
 };
 
+export const clearAllNotifications = () => {
+    return {
+        type: notificationActions.CLEAR_ALL_NOTIFICATIONS
+    };
+};
+
 /**
  * Returns a Promise that resolves when the predefined duration is set.
  * @param {number} duration
@@ -146,6 +153,8 @@ const notificationReducer = (state = initialState, action) => {
                 return state;
             }
         }
+        case notificationActions.CLEAR_ALL_NOTIFICATIONS:
+            return initialState;
         default:
             return state;
     }

@@ -1,11 +1,18 @@
 import './styles/LoginPage.scss';
 import { Col, Grid, Row } from 'react-flexbox-grid';
 import { connect } from 'react-redux';
+import { doLogoutWithoutRedirect } from '../../reducers/authenticationReducer';
 import LoginForm from '../forms/LoginForm';
 import LoginHeader from '../sections/LoginHeader';
 import React from 'react';
 
 class LoginPage extends React.Component {
+    componentDidMount = () => {
+        if (this.props.loggedIn) {
+            this.props.doLogoutWithoutRedirect();
+        }
+    };
+
     render = () => {
         return (
             <div className="loginPage">
@@ -28,4 +35,11 @@ const mapStateToProps = (state) => {
     };
 };
 
-export default connect(mapStateToProps)(LoginPage);
+const mapDispatchToProps = {
+    doLogoutWithoutRedirect
+};
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(LoginPage);

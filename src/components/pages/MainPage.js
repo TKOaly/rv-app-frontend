@@ -1,6 +1,6 @@
+import { closeModal } from '../../reducers/modalReducer';
 import { connect } from 'react-redux';
-import { getCategories, getProducts, resetCategories, resetProducts } from '../../reducers/productReducer';
-import { logout } from '../../reducers/authenticationReducer';
+import { doLogout } from '../../reducers/authenticationReducer';
 import { replace } from 'connected-react-router';
 import Content from '../sections/Content';
 import Header from '../sections/Header';
@@ -11,21 +11,17 @@ class MainPage extends React.Component {
         if (!this.props.loggedIn) {
             /* If not logged in, go to login page instead. */
             this.props.replace('/login');
-        } else {
-            this.props.getProducts(this.props.token);
-            this.props.getCategories(this.props.token);
         }
     };
 
     componentWillUnmount = () => {
-        this.props.resetProducts();
-        this.props.resetCategories();
+        this.props.closeModal();
     };
 
     render = () => {
         return (
             <div className="mainpage">
-                <Header logout={this.props.logout} user={this.props.user} />
+                <Header logout={this.props.doLogout} user={this.props.user} />
                 <Content />
             </div>
         );
@@ -34,19 +30,15 @@ class MainPage extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        token: state.authentication.access_token,
         user: state.user,
         loggedIn: state.authentication.loggedIn
     };
 };
 
 const mapDispatchToProps = {
-    logout,
-    getProducts,
-    getCategories,
-    resetCategories,
-    resetProducts,
-    replace
+    doLogout,
+    replace,
+    closeModal
 };
 
 export default connect(

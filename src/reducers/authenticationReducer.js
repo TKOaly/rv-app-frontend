@@ -1,11 +1,12 @@
-import { errorMessage } from './notificationReducer';
+import { clearAllNotifications, errorMessage } from './notificationReducer';
+import { getCategories, getProducts, resetCategories, resetProducts } from './productReducer';
 import { push } from 'connected-react-router';
 import { reset } from 'redux-form';
 import { resetUserData, setUserData } from '../reducers/userReducer';
 import userService from '../services/userService';
 
 export const authenticationActions = {
-    LOGOUT_SUCCESS: 'LOGOUT_SUCCESS',
+    LOGOUT: 'LOGOUT',
     LOGGING_IN: 'LOGGING_IN',
     LOGGED_IN: 'LOGGED_IN',
     LOGIN_FAILED: 'LOGIN_FAILED'
@@ -17,17 +18,26 @@ export const initialState = {
     access_token: ''
 };
 
-export const logout = () => {
+export const doLogout = () => {
     return (dispatch) => {
-        dispatch(resetUserData());
-        dispatch(loggedOut());
+        dispatch(doLogoutWithoutRedirect());
         dispatch(push('/login'));
     };
 };
 
-export const loggedOut = () => {
+export const doLogoutWithoutRedirect = () => {
+    return (dispatch) => {
+        dispatch(resetUserData());
+        dispatch(resetProducts());
+        dispatch(resetCategories());
+        dispatch(clearAllNotifications());
+        dispatch(logout());
+    };
+};
+
+export const logout = () => {
     return {
-        type: authenticationActions.LOGOUT_SUCCESS
+        type: authenticationActions.LOGOUT
     };
 };
 
@@ -62,6 +72,11 @@ export const tryLogin = (username, password) => {
             });
             // If access token is found, set it and login
             if (accessToken) {
+                /* Start loading products and categories immediately after authentication. */
+                dispatch(getProducts(accessToken));
+                dispatch(getCategories(accessToken));
+
+                /* Only move on to the main page after user data has been loaded. */
                 const userData = await userService.getUser(accessToken);
                 dispatch(
                     setUserData({
@@ -116,8 +131,8 @@ const authenticationReducer = (state = initialState, action) => {
             return { ...state, loggedIn: true, access_token: action.token, isLoggingIn: false };
         case authenticationActions.LOGIN_FAILED:
             return { ...state, loggedIn: false, access_token: '', isLoggingIn: false };
-        case authenticationActions.LOGOUT_SUCCESS:
-            return { ...state, loggedIn: false, access_token: '' };
+        case authenticationActions.LOGOUT:
+            return initialState;
         default:
             return state;
     }
