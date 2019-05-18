@@ -45,4 +45,7 @@ const mapDispatchToProps = {
     closeModal
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ModalContainer);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(ModalContainer);

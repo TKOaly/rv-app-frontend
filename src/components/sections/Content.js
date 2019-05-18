@@ -1,6 +1,4 @@
 import './styles/Content.scss';
-import { connect } from 'react-redux';
-import { errorMessage, successMessage } from '../../reducers/notificationReducer';
 import FeaturedProducts from './FeaturedProducts';
 import ProductBrowser from './ProductBrowser';
 import React from 'react';
@@ -39,19 +37,4 @@ class Content extends React.Component {
     };
 }
 
-const mapStateToProps = (state) => {
-    return {
-        success: state.notification.success,
-        error: state.notification.error
-    };
-};
-
-const mapDispatchToProps = {
-    successMessage,
-    errorMessage
-};
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(Content);
+export default Content;
