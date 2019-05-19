@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { doLogout } from '../../reducers/authenticationReducer';
 import { handleTerminalSubmit, resetTerminal, setTerminalText } from '../../reducers/terminalReducer';
 import { showModal } from '../../reducers/modalReducer';
-import Deposit from './Deposit';
+import Deposit from '../modals/Deposit';
 import React from 'react';
 
 class Terminal extends React.Component {

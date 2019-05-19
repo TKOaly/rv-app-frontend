@@ -2,7 +2,7 @@ import './styles/Header.scss';
 import { connect } from 'react-redux';
 import { doLogout } from '../../reducers/authenticationReducer';
 import { showModal } from '../../reducers/modalReducer';
-import Deposit from '../sections/Deposit';
+import Deposit from '../modals/Deposit';
 import FontAwesome from 'react-fontawesome';
 import HeaderBtn from '../buttons/HeaderBtn';
 import Logo from '../../images/tkoaly2.svg';
