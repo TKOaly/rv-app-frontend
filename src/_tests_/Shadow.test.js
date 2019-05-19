@@ -1,11 +1,11 @@
 import { shallow } from 'enzyme';
-import Padding from './Padding';
 import React from 'react';
+import Shadow from '../components/helpers/Shadow';
 import renderer from 'react-test-renderer';
 
-describe.only('<Padding />', () => {
+describe.only('<Shadow />', () => {
     it('renders correctly', () => {
-        const cmpnt = renderer.create(<Padding />).toJSON();
+        const cmpnt = renderer.create(<Shadow />).toJSON();
         expect(cmpnt).toMatchSnapshot();
     });
 });

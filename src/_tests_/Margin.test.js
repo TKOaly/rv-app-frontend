@@ -1,11 +1,11 @@
 import { shallow } from 'enzyme';
-import NotificationDrawer from './NotificationDrawer';
+import Margin from '../components/helpers/Margin';
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-describe.only('<NotificationDrawer />', () => {
+describe.only('<Margin />', () => {
     it('renders correctly', () => {
-        const cmpnt = renderer.create(<NotificationDrawer />).toJSON();
+        const cmpnt = renderer.create(<Margin margin={20}>HelloWorld</Margin>).toJSON();
         expect(cmpnt).toMatchSnapshot();
     });
 });

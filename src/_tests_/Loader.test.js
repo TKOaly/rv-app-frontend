@@ -1,11 +1,11 @@
 import { shallow } from 'enzyme';
-import Margin from './Margin';
+import Loader from '../components/loaders/Loader';
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-describe.only('<Margin />', () => {
+describe.only('<Loader />', () => {
     it('renders correctly', () => {
-        const cmpnt = renderer.create(<Margin margin={20}>HelloWorld</Margin>).toJSON();
+        const cmpnt = renderer.create(<Loader />).toJSON();
         expect(cmpnt).toMatchSnapshot();
     });
 });

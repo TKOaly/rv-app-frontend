@@ -1,11 +1,11 @@
 import { shallow } from 'enzyme';
-import Centered from './Centered';
+import Padding from '../components/helpers/Padding';
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-describe.only('<Centered />', () => {
+describe.only('<Padding />', () => {
     it('renders correctly', () => {
-        const cmpnt = renderer.create(<Centered />).toJSON();
+        const cmpnt = renderer.create(<Padding />).toJSON();
         expect(cmpnt).toMatchSnapshot();
     });
 });
