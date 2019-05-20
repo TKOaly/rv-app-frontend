@@ -2,8 +2,6 @@ import './styles/Header.scss';
 import { connect } from 'react-redux';
 import { doLogout } from '../../reducers/authenticationReducer';
 import { push } from 'connected-react-router';
-import { showModal } from '../../reducers/modalReducer';
-import Deposit from '../modals/Deposit';
 import FontAwesome from 'react-fontawesome';
 import HeaderBtn from '../buttons/HeaderBtn';
 import Logo from '../../images/tkoaly2.svg';
@@ -12,13 +10,8 @@ import React from 'react';
 import moneyFormatter from '../../services/moneyFormatter';
 
 class Header extends React.Component {
-    handleDepositClick = (event) => {
-        event.preventDefault();
-        this.props.showModal(Deposit);
-    };
-
-    handleUserClick = () => {
-        this.props.push('/user');
+    handleBackClick = () => {
+        this.props.push('/');
     };
 
     render = () => {
@@ -30,12 +23,12 @@ class Header extends React.Component {
                 </div>
                 <div className="header-right">
                     <Margin margin={5} inlineBlock>
-                        <HeaderBtn onClick={this.handleDepositClick} hover>
-                            Deposit (D)
+                        <HeaderBtn onClick={this.handleBackClick} hover>
+                            <FontAwesome name="arrow-left" /> Back to product page
                         </HeaderBtn>
                     </Margin>
                     <Margin margin={5} inlineBlock>
-                        <HeaderBtn onClick={this.handleUserClick} fill hover>
+                        <HeaderBtn fill>
                             <FontAwesome name="user-circle" />{' '}
                             <span>
                                 <b>{this.props.username}</b> {moneyFormatter.centsToString(this.props.moneyBalance)} €
@@ -61,7 +54,6 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = {
-    showModal,
     doLogout,
     push
 };

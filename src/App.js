@@ -6,6 +6,7 @@ import ModalContainer from './components/helpers/ModalContainer';
 import NotificationDrawer from './components/helpers/NotificationDrawer';
 import React from 'react';
 import RegistrationPage from './components/pages/RegistrationPage';
+import UserInfoPage from './components/pages/UserInfoPage';
 
 class App extends React.Component {
     render = () => {
@@ -15,6 +16,7 @@ class App extends React.Component {
                 <ConnectedRouter history={this.props.history}>
                     <div className="pages">
                         <Route exact path="/" component={MainPage} />
+                        <Route path="/user" component={UserInfoPage} />
                         <Route path="/login" component={LoginPage} />
                         <Route path="/register" component={RegistrationPage} />
                     </div>
