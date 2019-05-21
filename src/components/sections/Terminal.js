@@ -46,7 +46,7 @@ class Terminal extends React.Component {
     };
 
     handleTerminalInputChange = (event) => {
-        this.props.setTerminalText(event.target.value);
+        this.props.setTerminalText(event.target.value.replace(/\D/,''));
     };
 
     render = () => {
@@ -55,6 +55,7 @@ class Terminal extends React.Component {
             <div className="terminal">
                 <form onSubmit={this.handleSubmit}>
                     <input
+                        type='tel'
                         className={className}
                         value={this.props.terminalInput}
                         ref={this.terminalInputRef}
