@@ -8,6 +8,7 @@ import { connectRouter, routerMiddleware } from 'connected-react-router';
 import { reducer as formReducer } from 'redux-form';
 import authenticationReducer from './authenticationReducer';
 import depositReducer from './depositReducer';
+import historyReducer from './historyReducer';
 import modalReducer from './modalReducer';
 import notificationReducer from './notificationReducer';
 import productReducer from './productReducer';
@@ -28,6 +29,7 @@ const rootReducer = combineReducers({
     products: productReducer,
     deposit: depositReducer,
     modal: modalReducer,
+    history: historyReducer,
     form: formReducer,
     router: connectRouter(history)
 });
