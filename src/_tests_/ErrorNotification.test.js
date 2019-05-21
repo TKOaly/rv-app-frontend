@@ -1,5 +1,5 @@
 import { shallow } from 'enzyme';
-import ErrorNotification from './ErrorNotification';
+import ErrorNotification from '../components/notifications/ErrorNotification';
 import React from 'react';
 import renderer from 'react-test-renderer';
 

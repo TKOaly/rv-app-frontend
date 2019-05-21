@@ -1,6 +1,6 @@
 import { shallow } from 'enzyme';
-import DangerBtn from './DangerBtn';
-import Loader from '../loaders/Loader';
+import DangerBtn from '../components/buttons/DangerBtn';
+import Loader from '../components/loaders/Loader';
 import React from 'react';
 import renderer from 'react-test-renderer';
 

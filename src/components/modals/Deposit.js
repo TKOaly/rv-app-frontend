@@ -1,9 +1,9 @@
 import './styles/Deposit.scss';
 import { Fade } from '../animations/Animations';
 import { TransitionGroup } from 'react-transition-group';
+import { closeModal } from '../../reducers/modalReducer';
 import { connect } from 'react-redux';
 import { errorMessage } from '../../reducers/notificationReducer';
-import { increaseBalance } from '../../reducers/userReducer';
 import { resetAmount, resetDeposit, setAmountText, toggleConfirmationVisibility } from '../../reducers/depositReducer';
 import Confirmation from './Confirmation';
 import React from 'react';
@@ -136,11 +136,6 @@ class Deposit extends React.Component {
                         <Fade>
                             <Confirmation
                                 depositAmount={Deposit.depositAmountTextToCents(this.props.depositAmountText)}
-                                token={this.props.token}
-                                increaseBalance={this.props.increaseBalance}
-                                resetAmount={this.props.resetAmount}
-                                closeModal={this.props.closeModal}
-                                toggleConfirmationVisibility={this.props.toggleConfirmationVisibility}
                             />
                         </Fade>
                     )}
@@ -153,7 +148,6 @@ class Deposit extends React.Component {
 const mapStateToProps = (state) => {
     return {
         depositAmountText: state.deposit.depositAmountText,
-        token: state.authentication.access_token,
         confirmationVisibility: state.deposit.confirmationVisibility
     };
 };
@@ -162,9 +156,9 @@ const mapDispatchToProps = {
     setAmountText,
     resetAmount,
     resetDeposit,
-    increaseBalance,
     toggleConfirmationVisibility,
-    errorMessage
+    errorMessage,
+    closeModal
 };
 
 export default connect(

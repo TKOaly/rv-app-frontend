@@ -81,9 +81,9 @@ export const tryLogin = (username, password) => {
                 dispatch(
                     setUserData({
                         username: userData.username,
-                        full_name: userData.fullName,
+                        fullName: userData.fullName,
                         email: userData.email,
-                        account_balance: userData.moneyBalance
+                        moneyBalance: userData.moneyBalance
                     })
                 );
                 dispatch(loggedIn(accessToken));

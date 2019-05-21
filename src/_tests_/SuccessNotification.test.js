@@ -1,6 +1,6 @@
 import { shallow } from 'enzyme';
 import React from 'react';
-import SuccessNotification from './SuccessNotification';
+import SuccessNotification from '../components/notifications/SuccessNotification';
 import renderer from 'react-test-renderer';
 
 describe.only('<SuccessNotification />', () => {

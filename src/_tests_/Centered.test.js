@@ -1,11 +1,11 @@
 import { shallow } from 'enzyme';
-import Loader from './Loader';
+import Centered from '../components/helpers/Centered';
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-describe.only('<Loader />', () => {
+describe.only('<Centered />', () => {
     it('renders correctly', () => {
-        const cmpnt = renderer.create(<Loader />).toJSON();
+        const cmpnt = renderer.create(<Centered />).toJSON();
         expect(cmpnt).toMatchSnapshot();
     });
 });

@@ -1,4 +1,4 @@
-import Confirmation from '../components/sections/Confirmation';
+import Confirmation from '../components/modals/Confirmation';
 import Enzyme from 'enzyme';
 import React from 'react';
 import ReactDOM from 'react-dom';

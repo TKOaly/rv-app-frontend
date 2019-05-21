@@ -45,7 +45,7 @@ class RegisterForm extends React.Component {
             username: values.username ? values.username : '',
             password: values.password ? values.password : '',
             email: values.email ? values.email : '',
-            realname: values.realname ? values.realname : ''
+            fullName: values.fullName ? values.fullName : ''
         });
     };
 
@@ -90,10 +90,10 @@ class RegisterForm extends React.Component {
                 </div>
                 <div className="formControl">
                     <Field
-                        name="realname"
+                        name="fullName"
                         component={renderField}
                         type="text"
-                        id="registerRealname"
+                        id="registerFullName"
                         placeholder="First name and last name"
                         autoComplete="off"
                         autoCorrect="off"
@@ -158,4 +158,9 @@ const mapDispatchToProps = {
 
 export default reduxForm({
     form: 'register'
-})(connect(mapStateToProps, mapDispatchToProps)(RegisterForm));
+})(
+    connect(
+        mapStateToProps,
+        mapDispatchToProps
+    )(RegisterForm)
+);

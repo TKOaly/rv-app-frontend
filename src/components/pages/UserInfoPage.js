@@ -1,11 +1,9 @@
-import { closeModal } from '../../reducers/modalReducer';
 import { connect } from 'react-redux';
 import { replace } from 'connected-react-router';
-import Content from '../sections/Content';
-import Header from '../sections/Header';
 import React from 'react';
+import UserHeader from '../sections/UserHeader';
 
-class MainPage extends React.Component {
+class UserInfoPage extends React.Component {
     componentDidMount = () => {
         if (!this.props.loggedIn) {
             /* If not logged in, go to login page instead. */
@@ -13,15 +11,15 @@ class MainPage extends React.Component {
         }
     };
 
-    componentWillUnmount = () => {
-        this.props.closeModal();
-    };
-
     render = () => {
         return (
-            <div className="mainpage">
-                <Header />
-                <Content />
+            <div class="userinfopage">
+                <UserHeader />
+                <div>
+                    <div>UserInfo</div>
+                    <div>DepositHistory</div>
+                    <div>PurchaseHistory</div>
+                </div>
             </div>
         );
     };
@@ -34,11 +32,10 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = {
-    replace,
-    closeModal
+    replace
 };
 
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(MainPage);
+)(UserInfoPage);

@@ -1,9 +1,9 @@
 import './styles/Terminal.scss';
-import { closeModal, showModal } from '../../reducers/modalReducer';
 import { connect } from 'react-redux';
 import { doLogout } from '../../reducers/authenticationReducer';
 import { handleTerminalSubmit, resetTerminal, setTerminalText } from '../../reducers/terminalReducer';
-import Deposit from './Deposit';
+import { showModal } from '../../reducers/modalReducer';
+import Deposit from '../modals/Deposit';
 import React from 'react';
 
 class Terminal extends React.Component {
@@ -34,9 +34,7 @@ class Terminal extends React.Component {
     handleKeyDown = (event) => {
         if (event.key === 'd') {
             event.preventDefault();
-            this.props.showModal(Deposit, {
-                closeModal: this.props.closeModal
-            });
+            this.props.showModal(Deposit);
         }
 
         if (event.key === 'f') {
@@ -81,7 +79,6 @@ const mapDispatchToProps = {
     setTerminalText,
     handleTerminalSubmit,
     showModal,
-    closeModal,
     doLogout,
     resetTerminal
 };

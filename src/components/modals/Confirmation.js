@@ -1,4 +1,8 @@
 import './styles/Confirmation.scss';
+import { closeModal } from '../../reducers/modalReducer';
+import { connect } from 'react-redux';
+import { increaseBalance } from '../../reducers/userReducer';
+import { resetAmount, toggleConfirmationVisibility } from '../../reducers/depositReducer';
 import React from 'react';
 import moneyFormatter from '../../services/moneyFormatter';
 
@@ -53,4 +57,20 @@ class Confirmation extends React.Component {
     };
 }
 
-export default Confirmation;
+const mapStateToProps = (state) => {
+    return {
+        token: state.authentication.access_token
+    };
+};
+
+const mapDispatchToProps = {
+    increaseBalance,
+    resetAmount,
+    closeModal,
+    toggleConfirmationVisibility
+};
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Confirmation);
