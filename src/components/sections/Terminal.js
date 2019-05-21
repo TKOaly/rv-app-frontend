@@ -44,7 +44,7 @@ class Terminal extends React.Component {
     };
 
     handleTerminalInputChange = (event) => {
-        this.props.setTerminalText(event.target.value);
+        this.props.setTerminalText(event.target.value.replace(/\D/,''));
     };
 
     render = () => {
