@@ -53,7 +53,6 @@ class Terminal extends React.Component {
             <div className="terminal">
                 <form onSubmit={this.handleSubmit}>
                     <input
-                        type='tel'
                         className={className}
                         value={this.props.terminalInput}
                         ref={this.terminalInputRef}
