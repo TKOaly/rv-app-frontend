@@ -11,7 +11,8 @@ export const productActions = {
     SET_SELECTED_CATEGORY: 'SET_SELECTED_CATEGORY',
     SET_BUY_AMOUNT: 'SET_BUY_AMOUNT',
     RESET_PRODUCTS: 'RESET_PRODUCTS',
-    RESET_CATEGORIES: 'RESET_CATEGORIES'
+    RESET_CATEGORIES: 'RESET_CATEGORIES',
+    SET_PRODUCT_STOCK: 'SET_PRODUCT_STOCK'
 };
 
 export const initialState = {
@@ -57,6 +58,14 @@ export const resetCategories = () => {
     };
 };
 
+export const setProductStock = (productId, stock) => {
+    return {
+        type: productActions.SET_PRODUCT_STOCK,
+        productId,
+        stock
+    };
+};
+
 export const getProducts = (token) => {
     return async (dispatch) => {
         try {
@@ -95,6 +104,7 @@ export const buyProduct = (product, quantity) => {
             const res = await productService.buyProduct(product.barcode, quantity, token);
 
             dispatch(setBalance(res.accountBalance));
+            dispatch(setProductStock(product.productId, res.productStock));
 
             dispatch(addProductToNotification(product, quantity));
         } catch (err) {
@@ -132,6 +142,18 @@ const productReducer = (state = initialState, action) => {
             return { ...state, products: [], gettingProducts: false };
         case productActions.RESET_CATEGORIES:
             return { ...state, categories: [], gettingCategories: false };
+        case productActions.SET_PRODUCT_STOCK: {
+            return {
+                ...state,
+                products: state.products.map((product) => {
+                    if (product.productId === action.productId) {
+                        return { ...product, stock: action.stock };
+                    } else {
+                        return product;
+                    }
+                })
+            };
+        }
         default:
             return state;
     }
