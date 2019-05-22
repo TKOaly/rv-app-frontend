@@ -56,7 +56,7 @@ const deposit = async (token, amount) => {
             }
         }
     );
-    return res.data.accountBalance;
+    return res.data;
 };
 
 export default {

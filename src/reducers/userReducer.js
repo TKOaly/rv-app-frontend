@@ -1,3 +1,4 @@
+import { addDeposit } from './historyReducer';
 import { errorMessage, successMessage } from './notificationReducer';
 import moneyFormatter from '../services/moneyFormatter';
 import userService from '../services/userService';
@@ -32,8 +33,11 @@ export const setUserData = (user) => {
 export const increaseBalance = (token, amount) => {
     return async (dispatch) => {
         try {
-            const balance = await userService.deposit(token, amount);
-            dispatch(setBalance(balance));
+            const res = await userService.deposit(token, amount);
+
+            dispatch(setBalance(res.accountBalance));
+            dispatch(addDeposit(res.deposit));
+
             dispatch(successMessage('Deposited into RV-account ' + moneyFormatter.centsToString(amount) + ' €'));
         } catch (err) {
             dispatch(errorMessage('Error while making a deposit: ' + err));

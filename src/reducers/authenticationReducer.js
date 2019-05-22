@@ -1,4 +1,5 @@
 import { clearAllNotifications, errorMessage } from './notificationReducer';
+import { fetchDeposits, fetchPurchases, resetDeposits, resetPurchases } from './historyReducer';
 import { getCategories, getProducts, resetCategories, resetProducts } from './productReducer';
 import { push } from 'connected-react-router';
 import { reset } from 'redux-form';
@@ -30,6 +31,8 @@ export const doLogoutWithoutRedirect = () => {
         dispatch(resetUserData());
         dispatch(resetProducts());
         dispatch(resetCategories());
+        dispatch(resetPurchases());
+        dispatch(resetDeposits());
         dispatch(clearAllNotifications());
         dispatch(logout());
     };
@@ -72,9 +75,11 @@ export const tryLogin = (username, password) => {
             });
             // If access token is found, set it and login
             if (accessToken) {
-                /* Start loading products and categories immediately after authentication. */
+                /* Start loading products, categories and histories immediately after authentication. */
                 dispatch(getProducts(accessToken));
                 dispatch(getCategories(accessToken));
+                dispatch(fetchPurchases(accessToken));
+                dispatch(fetchDeposits(accessToken));
 
                 /* Only move on to the main page after user data has been loaded. */
                 const userData = await userService.getUser(accessToken);

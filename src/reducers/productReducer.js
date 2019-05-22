@@ -1,4 +1,5 @@
 import { addProductToNotification, errorMessage } from './notificationReducer';
+import { addPurchase } from './historyReducer';
 import { setBalance } from './userReducer';
 import productService from '../services/productService';
 
@@ -105,6 +106,9 @@ export const buyProduct = (product, quantity) => {
 
             dispatch(setBalance(res.accountBalance));
             dispatch(setProductStock(product.productId, res.productStock));
+            for (const purchase of res.purchases) {
+                dispatch(addPurchase(purchase));
+            }
 
             dispatch(addProductToNotification(product, quantity));
         } catch (err) {

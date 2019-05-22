@@ -4,9 +4,11 @@ import historyService from '../services/historyService';
 export const historyActions = {
     START_FETCH_DEPOSITS: 'START_FETCH_DEPOSITS',
     SET_DEPOSITS: 'SET_DEPOSITS',
+    ADD_DEPOSIT: 'ADD_DEPOSIT',
     RESET_DEPOSITS: 'RESET_DEPOSITS',
     START_FETCH_PURCHASES: 'START_FETCH_PURCHASES',
     SET_PURCHASES: 'SET_PURCHASES',
+    ADD_PURCHASE: 'ADD_PURCHASE',
     RESET_PURCHASES: 'RESET_PURCHASES'
 };
 
@@ -26,6 +28,20 @@ export const resetDeposits = () => {
 export const resetPurchases = () => {
     return {
         type: historyActions.RESET_PURCHASES
+    };
+};
+
+export const addDeposit = (deposit) => {
+    return {
+        type: historyActions.ADD_DEPOSIT,
+        deposit
+    };
+};
+
+export const addPurchase = (purchase) => {
+    return {
+        type: historyActions.ADD_PURCHASE,
+        purchase
     };
 };
 
@@ -69,6 +85,10 @@ const historyReducer = (state = initialState, action) => {
             return { ...state, depositHistory: action.depositHistory, fetchingDeposits: false };
         case historyActions.SET_PURCHASES:
             return { ...state, purchaseHistory: action.purchaseHistory, fetchingPurchases: false };
+        case historyActions.ADD_DEPOSIT:
+            return { ...state, depositHistory: [action.deposit, ...state.depositHistory] };
+        case historyActions.ADD_PURCHASE:
+            return { ...state, purchaseHistory: [action.purchase, ...state.purchaseHistory] };
         case historyActions.RESET_DEPOSITS:
             return { ...state, depositHistory: [], fetchingDeposits: false };
         case historyActions.RESET_PURCHASES:
