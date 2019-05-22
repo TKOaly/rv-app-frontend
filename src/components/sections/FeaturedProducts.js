@@ -6,9 +6,27 @@ import React from 'react';
 
 class FeaturedProducts extends React.Component {
     getFeaturedProducts = () => {
-        // these will some day come from backend, hardcoded for now
-        const featuredProductIds = [56, 58, 54, 50, 52, 626, 344];
-        return this.props.products.filter((p) => featuredProductIds.includes(p.productId));
+        const productBuyCounts = new Map();
+
+        /* Stores products ids and purchase counts into the map for the last 100 purchases. */
+        for (let i = 0; i < this.props.purchaseHistory.length && i < 100; i++) {
+            const productId = this.props.purchaseHistory[i].product.productId;
+
+            /* Increment or create new entry. */
+            if (productBuyCounts.has(productId)) {
+                productBuyCounts.set(productId, productBuyCounts.get(productId) + 1);
+            } else {
+                productBuyCounts.set(productId, 1);
+            }
+        }
+
+        /* 10 most purchased product ids within the last 100 purchases. */
+        const mostBought = [...productBuyCounts.entries()]
+            .sort((a, b) => b[1] - a[1])
+            .slice(0, 10)
+            .map((mapEntry) => mapEntry[0]);
+
+        return mostBought.map((productId) => this.props.products.find((product) => product.productId === productId));
     };
 
     render = () => {
@@ -17,7 +35,7 @@ class FeaturedProducts extends React.Component {
                 <div className="featured-header">
                     <h2>Click 'n' Buy</h2>
                 </div>
-                {this.props.loading ? (
+                {this.props.fetchingProducts || this.props.fetchingPurchases ? (
                     <Loader />
                 ) : (
                     <ul>
@@ -34,7 +52,9 @@ class FeaturedProducts extends React.Component {
 const mapStateToProps = (state) => {
     return {
         products: state.products.products,
-        loading: state.products.gettingProducts
+        fetchingProducts: state.products.gettingProducts,
+        purchaseHistory: state.history.purchaseHistory,
+        fetchingPurchases: state.history.fetchingPurchases
     };
 };
 
