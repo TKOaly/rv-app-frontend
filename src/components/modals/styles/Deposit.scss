@@ -1,6 +1,23 @@
 @import "vars";
 
+// Base font size for the deposit component
+$base-font-size: 25pt;
+
+// Font scalings
+$success-cancel-font-size: 0.7em;
+$input-font-size: 1.3em;
+$euro-sign-font-size: 1.5em;
+$btn-font-size: 0.8em;
+$erase-font-size: 0.8em;
+$increment-font-size: 0.8em;
+
+// Colors
+$erase-bg-color: rgb(165, 165, 165);
+$success-bg-color: rgb(95, 161, 41);
+$cancel-bg-color: rgb(209, 66, 66);
+
 .deposit-wrapper {
+  font-size: $base-font-size;
 
   .deposit {
     position: relative;
@@ -20,7 +37,7 @@
     align-items: center;
     box-sizing: border-box;
     height: 100px;
-    width: calc(100% - 100% / 3);
+    width: calc(2 / 3 * 100%);
     padding: 10px;
     background-color: white;
     border-left: 1px solid #aaa;
@@ -32,7 +49,7 @@
   .input {
     flex-grow: 1;
     height: 100%;
-    font-size: 2.3vw;
+    font-size: $input-font-size;
     border-radius: 10px;
     border: 1px solid #aaa;
     color: black;
@@ -41,18 +58,18 @@
   }
 
   .input::placeholder {
-    font-size: 2.3vw;
+    font-size: $input-font-size;
   }
 
   .euro-sign {
-    font-size: 2.3vw;
+    font-size: $euro-sign-font-size;
     margin-left: 10px;
   }
 
   .btn {
     height: 100px;
     line-height: 100px;
-    font-size: 3vw;
+    font-size: $btn-font-size;
     text-align: center;
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -76,13 +93,13 @@
   }
 
   .increment {
-    font-size: 2.3vw;
+    font-size: $increment-font-size;
   }
 
   .left {
     width: 50%;
     display: inline-block;
-    font-size: 15pt;
+    font-size: 1em;
   }
 
   .right {
@@ -90,19 +107,10 @@
     display: inline-block;
   }
 
-  .euro {
-    font-weight: bold;
-    font-size: 35pt;
-  }
-
-  .eurosymbol {
-    font-size: 15pt;
-  }
-
   .erase {
-    background-color: rgb(165, 165, 165);
+    background-color: $erase-bg-color;
     color: white;
-    font-size: 17pt;
+    font-size: $erase-font-size;
     font-weight: bold;
     border: none;
   }
@@ -112,17 +120,17 @@
   }
 
   .success {
-    background-color: rgb(95, 161, 41);
+    background-color: $success-bg-color;
     color: white;
-    font-size: 17pt;
+    font-size: $success-cancel-font-size;
     font-weight: bold;
     border: none;
   }
 
   .cancel {
-    background-color: rgb(209, 66, 66);
+    background-color: $cancel-bg-color;
     color: white;
-    font-size: 17pt;
+    font-size: $success-cancel-font-size;
     font-weight: bold;
     border: none;
   }
