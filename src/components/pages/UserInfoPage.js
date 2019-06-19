@@ -1,5 +1,7 @@
 import { connect } from 'react-redux';
 import { replace } from 'connected-react-router';
+import DepositHistory from '../sections/DepositHistory';
+import PurchaseHistory from '../sections/PurchaseHistory';
 import React from 'react';
 import UserHeader from '../sections/UserHeader';
 
@@ -17,8 +19,8 @@ class UserInfoPage extends React.Component {
                 <UserHeader />
                 <div>
                     <div>UserInfo</div>
-                    <div>DepositHistory</div>
-                    <div>PurchaseHistory</div>
+                    <DepositHistory />
+                    <PurchaseHistory />
                 </div>
             </div>
         );
