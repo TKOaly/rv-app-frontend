@@ -12,9 +12,8 @@ $erase-font-size: 0.8em;
 $increment-font-size: 0.8em;
 
 // Colors
-$erase-bg-color: rgb(165, 165, 165);
-$success-bg-color: rgb(95, 161, 41);
-$cancel-bg-color: rgb(209, 66, 66);
+$erase-bg-color: #a5a5a5;
+$erase-text-color: #000;
 
 .deposit-wrapper {
   font-size: $base-font-size;
@@ -59,6 +58,7 @@ $cancel-bg-color: rgb(209, 66, 66);
 
   .input::placeholder {
     font-size: $input-font-size;
+    color: black;
   }
 
   .euro-sign {
@@ -109,7 +109,7 @@ $cancel-bg-color: rgb(209, 66, 66);
 
   .erase {
     background-color: $erase-bg-color;
-    color: white;
+    color: $erase-text-color;
     font-size: $erase-font-size;
     font-weight: bold;
     border: none;
@@ -120,16 +120,16 @@ $cancel-bg-color: rgb(209, 66, 66);
   }
 
   .success {
-    background-color: $success-bg-color;
-    color: white;
+    background-color: $success-button-bgcolor;
+    color: $success-button-textcolor;
     font-size: $success-cancel-font-size;
     font-weight: bold;
     border: none;
   }
 
   .cancel {
-    background-color: $cancel-bg-color;
-    color: white;
+    background-color: $danger-button-bgcolor;
+    color: $danger-button-textcolor;
     font-size: $success-cancel-font-size;
     font-weight: bold;
     border: none;
