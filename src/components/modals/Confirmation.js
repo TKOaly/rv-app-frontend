@@ -6,7 +6,7 @@ import { resetAmount, toggleConfirmationVisibility } from '../../reducers/deposi
 import React from 'react';
 import moneyFormatter from '../../services/moneyFormatter';
 
-class Confirmation extends React.Component {
+export class Confirmation extends React.Component {
     componentDidMount = () => {
         this.oldFocusedElement = document.activeElement;
         this.dialog.focus();
@@ -39,10 +39,11 @@ class Confirmation extends React.Component {
     };
 
     render = () => {
+        const { depositAmount } = this.props;
         return (
             <div className="confirm-overlay">
                 <div className="confirm" tabIndex="0" ref={this.dialogRef} onKeyDown={this.handleKeyDown}>
-                    Confirm <b>{moneyFormatter.centsToString(this.props.depositAmount)} €</b> deposit
+                    Confirm <b>{moneyFormatter.centsToString(depositAmount)} €</b> deposit
                     <br />
                     <br />
                     <button className="btn number cancel cancelBtn" onClick={this.handleCancel}>

@@ -1,5 +1,4 @@
-import Confirmation from '../components/modals/Confirmation';
-import Enzyme from 'enzyme';
+import { Confirmation } from '../components/modals/Confirmation';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import renderer from 'react-test-renderer';
