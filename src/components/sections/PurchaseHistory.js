@@ -4,15 +4,11 @@ import dateFormatter from '../../services/dateFormatter';
 import moneyFormatter from '../../services/moneyFormatter';
 
 class PurchaseHistory extends React.Component {
-    componentDidMount = () => {};
-
     render = () => {
         return (
             <div>
-                <div>
-                    <h3>Purchases</h3>
-                </div>
                 <table>
+                    <caption>Purchases</caption>
                     <thead>
                         <tr>
                             <th>Time</th>

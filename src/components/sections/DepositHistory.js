@@ -4,15 +4,11 @@ import dateFormatter from '../../services/dateFormatter';
 import moneyFormatter from '../../services/moneyFormatter';
 
 class DepositHistory extends React.Component {
-    componentDidMount = () => {};
-
     render = () => {
         return (
             <div>
-                <div>
-                    <h3>Deposits</h3>
-                </div>
                 <table>
+                    <caption>Deposits</caption>
                     <thead>
                         <tr>
                             <th>Time</th>
