@@ -22,6 +22,7 @@ export class Header extends React.Component {
     };
 
     render = () => {
+        const { username, moneyBalance, doLogout } = this.props;
         return (
             <header>
                 <div className="header-title">
@@ -38,12 +39,12 @@ export class Header extends React.Component {
                         <HeaderBtn onClick={this.handleUserClick} fill hover>
                             <FontAwesome name="user-circle" />{' '}
                             <span>
-                                <b>{this.props.username}</b> {moneyFormatter.centsToString(this.props.moneyBalance)} €
+                                <b>{username || 'N/A'}</b> {moneyFormatter.centsToString(moneyBalance || 0)} €
                             </span>
                         </HeaderBtn>
                     </Margin>
                     <Margin margin={5} inlineBlock>
-                        <HeaderBtn onClick={this.props.doLogout} hover>
+                        <HeaderBtn onClick={doLogout} hover>
                             <FontAwesome name="sign-out" /> Log out (ENTER)
                         </HeaderBtn>
                     </Margin>
