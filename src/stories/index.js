@@ -1,6 +1,6 @@
 import '../reset.scss';
 import { action } from '@storybook/addon-actions';
-import { addStub, resetStubs } from './stub';
+import { addStub, resetStubs } from '../stub';
 import { storiesOf } from '@storybook/react';
 import BasicBtn from '../components/buttons/BasicBtn';
 import Content from '../components/sections/Content';

@@ -1,6 +1,6 @@
 import { storiesOf } from '@storybook/react';
-import { stubProductAndCategoryApis } from '../../stories/stub';
-import ProductBrowser from './ProductBrowser';
+import { stubProductAndCategoryApis } from '../../../stub';
+import ProductBrowser from '../ProductBrowser';
 import React from 'react';
 import sinon from 'sinon';
 

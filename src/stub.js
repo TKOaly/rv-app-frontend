@@ -1,6 +1,6 @@
-import { log, warn } from './../debug';
+import { log, warn } from './debug';
 import { mockedCategories, mockedProducts } from './mockData';
-import productService from '../services/productService';
+import productService from './services/productService';
 import sinon from 'sinon';
 
 let stubs = [];
