@@ -1,3 +1,14 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [Visual Studio Code configuration guide](#visual-studio-code-configuration-guide)
+  - [Recommended plugins](#recommended-plugins)
+  - [Optional plugins](#optional-plugins)
+  - [Setup](#setup)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # Visual Studio Code configuration guide
 
 ## Recommended plugins

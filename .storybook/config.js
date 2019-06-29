@@ -1,5 +1,4 @@
 import { configure, addParameters, addDecorator } from '@storybook/react';
-import withReduxAndRouter from './../src/withReduxAndRouter';
 import { withA11y } from '@storybook/addon-a11y';
 import { withKnobs } from '@storybook/addon-knobs';
 import '../src/reset.scss';
@@ -10,7 +9,6 @@ addParameters({
 
 addDecorator(withA11y);
 addDecorator(withKnobs);
-addDecorator(withReduxAndRouter);
 
 const req = require.context('../src', true, /\.stories\.js$/);
 
