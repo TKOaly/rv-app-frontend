@@ -104,7 +104,8 @@ const mapStateToProps = (state) => {
         loading: state.products.gettingProducts,
         filter: state.products.filter,
         selectedCategory: state.products.selectedCategory,
-        categories: state.products.categories
+        categories: state.products.categories,
+        token: state.user.token
     };
 };
 

@@ -1,7 +1,8 @@
 import '../reset.scss';
 import { action } from '@storybook/addon-actions';
+import { addStub, resetStubs } from './stub';
 import { storiesOf } from '@storybook/react';
-import App from '../App';
+import BasicBtn from '../components/buttons/BasicBtn';
 import Content from '../components/sections/Content';
 import DangerBtn from '../components/buttons/DangerBtn';
 import Header from '../components/sections/Header';
@@ -9,12 +10,11 @@ import LoginForm from '../components/forms/LoginForm';
 import LoginHeader from '../components/sections/LoginHeader';
 import LoginPage from '../components/pages/LoginPage';
 import MainPage from '../components/pages/MainPage';
-import ProductBrowser from '../components/sections/ProductBrowser';
 import PurchaseNotification from '../components/notifications/PurchaseNotification';
 import React from 'react';
 import SuccessBtn from '../components/buttons/SuccessBtn';
-
-storiesOf('App', module).add('Initial', () => <App />);
+import productService from '../services/productService';
+import sinon from 'sinon';
 
 storiesOf('Danger button', module)
     .add('With fill', () => (
@@ -99,9 +99,14 @@ storiesOf('Purchase notification.Without shadow', module).add('Coca-Cola Zero, 1
 storiesOf('Header', module).add('Initial', () => <Header />);
 storiesOf('LoginHeader', module).add('Initial', () => <LoginHeader />);
 
-storiesOf('ProductBrowser', module).add('Initial', () => <ProductBrowser />);
-
-storiesOf('Content', module).add('Initial', () => <Content />);
+storiesOf('Content', module).add('Initial', () => {
+    resetStubs();
+    // Stubs
+    const getAllProductsStub = sinon.stub(productService, 'getAllProducts').returns([...mockedProducts]);
+    const getAllCategoriesStub = sinon.stub(productService, 'getAllCategories').returns([...mockedProducts]);
+    addStub(getAllCategoriesStub, getAllProductsStub);
+    return <Content />;
+});
 
 storiesOf('LoginPage', module).add('Initial', () => <LoginPage />);
 

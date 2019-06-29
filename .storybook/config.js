@@ -2,6 +2,7 @@ import { configure, addParameters, addDecorator } from '@storybook/react';
 import withReduxAndRouter from './../src/withReduxAndRouter';
 import { withA11y } from '@storybook/addon-a11y';
 import { withKnobs } from '@storybook/addon-knobs';
+import '../src/reset.scss';
 
 addParameters({
     backgrounds: [{ name: 'dark', value: '#333', default: true }, { name: 'light', value: '#ffffff' }]
@@ -11,8 +12,10 @@ addDecorator(withA11y);
 addDecorator(withKnobs);
 addDecorator(withReduxAndRouter);
 
+const req = require.context('../src', true, /\.stories\.js$/);
+
 function loadStories() {
-    require('../src/stories');
+    req.keys().forEach((filename) => req(filename));
 }
 
 configure(loadStories, module);
