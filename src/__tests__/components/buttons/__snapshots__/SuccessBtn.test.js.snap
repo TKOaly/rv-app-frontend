@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SuccessBtn /> should match snapshot 1`] = `
+<button
+  className="btn success"
+  onClick={null}
+>
+  <span
+    className="btnContent"
+  >
+    Hello world
+  </span>
+</button>
+`;

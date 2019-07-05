@@ -13,11 +13,13 @@ export class Confirmation extends React.Component {
     };
 
     handleConfirm = (event) => {
+        event.preventDefault();
         this.props.increaseBalance(this.props.token, this.props.depositAmount);
         this.props.closeModal();
     };
 
     handleCancel = (event) => {
+        event.preventDefault();
         this.props.toggleConfirmationVisibility(false);
         if (this.oldFocusedElement) {
             this.oldFocusedElement.focus();

@@ -1,8 +1,17 @@
 import { clearAllNotifications, errorMessage } from './notificationReducer';
-import { fetchDeposits, fetchPurchases, resetDeposits, resetPurchases } from './historyReducer';
-import { getCategories, getProducts, resetCategories, resetProducts } from './productReducer';
+import {
+    fetchDeposits,
+    fetchPurchases,
+    resetDeposits,
+    resetPurchases
+} from './historyReducer';
+import {
+    getCategories,
+    getProducts,
+    resetCategories,
+    resetProducts
+} from './productReducer';
 import { push } from 'connected-react-router';
-import { reset } from 'redux-form';
 import { resetUserData, setUserData } from '../reducers/userReducer';
 import userService from '../services/userService';
 
@@ -10,13 +19,17 @@ export const authenticationActions = {
     LOGOUT: 'LOGOUT',
     LOGGING_IN: 'LOGGING_IN',
     LOGGED_IN: 'LOGGED_IN',
-    LOGIN_FAILED: 'LOGIN_FAILED'
+    LOGIN_FAILED: 'LOGIN_FAILED',
+    SET_FORM_USERNAME: 'SET_FORM_USERNAME',
+    SET_FORM_PASSWORD: 'SET_FORM_PASSWORD'
 };
 
 export const initialState = {
     isLoggingIn: false,
     loggedIn: false,
-    access_token: ''
+    access_token: '',
+    formUsername: '',
+    formPassword: ''
 };
 
 export const doLogout = () => {
@@ -44,6 +57,20 @@ export const logout = () => {
     };
 };
 
+export const setFormUsername = (username) => {
+    return {
+        type: authenticationActions.SET_FORM_USERNAME,
+        username
+    };
+};
+
+export const setFormPassword = (password) => {
+    return {
+        type: authenticationActions.SET_FORM_PASSWORD,
+        password
+    };
+};
+
 export const loggingIn = () => {
     return {
         type: authenticationActions.LOGGING_IN
@@ -65,7 +92,7 @@ export const loggedIn = (token) => {
 
 export const tryLogin = (username, password) => {
     return async (dispatch) => {
-        // Set loggingIn
+    // Set loggingIn
         dispatch(loggingIn());
         // Try to login
         try {
@@ -98,7 +125,7 @@ export const tryLogin = (username, password) => {
                 // Login has failed
                 dispatch(loginFailed());
                 // Reset form
-                dispatch(reset('login'));
+                dispatch(resetLoginForm());
                 // Send error message
                 dispatch(errorMessage('Unknown error while logging in.', 2500));
             }
@@ -106,7 +133,7 @@ export const tryLogin = (username, password) => {
             // Send login failed
             dispatch(loginFailed());
             // Reset form
-            dispatch(reset('login'));
+            dispatch(resetLoginForm());
             // Send error message
             if (err.response) {
                 if (err.response.status === 500 || err.response.status === 404) {
@@ -123,6 +150,13 @@ export const tryLogin = (username, password) => {
     };
 };
 
+const resetLoginForm = () => {
+    return (dispatch) => {
+        dispatch(setFormUsername(''));
+        dispatch(setFormPassword(''));
+    };
+};
+
 /**
  * Authentication reducer.
  * @param {object} state
@@ -133,9 +167,29 @@ const authenticationReducer = (state = initialState, action) => {
         case authenticationActions.LOGGING_IN:
             return { ...state, isLoggingIn: true };
         case authenticationActions.LOGGED_IN:
-            return { ...state, loggedIn: true, access_token: action.token, isLoggingIn: false };
+            return {
+                ...state,
+                loggedIn: true,
+                access_token: action.token,
+                isLoggingIn: false
+            };
         case authenticationActions.LOGIN_FAILED:
-            return { ...state, loggedIn: false, access_token: '', isLoggingIn: false };
+            return {
+                ...state,
+                loggedIn: false,
+                access_token: '',
+                isLoggingIn: false
+            };
+        case authenticationActions.SET_FORM_USERNAME:
+            return {
+                ...state,
+                formUsername: action.username
+            };
+        case authenticationActions.SET_FORM_PASSWORD:
+            return {
+                ...state,
+                formPassword: action.password
+            };
         case authenticationActions.LOGOUT:
             return initialState;
         default:

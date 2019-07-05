@@ -1,36 +1,39 @@
 {
-    "env": {
-        "browser": true,
-        "commonjs": true,
-        "es6": true,
-        "node": true,
-        "jest": true
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es6": true,
+    "node": true,
+    "jest": true,
+    "cypress/globals": true
+  },
+  "extends": "react-app",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
     },
-    "extends": "eslint:recommended",
-    "parserOptions": {
-        "ecmaFeatures": {
-            "jsx": true
-        },
-        "ecmaVersion": 2018,
-        "sourceType": "module"
-    },
-    "parser": "babel-eslint",
-    "plugins": ["react", "sort-imports-es6-autofix"],
-    "rules": {
-        "indent": ["error", 4, { "SwitchCase": 1 }],
-        "linebreak-style": ["error", "unix"],
-        "quotes": ["error", "single"],
-        "semi": ["error", "always"],
-        "arrow-parens": ["error", "always"],
-        "no-trailing-spaces": "error",
-        "no-var": "error",
-        "prefer-const": "error",
-        "max-len": ["warn", { "code": 120 }],
-        "no-unused-vars": "warn",
-        "react/jsx-uses-vars": "warn",
-        "react/jsx-uses-react": "warn",
-        "no-console": "warn",
-        "no-undef": "warn",
-        "sort-imports-es6-autofix/sort-imports-es6": "warn"
-    }
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "parser": "babel-eslint",
+  "plugins": ["sort-imports-es6-autofix", "cypress"],
+  "rules": {
+    "indent": ["error", 4, { "SwitchCase": 1 }],
+    "linebreak-style": ["error", "unix"],
+    "quotes": ["error", "single"],
+    "semi": ["error", "always"],
+    "arrow-parens": ["error", "always"],
+    "no-trailing-spaces": "error",
+    "no-var": "error",
+    "prefer-const": "error",
+    "max-len": ["warn", { "code": 120 }],
+    "no-unused-vars": "warn",
+    "react/jsx-uses-vars": "warn",
+    "react/jsx-uses-react": "warn",
+    "no-console": "off",
+    "no-undef": "warn",
+    "sort-imports-es6-autofix/sort-imports-es6": "warn",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn"
+  }
 }

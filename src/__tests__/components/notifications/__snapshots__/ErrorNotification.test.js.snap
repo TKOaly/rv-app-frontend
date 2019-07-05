@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ErrorNotification /> should match snapshot 1`] = `
+<div
+  className="error-message"
+>
+  <svg
+    className="cross"
+    height="70"
+    width="70"
+  >
+    <path
+      d="m35,35l-18.3,-18.3"
+    />
+    <path
+      d="m35,35l18.3,18.3"
+    />
+    <path
+      d="m35,35l-18.3,18.3"
+    />
+    <path
+      d="m35,35l18.3,-18.3"
+    />
+  </svg>
+  <div
+    className="inner"
+  >
+    <div
+      className="notification-text"
+    >
+      Test notification
+    </div>
+  </div>
+</div>
+`;
