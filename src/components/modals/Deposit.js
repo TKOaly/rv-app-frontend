@@ -16,14 +16,14 @@ import moneyFormatter from '../../services/moneyFormatter';
 
 // TODO: Add own styles
 export const OkButton = ({ handleSubmit }) => (
-    <button className="btn number success" onClick={handleSubmit}>
+    <button className="btn number success depositOkButton" onClick={handleSubmit}>
     OK (ENTER)
     </button>
 );
 
 // TODO: Add own styles
 export const CancelButton = ({ handleCancel }) => (
-    <button className="btn number cancel" onClick={handleCancel}>
+    <button className="btn number cancel depositCancelButton" onClick={handleCancel}>
     Cancel (ESC)
     </button>
 );
@@ -110,7 +110,7 @@ export class Deposit extends React.Component {
               <div className="deposit">
                   <div className="input-wrapper">
                       <input
-                          className="input"
+                          className="input currentDepositValue"
                           type="text"
                           placeholder="0.00"
                           value={this.props.depositAmountText}
@@ -120,66 +120,66 @@ export class Deposit extends React.Component {
                       />
                       <div className="euro-sign">€</div>
                   </div>
-                  <button className="btn number erase" onClick={this.props.resetAmount}>
+                  <button className="btn number erase depositResetButton" onClick={this.props.resetAmount}>
             Reset
                   </button>
                   <button
-                      className="btn number increment"
+                      className="btn number increment 5cents"
                       onClick={this.createIncrementHandler(5)}
                   >
             + 0.05 €
                   </button>
                   <button
-                      className="btn number increment"
+                      className="btn number increment 10cents"
                       onClick={this.createIncrementHandler(10)}
                   >
             + 0.10 €
                   </button>
                   <button
-                      className="btn number increment"
+                      className="btn number increment 20cents"
                       onClick={this.createIncrementHandler(20)}
                   >
             + 0.20 €
                   </button>
                   <button
-                      className="btn number increment"
+                      className="btn number increment 50cents"
                       onClick={this.createIncrementHandler(50)}
                   >
             + 0.50 €
                   </button>
                   <button
-                      className="btn number increment"
+                      className="btn number increment 1euro"
                       onClick={this.createIncrementHandler(100)}
                   >
             + 1.00 €
                   </button>
                   <button
-                      className="btn number increment"
+                      className="btn number increment 2euro"
                       onClick={this.createIncrementHandler(200)}
                   >
             + 2.00 €
                   </button>
                   <button
-                      className="btn number increment"
+                      className="btn number increment 5euro"
                       onClick={this.createIncrementHandler(500)}
                   >
             + 5.00 €
                   </button>
                   <button
-                      className="btn number increment"
+                      className="btn number increment 10euro"
                       onClick={this.createIncrementHandler(1000)}
                   >
             + 10.00 €
                   </button>
                   <button
-                      className="btn number increment"
+                      className="btn number increment 20euro"
                       onClick={this.createIncrementHandler(2000)}
                   >
             + 20.00 €
                   </button>
                   <CancelButton handleCancel={this.handleCancel} />
                   <button
-                      className="btn number increment"
+                      className="btn number increment 50euro"
                       onClick={this.createIncrementHandler(5000)}
                   >
             + 50.00 €
