@@ -4,7 +4,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import sinon from 'sinon';
 
-describe.only('<AutoLogout />', () => {
+describe('<AutoLogout />', () => {
     let addEventListenerMock, removeEventListenerMock;
     beforeEach(() => {
         addEventListenerMock = sinon.stub(document, 'addEventListener');
