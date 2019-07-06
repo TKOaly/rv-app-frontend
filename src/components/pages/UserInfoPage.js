@@ -15,7 +15,7 @@ class UserInfoPage extends React.Component {
 
     render = () => {
         return (
-            <div class="userinfopage">
+            <div className="userinfopage">
                 <UserHeader />
                 <div>
                     <div>UserInfo</div>
