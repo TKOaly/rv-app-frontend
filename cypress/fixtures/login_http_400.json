@@ -1,0 +1,5 @@
+{
+  "error_code": "bad_request",
+  "message": "This is a mocked API error response",
+  "errors": ["Error1", "Error2"]
+}

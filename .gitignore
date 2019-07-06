@@ -23,4 +23,5 @@ yarn-error.log*
 
 src/**/*.css
 
-*.mp4
+cypress/screenshots/**/*
+cypress/videos/**/*

@@ -34,7 +34,10 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 9009 -s public",
-    "build-storybook": "build-storybook -s public"
+    "build-storybook": "build-storybook -s public",
+    "cy:run": "cypress run",
+    "cy:open": "cypress open",
+    "test:cypress": "start-server-and-test start http://localhost:3000 cy:run"
   },
   "devDependencies": {
     "@storybook/addon-a11y": "^5.1.9",

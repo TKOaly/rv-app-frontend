@@ -1,30 +1,28 @@
 describe('Snack kiosk login', () => {
-    it('Should redirect to login page', () => {
+    beforeEach(() =>{
         cy.visit('/');
+    });
+    it('Should redirect to login page', () => {
         cy.url().should('include', '/login');
     });
     it('Should have login form in the page', () => {
-        cy.visit('/');
         cy.get('.loginForm').should('exist');
         cy.get('.loginForm #username').should('exist');
         cy.get('.loginForm #password').should('exist');
         cy.focused().should('have.attr', 'id', 'username');
     });
     it('Should have focus on username', () => {
-        cy.visit('/');
         cy.get('.loginForm #username').should('exist');
         cy.focused().should('have.attr', 'id', 'username');
         cy.focused().should('have.attr', 'type', 'text');
         cy.focused().should('have.attr', 'placeholder', 'Username');
     });
     it('Should focus first on username, then on password after inserting username and pressing enter', () => {
-        cy.visit('/');
         cy.focused().should('have.attr', 'id', 'username');
         cy.get('.loginForm #username').type('test_user{enter}');
         cy.focused().should('have.attr', 'id', 'password');
     });
     it('Should show error message & correct error text when the password is invalid', () => {
-        cy.visit('/');
         cy.url().should('include', '/login');
         cy.focused().should('have.attr', 'id', 'username');
         cy.get('.loginForm #username').type('normal_user{enter}', { delay: 30 });
@@ -39,7 +37,6 @@ describe('Snack kiosk login', () => {
         cy.get('.error-message').should('not.exist');
     });
     it('Should log the user in if correct credentials are given', () => {
-        cy.visit('/');
         cy.url().should('include', '/login');
         cy.get('#username').type('normal_user{enter}', { delay: 30 });
         cy.get('#password').type('hunter2{enter}', { delay: 30 });
@@ -52,7 +49,6 @@ describe('Snack kiosk login', () => {
         cy.get('header .header-right .user-username').should('be.visible');
         cy.get('header .header-right .user-username').should('have.text', 'normal_user');
         cy.get('header .header-right .user-money').should('be.visible');
-        cy.get('header .header-right .user-money').should('have.text', '5.00 €');
         cy.get('header .header-right .logoutBtn').should('be.visible');
         cy.get('header .header-right .depositBtn').should('be.visible');
         cy.get('header .header-right .logoutBtn').should('have.text', ' Log out (ENTER)');
@@ -61,7 +57,6 @@ describe('Snack kiosk login', () => {
         cy.get('.mainpage header .header-title').should('have.text', 'Ruokavälitys');
     });
     it('Should log the user out if "Logout" button is clicked', () => {
-        cy.visit('/');
         cy.url().should('include', '/login');
         cy.get('#username').type('normal_user{enter}', { delay: 30 });
         cy.get('#password').type('hunter2{enter}', { delay: 30 });
@@ -75,13 +70,5 @@ describe('Snack kiosk login', () => {
         cy.get('.product-browser-container').should('not.exist');
         cy.get('header .header-right .user-username').should('not.exist');
         cy.get('header .header-right .user-money').should('not.exist');
-    });
-    it('Should deposit money', () => {
-        cy.visit('/');
-        cy.get('#username').type('normal_user{enter}', { delay: 30 });
-        cy.get('#password').type('hunter2{enter}', { delay: 30 });
-        cy.url().should('not.include', '/login');
-        cy.wait(1000);
-        cy.get('.depositBtn').click();
     });
 });
