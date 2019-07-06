@@ -4,13 +4,13 @@ import Loader from '../loaders/Loader';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-const HeaderBtn = ({ onClick, children, fill, hover, loader, ...props }) => {
-    let className = 'btn';
-    fill ? (className += ' headerbtn-fill') : (className += ' headerbtn');
-    hover && (fill ? (className += ' headerbtn-fill-hover') : (className += ' headerbtn-hover'));
+const HeaderBtn = ({ onClick, children, fill, hover, loader, className, ...props }) => {
+    let className2 = 'btn';
+    fill ? (className2 += ' headerbtn-fill') : (className2 += ' headerbtn');
+    hover && (fill ? (className2 += ' headerbtn-fill-hover') : (className2 += ' headerbtn-hover'));
 
     return (
-        <button {...props} onClick={onClick} className={className}>
+        <button {...props} onClick={onClick} className={className2 + ' ' + (className ? className : '')}>
             {!loader ? <span className="btnContent">{children}</span> : <Loader />}
         </button>
     );

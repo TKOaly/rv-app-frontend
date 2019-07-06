@@ -13,11 +13,13 @@ export class Confirmation extends React.Component {
     };
 
     handleConfirm = (event) => {
+        event.preventDefault();
         this.props.increaseBalance(this.props.token, this.props.depositAmount);
         this.props.closeModal();
     };
 
     handleCancel = (event) => {
+        event.preventDefault();
         this.props.toggleConfirmationVisibility(false);
         if (this.oldFocusedElement) {
             this.oldFocusedElement.focus();
@@ -43,13 +45,13 @@ export class Confirmation extends React.Component {
         return (
             <div className="confirm-overlay">
                 <div className="confirm" tabIndex="0" ref={this.dialogRef} onKeyDown={this.handleKeyDown}>
-                    Confirm <b>{moneyFormatter.centsToString(depositAmount)} €</b> deposit
+                    <span className="confirm-title-text">Confirm <b>{moneyFormatter.centsToString(depositAmount)} €</b> deposit</span>
                     <br />
                     <br />
-                    <button className="btn number cancel cancelBtn" onClick={this.handleCancel}>
+                    <button className="btn number cancel cancelBtn confirmation-cancel-btn" onClick={this.handleCancel}>
                         Cancel (ESC)
                     </button>
-                    <button className="btn number success confirmBtn" onClick={this.handleConfirm}>
+                    <button className="btn number success confirmBtn confirmation-ok-btn" onClick={this.handleConfirm}>
                         OK (ENTER)
                     </button>
                 </div>

@@ -1,56 +1,82 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [rv-app-frontend](#rv-app-frontend)
+  - [Introduction](#introduction)
+  - [Development environment setup (Quick guide)](#development-environment-setup-quick-guide)
+    - [On the first time](#on-the-first-time)
+    - [On every time you open the project](#on-every-time-you-open-the-project)
+  - [Setting up & starting the front-end](#setting-up--starting-the-front-end)
+  - [Building the front-end](#building-the-front-end)
+  - [Building with docker](#building-with-docker)
+  - [Tech](#tech)
+  - [Development](#development)
+    - [UI component development](#ui-component-development)
+    - [UI component testing & documentation](#ui-component-testing--documentation)
+    - [ESLint & Stylelint](#eslint--stylelint)
+      - [Scripts](#scripts)
+    - [GitHub & branches](#github--branches)
+    - [Testing practices](#testing-practices)
+  - [Build pipeline](#build-pipeline)
+  - [Project Structure](#project-structure)
+  - [Component rendering tree](#component-rendering-tree)
+  - [License](#license)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # rv-app-frontend
 
 [![Build Status](https://travis-ci.org/ohtu2018-rv/rv-app-frontend.svg?branch=develop)](https://travis-ci.org/ohtu2018-rv/rv-app-frontend) [![codecov](https://codecov.io/gh/ohtu2018-rv/rv-app-frontend/branch/develop/graph/badge.svg)](https://codecov.io/gh/ohtu2018-rv/rv-app-frontend)
 
 ## Introduction
 
-This repository contains source code for the new RV, coded during University course 'Software development project, Spring 2018'
+This repository contains source code for the new RV (Snack kiosk), coded during University course 'Software development project, Spring 2018'
 
 ![alt text](https://raw.githubusercontent.com/ohtu-ohjaajat/OhTuHistory/master/rv-tuoteselain.png)
 
 Production URL for the application is https://rv-frontend.herokuapp.com, while staging can be found at https://rv-frontend-dev.herokuapp.com.
 
-Please login with ```normal_user::hunter2``` to use the application.
+Please login with `normal_user::hunter2` to use the application.
 
-## New updated starting instructions May 2019
+## Development environment setup (Quick guide)
+
+This guide gives instructions how to run the RV service as a whole (frontend & backend).
 
 ### On the first time
 
-- install node.js
-- install npm
-- install docker
-- add your user to the docker group
-- install docker-compose
-- install vs code
-- install plugins to vs code
-- clone backend from github
-- clone frontend from github
-- run npm install in backend
-- run npm install in frontend
-- create a working .env into frontend
-- run docker-compose up in backend
-- run npm run db-migrate in the backend container
-- run npm run db-seed in the backend container
-- run npm start in frontend
+- Install `node.js`
+- Optional: Install `nvm` (Node Version Manager) to quickly switch Node.js versions
+- Install `npm`
+- Install `docker`
+- Add your user to the docker group
+- Install `docker-compose`
+- Install `Visual Studio Code` & plugins for it
+- Clone backend from GitHub (https://github.com/TKOaly/rv-backend)
+- Clone frontend from GitHub (https://github.com/TKOaly/rv-backend)
+- Run `npm install` in backend
+- Run `npm install` in frontend
+- Create a working `.env` file into frontend
+- Run `docker-compose up` in backend
+- Run `npm run db-migrate` in the backend container
+- Run `npm run db-seed` in the backend container
+- Run `npm start` in frontend
 
 ### On every time you open the project
 
-- run docker-compose up in backend
-- run npm start in frontend
+- Run `docker-compose up` in backend
+- Run `npm start` in frontend
 
-## Old instructions below
-
-## How to get started
+## Setting up & starting the front-end
 
 1. Clone the repo
-2. Install Yarn (if not installed before)
-3. `yarn install` to install project dependencies
-4. Create a [.env](https://github.com/motdotla/dotenv) file and define in it the variable `REACT_APP_BACKEND_URL` that points to backend server's address
-5. `yarn start` for starting the app, `yarn storybook` when developing modules or `yarn styleguide` when creating documentation.
+2. Run `npm install` to install project dependencies
+3. Create a [.env](https://github.com/motdotla/dotenv) file and define in it the variable `REACT_APP_BACKEND_URL` that points to backend server's address
+4. Run `npm start` to start the frontend, `npm run storybook` to run storybook.
 
-## How to build
+## Building the front-end
 
-Run `yarn build` to build the project. This will create a production-optimized build to ```build``` folder.
+Run `npm run build` to build the project. This will create a production-optimized build to `build` folder.
 
 ## Building with docker
 
@@ -59,10 +85,6 @@ Run `yarn build` to build the project. This will create a production-optimized b
 3. Run `chmod +x ./run-docker.sh` and then `./run-docker-sh`
 
 The Dockerfile defaults to `http://localhost:3000` as the back-end URL. You can customize the port of the front-end by starting the container manually with the command `docker run -p PORT:5000 -d --env-file=.env --name rv-app-container rv-app-frontend` (Replace PORT)
-
-## Documentation
-
-For UI component documentation, please click [this link](http://htmlpreview.github.io/?https://github.com/ohtu2018-rv/rv-app-frontend/blob/develop/styleguide/index.html)
 
 ## Tech
 
@@ -74,11 +96,11 @@ Testing of UI components is made with Enzyme & Jest, and Redux store is mocked w
 
 ### UI component development
 
-When developing UI components, use React Storybook. It allows the development of single UI components instead of adding a new component to the application and develop it 'live'.
+When developing UI components, use React Storybook. It allows the development of single UI components in an isolated environment instead of adding a new component to the application and develop it 'live'.
 
 ### UI component testing & documentation
 
-Write tests as new code is written to make sure that each UI component gets tested throughfully. New UI components shall also be documented on the fly, with the help of React Styleguide.
+Write tests as new code is written to make sure that each UI component gets tested throughfully. New UI components shall also be documented on the fly, with the help of React Storybook.
 
 ### ESLint & Stylelint
 
@@ -88,24 +110,25 @@ Code must pass linters in order to be commited. **When a commit is made, ESLint 
 
 Use these scripts to help yourself in development.
 
-- ```yarn lint-js``` lints JavaScript files.
-- ```yarn fix-js``` lints and fixes potential code issues in JavaScript files.
-- ```yarn lint-css``` lints SCSS files.
-- ```yarn fix-css``` lints and fixes potential code issues in SCSS files.
+- `npm run lint-js` lints JavaScript files.
+- `npm run fix-js` lints and fixes potential code issues in JavaScript files.
+- `npm run lint-css` lints SCSS files.
+- `npm run fix-css` lints and fixes potential code issues in SCSS files.
 
-**If you want to use npm, replace ```yarn``` command with ```npm run-script```.**
+### GitHub & branches
 
-### Git Flow
-
-New features or fixes must have a branch. Pushing directly to develop or master is not allowed (though certain emergency cituations do not follow this rule) [See this link on how to use Git Flow.](DEVELOPMENT.md)
+New features or fixes must have a branch. Pushing directly to develop or master is not allowed (though certain emergency situations do not follow this rule)
 
 ### Testing practices
 
-When developing, update snapshot-tests regularly and create other tests when needed to do so. Use Jest to write tests and mocks.
+- Update snapshot tests regularly
+- Ceate other tests when needed to do so
+- Use Jest to write component tests
+- Use Sinon to mock API requests and fn's.
 
 ## Build pipeline
 
-When code is pushed to GitHub and a pull request is made to either ```develop``` or ```master``` branch, Travis CI will run tests for the project and deploy it to Heroku, if all test have passed.
+When code is pushed to GitHub and a pull request is made, Travis CI will run tests for the project.
 
 ## Project Structure
 
@@ -165,7 +188,6 @@ App
             FeaturedProducts
             Terminal
 ```
-
 
 ## License
 

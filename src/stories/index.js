@@ -1,16 +1,28 @@
 import '../reset.scss';
-import '../storybook.scss';
-import { CancelButton, ConfirmButton, Deposit } from '../components/modals/Deposit';
-import { Header } from '../components/sections/Header';
+import {
+    CancelButton,
+    ConfirmButton,
+    Deposit
+} from '../components/modals/Deposit';
 import { action } from '@storybook/addon-actions';
+import { addStub, resetStubs } from '../stub';
+import { mockedProducts } from '../mockData';
 import { storiesOf } from '@storybook/react';
 import BasicBtn from '../components/buttons/BasicBtn';
+import Content from '../components/sections/Content';
 import DangerBtn from '../components/buttons/DangerBtn';
+import Header from '../components/sections/Header';
+import LoginForm from '../components/forms/LoginForm';
+import LoginHeader from '../components/sections/LoginHeader';
+import LoginPage from '../components/pages/LoginPage';
+import MainPage from '../components/pages/MainPage';
 import PurchaseNotification from '../components/notifications/PurchaseNotification';
 import React from 'react';
 import SuccessBtn from '../components/buttons/SuccessBtn';
+import productService from '../services/productService';
+import sinon from 'sinon';
 
-storiesOf('Button.Danger button', module)
+storiesOf('Danger button', module)
     .add('With fill', () => (
         <DangerBtn fill hover onClick={action('clicked danger button with fill')}>
       Danger button
@@ -109,3 +121,39 @@ storiesOf('Purchase notification.Without shadow', module).add(
 );
 
 storiesOf('Header', module).add('Initial', () => <Header />);
+storiesOf('LoginHeader', module).add('Initial', () => <LoginHeader />);
+
+storiesOf('Content', module).add('Initial', () => {
+    resetStubs();
+    // Stubs
+    const getAllProductsStub = sinon
+        .stub(productService, 'getAllProducts')
+        .returns([...mockedProducts]);
+    const getAllCategoriesStub = sinon
+        .stub(productService, 'getAllCategories')
+        .returns([...mockedProducts]);
+    addStub(getAllCategoriesStub, getAllProductsStub);
+    return <Content />;
+});
+
+storiesOf('LoginPage', module).add('Initial', () => <LoginPage />);
+
+storiesOf('MainPage', module).add('Initial', () => <MainPage />);
+
+/**
+ * Authentication mock
+ * @param {*} user
+ */
+const authenticate = (user) => {
+    console.log(user);
+};
+
+storiesOf('LoginForm', module)
+    .add('Without loader', () => <LoginForm authenticate={authenticate} />)
+    .add('With loader', () => <LoginForm loader authenticate={authenticate} />)
+    .add('Without loader, shadow', () => (
+        <LoginForm shadow authenticate={authenticate} />
+    ))
+    .add('With loader, shadow', () => (
+        <LoginForm loader shadow authenticate={authenticate} />
+    ));

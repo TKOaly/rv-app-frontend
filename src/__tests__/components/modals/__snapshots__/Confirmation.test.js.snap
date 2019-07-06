@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Confirmation /> should match snapshot 1`] = `
+<div
+  className="confirm-overlay"
+>
+  <div
+    className="confirm"
+    onKeyDown={[Function]}
+    tabIndex="0"
+  >
+    <span
+      className="confirm-title-text"
+    >
+      Confirm 
+      <b>
+        NaN.NaN
+         €
+      </b>
+       deposit
+    </span>
+    <br />
+    <br />
+    <button
+      className="btn number cancel cancelBtn confirmation-cancel-btn"
+      onClick={[Function]}
+    >
+      Cancel (ESC)
+    </button>
+    <button
+      className="btn number success confirmBtn confirmation-ok-btn"
+      onClick={[Function]}
+    >
+      OK (ENTER)
+    </button>
+  </div>
+</div>
+`;

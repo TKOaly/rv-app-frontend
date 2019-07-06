@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Padding /> should match snapshot 1`] = `
+<div
+  className="padding"
+  style={
+    Object {
+      "display": "block",
+      "padding": undefined,
+    }
+  }
+/>
+`;

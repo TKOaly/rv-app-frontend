@@ -10,10 +10,11 @@ import UserInfoPage from './components/pages/UserInfoPage';
 
 class App extends React.Component {
     render = () => {
+        const { history } = this.props;
         return (
             <div className="App">
                 <NotificationDrawer />
-                <ConnectedRouter history={this.props.history}>
+                <ConnectedRouter history={history}>
                     <div className="pages">
                         <Route exact path="/" component={MainPage} />
                         <Route path="/user" component={UserInfoPage} />
