@@ -23,7 +23,7 @@ Example:
 
 * [ ] Add tags for your PR. 
 
-Add tags to your PR to indicate the status of the PR. `WIP` for work in progress, `Ready for review` if your PR is ready for review. You can view all the tags from the right side panel.
+Add tags to your PR to indicate the status of your PR. `WIP` for work in progress, `Ready for review` if your PR is ready for review. You can view all the tags from the right side panel.
 
 ------
 
