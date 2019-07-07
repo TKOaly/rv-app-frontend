@@ -18,7 +18,7 @@ class DepositHistory extends React.Component {
                     </thead>
                     <tbody>
                         {this.props.depositHistory.map((deposit) => (
-                            <tr>
+                            <tr key={deposit.depositId}>
                                 <td>{dateFormatter.dateStringToHumanReadable(deposit.time)}</td>
                                 <td>{moneyFormatter.centsToString(deposit.amount)} €</td>
                                 <td>
