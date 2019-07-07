@@ -26,7 +26,9 @@ class FeaturedProducts extends React.Component {
             .slice(0, 10)
             .map((mapEntry) => mapEntry[0]);
 
-        return mostBought.map((productId) => this.props.products.find((product) => product.productId === productId));
+        return mostBought
+            .map((productId) => this.props.products.find((product) => product.productId === productId))
+            .filter((product) => product !== undefined);
     };
 
     render = () => {
