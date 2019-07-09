@@ -2,6 +2,7 @@ import moneyFormatter from '../../src/services/moneyFormatter';
 
 describe('Snack kiosk deposit', () => {
     beforeEach(() => {
+        cy.request('POST', 'http://localhost:8080/api/v1/test/reset_data');
         cy.visit('/');
         cy.get('#username').type('normal_user{enter}', { delay: 30 });
         cy.get('#password').type('hunter2{enter}', { delay: 30 });
@@ -61,22 +62,13 @@ describe('Snack kiosk deposit', () => {
         cy.wait(500);
         cy.get('.depositOkButton').click();
         cy.get('.confirm-overlay .confirm').should('be.visible');
-        cy.get('.confirm-overlay .confirm .confirm-title-text').should(
-            'be.visible'
-        );
-        cy.get('.confirm-overlay .confirm .confirm-title-text').should(
-            'have.text',
-            'Confirm 0.50 € deposit'
-        );
+        cy.get('.confirm-overlay .confirm .confirm-title-text').should('be.visible');
+        cy.get('.confirm-overlay .confirm .confirm-title-text').should('have.text', 'Confirm 0.50 € deposit');
 
-        cy.get('.confirm-overlay .confirm .confirmation-cancel-btn').should(
-            'be.visible'
-        );
-        cy.get('.confirm-overlay .confirm .confirmation-ok-btn').should(
-            'be.visible'
-        );
+        cy.get('.confirm-overlay .confirm .confirmation-cancel-btn').should('be.visible');
+        cy.get('.confirm-overlay .confirm .confirmation-ok-btn').should('be.visible');
     });
-    it.only('Should update user money value when user deposits 57.50 euros', async () => {
+    it('Should update user money value when user deposits 57.50 euros', async () => {
         cy.get('.user-money-value').then((btn) => {
             const value = moneyFormatter.stringToCents(btn.text());
 
@@ -98,10 +90,7 @@ describe('Snack kiosk deposit', () => {
             cy.get('.confirm-overlay').should('not.be.visible');
 
             const newValue = moneyFormatter.centsToString(value + 5750);
-            cy.get('header .header-right .user-money').should(
-                'have.text',
-                newValue + ' €'
-            );
+            cy.get('header .header-right .user-money').should('have.text', newValue + ' €');
         });
     });
 });

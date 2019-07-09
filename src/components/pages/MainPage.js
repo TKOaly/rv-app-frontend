@@ -1,5 +1,7 @@
+import { AutoLogout } from '../helpers/AutoLogout';
 import { closeModal } from '../../reducers/modalReducer';
 import { connect } from 'react-redux';
+import { doLogout } from '../../reducers/authenticationReducer';
 import { replace } from 'connected-react-router';
 import Content from '../sections/Content';
 import Header from '../sections/Header';
@@ -17,11 +19,19 @@ class MainPage extends React.Component {
         this.props.closeModal();
     };
 
+    handleLogout = () => {
+        this.props.doLogout();
+    };
+
     render = () => {
         return (
             <div className="mainpage">
                 <Header />
                 <Content />
+                <AutoLogout
+                    logUserOut={this.handleLogout}
+                    timerMs={Number(process.env.REACT_APP_AUTO_LOGOUT_SECONDS || 60) * 1000}
+                />
             </div>
         );
     };
@@ -35,7 +45,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
     replace,
-    closeModal
+    closeModal,
+    doLogout
 };
 
 export default connect(

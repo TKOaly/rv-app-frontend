@@ -11,7 +11,7 @@ const mockNotifications = [
     }
 ];
 
-describe.only('<NotificationDrawer />', () => {
+describe('<NotificationDrawer />', () => {
     it('should match snapshot', () => {
         const cmpnt = renderer.create(<NotificationDrawer notifications={mockNotifications}/>).toJSON();
         expect(cmpnt).toMatchSnapshot();
