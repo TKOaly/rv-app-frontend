@@ -1,30 +1,21 @@
-FROM node:8.9.0
+# Build process
+FROM node:10.16.2 as build-deps
 
-ENV NPM_CONFIG_LOGLEVEL warn
+WORKDIR /usr/src/app
 
-ENV NODE_ENV production
-
-# Hardcoded for now
 ENV REACT_APP_BACKEND_URL http://localhost:3000
+ENV SASS_PATH=src
 
-WORKDIR /front
+COPY package.json package-lock.json ./
+COPY ./src /usr/src/app/src
+COPY ./public /usr/src/app/public
 
-COPY package.json /front
+RUN npm install --production
+RUN npm run build
 
-COPY yarn.lock /front
+# Run with Nginx
+FROM nginx:1.12-alpine
+COPY --from=build-deps /usr/src/app/build /usr/share/nginx/html
 
-COPY ./src /front/src
-
-COPY ./public /front/public
-
-RUN yarn global add serve
-
-RUN yarn install
-
-RUN yarn build
-
-RUN rm -rf node_modules
-
-CMD serve -s build
-
-EXPOSE 5000
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
