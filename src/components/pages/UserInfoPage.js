@@ -1,4 +1,6 @@
+import { AutoLogout } from '../helpers/AutoLogout';
 import { connect } from 'react-redux';
+import { doLogout } from '../../reducers/authenticationReducer';
 import { replace } from 'connected-react-router';
 import DepositHistory from '../sections/DepositHistory';
 import PurchaseHistory from '../sections/PurchaseHistory';
@@ -13,15 +15,23 @@ class UserInfoPage extends React.Component {
         }
     };
 
+    handleLogout = () => {
+        this.props.doLogout();
+    };
+
     render = () => {
         return (
-            <div class="userinfopage">
+            <div className="userinfopage">
                 <UserHeader />
                 <div>
                     <div>UserInfo</div>
                     <DepositHistory />
                     <PurchaseHistory />
                 </div>
+                <AutoLogout
+                    logUserOut={this.handleLogout}
+                    timerMs={Number(process.env.REACT_APP_AUTO_LOGOUT_SECONDS || 60) * 1000}
+                />
             </div>
         );
     };
@@ -34,7 +44,8 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = {
-    replace
+    replace,
+    doLogout
 };
 
 export default connect(

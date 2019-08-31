@@ -1,5 +1,6 @@
 describe('Snack kiosk login', () => {
-    beforeEach(() =>{
+    beforeEach(() => {
+        cy.request('POST', 'http://localhost:8080/api/v1/test/reset_data');
         cy.visit('/');
     });
     it('Should redirect to login page', () => {
