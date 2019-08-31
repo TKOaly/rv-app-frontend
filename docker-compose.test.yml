@@ -13,13 +13,13 @@ services:
       - DB_USERNAME=rvadmin
       - DB_PASSWORD=unsecure
       - DB_NAME=rv
-      - DB_PORT=5430
+      - DB_PORT=5432
       - JWT_SECRET=unsecure
       - JWT_ADMIN_SECRET=unsecure
   db:
     image: postgres:10-alpine
     ports:
-      - 5430:5432
+      - 5432:5432
     environment:
       - POSTGRES_USER=rvadmin
       - POSTGRES_PASSWORD=unsecure
