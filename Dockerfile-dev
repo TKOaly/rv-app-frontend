@@ -1,0 +1,20 @@
+# Build process
+FROM node:10.16.2 as build-deps
+
+WORKDIR /usr/src/app
+
+ENV REACT_APP_BACKEND_URL http://localhost:3000
+ENV SASS_PATH=src
+
+RUN npm install -g serve
+
+COPY package.json package-lock.json .eslintrc.json .eslintignore .stylelintrc.json cypress.json ./
+COPY ./src /usr/src/app/src
+COPY ./public /usr/src/app/public
+COPY ./cypress /usr/src/app/cypress
+
+RUN npm install
+RUN npm run build
+
+EXPOSE 5000
+CMD ["serve", "-s", "build"]
