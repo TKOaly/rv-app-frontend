@@ -1,0 +1,33 @@
+name: Run Cypress tests
+
+on: [push, pull_request]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [10.16.2]
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: Install dependencies
+      run: npm install
+    - name: Start back-end
+      run: |
+        docker-compose -f docker-compose.test.yml up -d --build
+        sleep 10
+        docker-compose -f docker-compose.test.yml run backend yarn db-migrate
+        docker-compose -f docker-compose.test.yml run backend yarn db-seed
+    - name: Run Cypress tests
+      run: npm run test:cypress     
+      env:
+        CI: true
+        SASS_PATH: src
+        REACT_APP_BACKEND_URL: http://localhost:8080
