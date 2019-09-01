@@ -27,6 +27,15 @@ const getUser = async (token) => {
     return res.data.user;
 };
 
+const editUser = async (token, editedUserFields) => {
+    const res = await axios.patch(`${process.env.REACT_APP_BACKEND_URL}/api/v1/user`, editedUserFields, {
+        headers: {
+            Authorization: 'Bearer ' + token
+        }
+    });
+    return res.data.user;
+};
+
 /**
  * Authenticates the user with back-end. Returns an access token.
  * @param {object} user
@@ -61,6 +70,7 @@ const deposit = async (token, amount) => {
 
 export default {
     getUser,
+    editUser,
     deposit,
     authenticate,
     registerUser

@@ -23,6 +23,20 @@ export const resetUserData = () => {
     };
 };
 
+export const editUser = (token, editedUserFields) => {
+    return async (dispatch) => {
+        try {
+            const editedUser = await userService.editUser(token, editedUserFields);
+
+            dispatch(setUserData(editedUser));
+
+            dispatch(successMessage('User edited successfully'));
+        } catch (err) {
+            dispatch(errorMessage('Error while editing user: ' + err.response.data.message));
+        }
+    };
+};
+
 export const setUserData = (user) => {
     return {
         type: userActions.SET_USER_DATA,

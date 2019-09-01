@@ -14,6 +14,7 @@ import notificationReducer from './notificationReducer';
 import productReducer from './productReducer';
 import registerReducer from './registerReducer';
 import terminalReducer from './terminalReducer';
+import userInfoFormReducer from './userInfoFormReducer';
 import userReducer from './userReducer';
 
 // If we are in a test environment, use memory history
@@ -30,6 +31,7 @@ const rootReducer = combineReducers({
     deposit: depositReducer,
     modal: modalReducer,
     history: historyReducer,
+    userInfoForm: userInfoFormReducer,
     form: formReducer,
     router: connectRouter(history)
 });

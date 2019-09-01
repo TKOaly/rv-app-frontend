@@ -6,6 +6,7 @@ import DepositHistory from '../sections/DepositHistory';
 import PurchaseHistory from '../sections/PurchaseHistory';
 import React from 'react';
 import UserHeader from '../sections/UserHeader';
+import UserInfo from '../sections/UserInfo';
 
 class UserInfoPage extends React.Component {
     componentDidMount = () => {
@@ -24,7 +25,7 @@ class UserInfoPage extends React.Component {
             <div className="userinfopage">
                 <UserHeader />
                 <div>
-                    <div>UserInfo</div>
+                    <UserInfo />
                     <DepositHistory />
                     <PurchaseHistory />
                 </div>
