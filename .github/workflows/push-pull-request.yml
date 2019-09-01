@@ -21,8 +21,15 @@ jobs:
   lint_js:
     runs-on: ubuntu-18.04
     name: Lint JavaScript files
-    needs: install_deps
     steps:
+    - uses: actions/checkout@v1
+      name: Git checkout
+    - uses: actions/setup-node@v1
+      name: Use Node.js ${{ matrix.node-version }}
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: Install dependencies
+      run: npm install
     - name: Lint JS
       run: npm run lint-js
       env:
@@ -31,8 +38,15 @@ jobs:
   lint_scss:
     runs-on: ubuntu-18.04
     name: Lint stylesheets
-    needs: install_deps
     steps:
+    - uses: actions/checkout@v1
+      name: Git checkout
+    - uses: actions/setup-node@v1
+      name: Use Node.js ${{ matrix.node-version }}
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: Install dependencies
+      run: npm install
     - name: Lint SCSS
       run: npm run lint-scss
       env:
@@ -41,30 +55,39 @@ jobs:
   run_tests:
     runs-on: ubuntu-18.04
     name: Run Jest tests
-    needs: install_deps
     steps:
-      - name: Run tests
-        run: npm test
-        env:
-          CI: true
-  start_back_end:
-      runs-on: ubuntu-18.04
-      name: Start back-end
-      needs: install_deps
-      steps:
-      - name: Start RV back-end
-        run: |
-          docker-compose -f docker-compose.test.yml up -d --build
-          docker-compose -f docker-compose.test.yml run backend yarn db-migrate
-          docker-compose -f docker-compose.test.yml run backend yarn db-seed
+    - uses: actions/checkout@v1
+      name: Git checkout
+    - uses: actions/setup-node@v1
+      name: Use Node.js ${{ matrix.node-version }}
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: Install dependencies
+      run: npm install
+    - name: Run tests
+      run: npm test
+      env:
+        CI: true
   run_cypress_tests:
-      runs-on: ubuntu-18.04
-      name: Run Cypress tests
-      needs: [install_deps,start_back_end]
-      steps:
-        - name: Run Cypress tests
-          run: npm run test:cypress     
-          env:
-            CI: true
-            SASS_PATH: src
-            REACT_APP_BACKEND_URL: http://localhost:8080
+    runs-on: ubuntu-18.04
+    name: Run Cypress tests
+    steps:
+    - uses: actions/checkout@v1
+    name: Git checkout
+    - name: Start RV back-end
+      run: |
+        docker-compose -f docker-compose.test.yml up -d --build
+        docker-compose -f docker-compose.test.yml run backend yarn db-migrate
+        docker-compose -f docker-compose.test.yml run backend yarn db-seed
+    - uses: actions/setup-node@v1
+      name: Use Node.js ${{ matrix.node-version }}
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: Install dependencies
+      run: npm install
+    - name: Execute Cypress
+      run: npm run test:cypress     
+      env:
+        CI: true
+        SASS_PATH: src
+        REACT_APP_BACKEND_URL: http://localhost:8080
