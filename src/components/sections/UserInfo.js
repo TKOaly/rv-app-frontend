@@ -1,10 +1,15 @@
 import { connect } from 'react-redux';
+import { reset } from '../../reducers/userInfoFormReducer';
 import ChangePasswordForm from '../forms/ChangePasswordForm';
 import EditUserForm from '../forms/EditUserForm';
 import React from 'react';
 import moneyFormatter from '../../services/moneyFormatter';
 
 class UserInfo extends React.Component {
+    componentWillUnmount = () => {
+        this.props.resetForms();
+    };
+
     render = () => {
         return (
             <div>
@@ -46,4 +51,11 @@ const mapStateToProps = (state) => {
     };
 };
 
-export default connect(mapStateToProps)(UserInfo);
+const mapDispatchToProps = {
+    resetForms: reset
+};
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(UserInfo);
