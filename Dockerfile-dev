@@ -6,16 +6,15 @@ WORKDIR /usr/src/app
 ENV REACT_APP_BACKEND_URL http://localhost:3000
 ENV SASS_PATH=src
 
-COPY package.json package-lock.json ./
+RUN npm install -g serve
+
+COPY package.json package-lock.json .eslintrc.json .eslintignore .stylelintrc.json cypress.json ./
 COPY ./src /usr/src/app/src
 COPY ./public /usr/src/app/public
+COPY ./cypress /usr/src/app/cypress
 
-RUN npm install --production
+RUN npm install
 RUN npm run build
 
-# Run with Nginx
-FROM nginx:1.12-alpine
-COPY --from=build-deps /usr/src/app/build /usr/share/nginx/html
-
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+EXPOSE 5000
+CMD ["serve", "-s", "build"]

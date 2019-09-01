@@ -1,6 +1,8 @@
+dist: trusty
+sudo: required
 language: node_js
 node_js:
-- '9'
+- '10'
 cache:
   directories:
     - ~/.npm
@@ -9,23 +11,38 @@ cache:
   override:
     - npm ci
     - npm run cy:verify
-install:
-  - npm i
-  - npm i -g codecov
-script:
-  - npm test --coverage
-  -  codecov
+
+addons:
+  apt:
+    packages:
+      - docker-ce
+
 jobs:
   include:
-    - stage: "Tests"
-      name: "Unit tests"  
-      script: npm test
-    - script: npm run test:cypress
-      name: "Cypress tests"
-deploy:
-  provider: heroku
-  api_key:
-    secure: Jur4S3cdPpJxHrxU5iPM31fiw/PSQc4ffrKN+azkolzMKB2g5fjEXXHu4ACj/M6Txj7JFyjYECgNhEW/n2f2lDIiwGMCxLAtaQgUZ+mXm35kesjMstXS1cz+UAYYLr+h4unyhpth3j46qLYLJNhUa9U40B21Z7+ljKk8QJzPjvc41W9azC9KOxrhmZdgdATeebYaBsMFcK2Liu/EloDgUKR1bgBgRtE3l3Am8Mz0jlNox9kxOyK+PCSHaKtdvuyPIroR2IjfjDVElbM6whQSKd86a1p6SufQSK5J6xr1IwFE7waLXj9WG0j89vnL2kVuVklDdZXCc9QRtwYQP4pul8KtYJlf4j/jgWR5RWMKs73zRvZIAibQtMJoKlyyYedi4sT3QfVocum0Y2RhaOkdc/7H+BEg2CRzJH2Pz5WBi+ljRsyrdz5EPp7HjpGVlX6N0pENQCHwVzPleD/al2D/kmuJWFW3YbncpcE6v3AZ64LoL5H0LEJy8ZhPjFL9KDpOBA/sdDnKkk03SR4ZVQ8uCJjiqYB1C81MPEkNhSxgygkhv7MMuAsmpvaEbQnWYjec/mUuOssgDT0Kqwq0ZfIh5L/h+gcWhiLhTYuE49c0xEvBSzvfdjS0OWsn4svrxkLtiYwypzx/zvgrNuRJNgfs8Tta2tn3Qm2ZnWhYyikXcx4=
-  app:
-    develop: rv-frontend-dev
-    master: rv-frontend
+    - stage: test
+      env:
+        - DOCKER_COMPOSE_VERSION=1.22.0
+      before_install:
+        - sudo rm /usr/local/bin/docker-compose
+        - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
+        - chmod +x docker-compose
+        - sudo mv docker-compose /usr/local/bin
+      install:
+        - docker build . -t rv-frontend
+        - docker-compose -f docker-compose.test.yml up -d
+        - sleep 15
+        - docker-compose -f docker-compose.test.yml run backend yarn db-migrate
+        - docker-compose -f docker-compose.test.yml run backend yarn db-seed
+        - npm install
+      after_script:
+        - docker-compose -f docker-compose.test.yml down
+      after_success:
+        - "./docker-deploy.sh"
+      script:
+        - npm run lint-js
+        - npm run lint-scss
+        - npm test
+        - npm run test:cypress
+
+stages:
+  - test
