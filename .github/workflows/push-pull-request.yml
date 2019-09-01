@@ -11,19 +11,19 @@ jobs:
         node-version: [10.16.2]
     steps:
     - uses: actions/checkout@v1
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
+      name: Use Node.js ${{ matrix.node-version }}
+    - uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
     - name: Install dependencies
-    - run: npm install
+      run: npm install
   lint_js:
     runs-on: ubuntu-18.04
     name: Lint JavaScript files
     needs: install_deps
     steps:
     - name: Lint JS
-    - run: npm run lint-js
+      run: npm run lint-js
       env:
         CI: true
         SASS_PATH: src
@@ -33,7 +33,7 @@ jobs:
     needs: install_deps
     steps:
     - name: Lint SCSS
-    - run: npm run lint-scss
+      run: npm run lint-scss
       env:
         CI: true
         SASS_PATH: src
@@ -43,10 +43,10 @@ jobs:
     needs: install_deps
     steps:
       - name: Run tests
-      - run: npm test
+        run: npm test
         env:
           CI: true
-   start_back_end:
+  start_back_end:
       runs-on: ubuntu-18.04
       steps:
       - name: Start RV back-end
@@ -54,7 +54,7 @@ jobs:
           docker-compose -f docker-compose.test.yml up -d --build
           docker-compose -f docker-compose.test.yml run backend yarn db-migrate
           docker-compose -f docker-compose.test.yml run backend yarn db-seed
-   run_cypress_tests:
+  run_cypress_tests:
       runs-on: ubuntu-18.04
       name: Run Cypress tests
       needs: [install_deps,start_back_end]
