@@ -4,7 +4,7 @@ on: [push, pull_request]
 
 jobs:
   install_deps:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
     strategy:
       matrix:
         node-version: [10.16.2]
@@ -17,6 +17,7 @@ jobs:
     - name: Install dependencies
       run: npm install
   lint_js:
+    runs-on: ubuntu-18.04
     needs: install_deps
     steps:
     - name: Lint JS
@@ -25,6 +26,7 @@ jobs:
         CI: true
         SASS_PATH: src
   lint_scss:
+    runs-on: ubuntu-18.04
     needs: install_deps
     steps:
     - name: Lint SCSS
@@ -33,6 +35,7 @@ jobs:
         CI: true
         SASS_PATH: src
   run_tests:
+    runs-on: ubuntu-18.04
     needs: install_deps
     steps:
     - name: Run tests
