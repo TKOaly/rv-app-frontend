@@ -36,6 +36,19 @@ const editUser = async (token, editedUserFields) => {
     return res.data.user;
 };
 
+const changePassword = async (token, password) => {
+    await axios.post(
+        `${process.env.REACT_APP_BACKEND_URL}/api/v1/user/changePassword`,
+        { password },
+        {
+            headers: {
+                Authorization: 'Bearer ' + token
+            }
+        }
+    );
+    /* Returns nothing. */
+};
+
 /**
  * Authenticates the user with back-end. Returns an access token.
  * @param {object} user
@@ -71,6 +84,7 @@ const deposit = async (token, amount) => {
 export default {
     getUser,
     editUser,
+    changePassword,
     deposit,
     authenticate,
     registerUser

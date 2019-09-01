@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import ChangePasswordForm from '../forms/ChangePasswordForm';
 import EditUserForm from '../forms/EditUserForm';
 import React from 'react';
 import moneyFormatter from '../../services/moneyFormatter';
@@ -29,15 +30,7 @@ class UserInfo extends React.Component {
                 </table>
                 <div>
                     <EditUserForm />
-                    <form>
-                        <label>New password</label>
-                        <input />
-
-                        <label>New password again</label>
-                        <input />
-
-                        <button>Submit</button>
-                    </form>
+                    <ChangePasswordForm />
                 </div>
             </div>
         );
