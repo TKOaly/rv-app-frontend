@@ -1,6 +1,7 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+**Table of Contents** _generated with [DocToc](https://github.com/thlorenz/doctoc)_
 
 - [rv-app-frontend](#rv-app-frontend)
   - [Introduction](#introduction)
@@ -43,24 +44,38 @@ Please login with `normal_user::hunter2` to use the application.
 
 This guide gives instructions how to run the RV service as a whole (frontend & backend).
 
+### Requirements
+
+- Node.js installed on your environement.
+- Npm installed on your environement.
+- Docker installed on your enviroment.
+- Docker compose installed on your enviroment.
+- Optional: Install `nvm` (Node Version Manager) to quickly switch Node.js versions
+
 ### On the first time
 
-- Install `node.js`
-- Optional: Install `nvm` (Node Version Manager) to quickly switch Node.js versions
-- Install `npm`
-- Install `docker`
-- Add your user to the docker group
-- Install `docker-compose`
-- Install `Visual Studio Code` & plugins for it
-- Clone backend from GitHub (https://github.com/TKOaly/rv-backend)
-- Clone frontend from GitHub (https://github.com/TKOaly/rv-backend)
-- Run `npm install` in backend
-- Run `npm install` in frontend
-- Create a working `.env` file into frontend
-- Run `docker-compose up` in backend
-- Run `npm run db-migrate` in the backend container
-- Run `npm run db-seed` in the backend container
-- Run `npm start` in frontend
+Before copy pasting go to the directory where you want the code environement.
+
+#### Backend
+
+```bash
+git clone git@github.com:TKOaly/rv-backend.git
+cd rv-backend
+docker-compose build
+docker-compose up
+docker-compose run rv-backend npm run db-migrate
+docker-compose run rv-backend npm run db-seed
+```
+
+#### Frontend
+
+```bash
+git clone git@github.com:TKOaly/rv-app-frontend.git
+cd rv-app-frontend
+npm install
+cp .env-example .env
+npm start
+```
 
 ### On every time you open the project
 
