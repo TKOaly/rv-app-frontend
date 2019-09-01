@@ -5,7 +5,7 @@ $base-font-size: 25pt;
 
 // Font scalings
 $success-cancel-font-size: 0.7em;
-$input-font-size: 1.3em;
+$input-font-size: 40px;
 $euro-sign-font-size: 1.5em;
 $btn-font-size: 0.8em;
 $erase-font-size: 0.8em;
@@ -58,7 +58,6 @@ $erase-text-color: #000;
 
   .input::placeholder {
     font-size: $input-font-size;
-    color: black;
   }
 
   .euro-sign {
