@@ -1,10 +1,11 @@
-name: Run tests
+name: Push & Pull Request Continuous Integration
 
 on: [push, pull_request]
 
 jobs:
   install_deps:
     runs-on: ubuntu-18.04
+    name: Install project dependencies
     strategy:
       matrix:
         node-version: [10.16.2]
@@ -18,6 +19,7 @@ jobs:
       run: npm install
   lint_js:
     runs-on: ubuntu-18.04
+    name: Lint JavaScript files
     needs: install_deps
     steps:
     - name: Lint JS
@@ -27,6 +29,7 @@ jobs:
         SASS_PATH: src
   lint_scss:
     runs-on: ubuntu-18.04
+    name: Lint stylesheets
     needs: install_deps
     steps:
     - name: Lint SCSS
@@ -36,9 +39,26 @@ jobs:
         SASS_PATH: src
   run_tests:
     runs-on: ubuntu-18.04
+    name: Run Jest tests
     needs: install_deps
     steps:
     - name: Run tests
       run: npm test
       env:
         CI: true
+   start_back_end:
+      runs-on: ubuntu-18.04
+      name: Start RV back-end
+      run: |
+        docker-compose -f docker-compose.test.yml up -d --build
+        docker-compose -f docker-compose.test.yml run backend yarn db-migrate
+        docker-compose -f docker-compose.test.yml run backend yarn db-seed
+   run_cypress_tests:
+      runs-on: ubuntu-18.04
+      name: Run Cypress tests
+      needs: [install_deps,start_back_end]
+      run: npm run test:cypress     
+      env:
+        CI: true
+        SASS_PATH: src
+        REACT_APP_BACKEND_URL: http://localhost:8080
