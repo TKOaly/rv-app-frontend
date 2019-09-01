@@ -11,8 +11,9 @@ jobs:
         node-version: [10.16.2]
     steps:
     - uses: actions/checkout@v1
-      name: Use Node.js ${{ matrix.node-version }}
+      name: Git checkout
     - uses: actions/setup-node@v1
+      name: Use Node.js ${{ matrix.node-version }}
       with:
         node-version: ${{ matrix.node-version }}
     - name: Install dependencies
@@ -49,6 +50,7 @@ jobs:
   start_back_end:
       runs-on: ubuntu-18.04
       name: Start back-end
+      needs: install_deps
       steps:
       - name: Start RV back-end
         run: |
