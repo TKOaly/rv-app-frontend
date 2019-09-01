@@ -3,14 +3,11 @@ name: Run tests
 on: [push, pull_request]
 
 jobs:
-  build:
-
+  install_deps:
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
         node-version: [10.16.2]
-
     steps:
     - uses: actions/checkout@v1
     - name: Use Node.js ${{ matrix.node-version }}
@@ -19,10 +16,25 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - name: Install dependencies
       run: npm install
+  lint_js:
+    needs: install_deps
+    steps:
     - name: Lint JS
       run: npm run lint-js
-    - name: Lint styles
+      env:
+        CI: true
+        SASS_PATH: src
+  lint_scss:
+    needs: install_deps
+    steps:
+    - name: Lint SCSS
       run: npm run lint-scss
+      env:
+        CI: true
+        SASS_PATH: src
+  run_tests:
+    needs: install_deps
+    steps:
     - name: Run tests
       run: npm test
       env:
