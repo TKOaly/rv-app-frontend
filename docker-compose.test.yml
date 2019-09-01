@@ -1,7 +1,7 @@
 version: '3'
 services:
   backend:
-    image: tkoaly/rv-backend:latest
+    image: tkoaly/rv-backend:latest-dev
     depends_on:
       - db
     ports:
