@@ -19,6 +19,10 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - name: Install dependencies
       run: npm install
+    - name: Lint JS
+      run: npm run lint-js
+    - name: Lint styles
+      run: npm run lint-scss
     - name: Run tests
       run: npm test
       env:
