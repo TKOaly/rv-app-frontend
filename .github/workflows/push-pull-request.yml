@@ -73,7 +73,7 @@ jobs:
     name: Run Cypress tests
     steps:
     - uses: actions/checkout@v1
-    name: Git checkout
+      name: Git checkout
     - name: Start RV back-end
       run: |
         docker-compose -f docker-compose.test.yml up -d --build
