@@ -16,49 +16,52 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - name: Install dependencies
-      run: npm install
+    - run: npm install
   lint_js:
     runs-on: ubuntu-18.04
     name: Lint JavaScript files
     needs: install_deps
     steps:
     - name: Lint JS
-      run: npm run lint-js
+    - run: npm run lint-js
       env:
-        CI: true
-        SASS_PATH: src
+      - CI: true
+      - SASS_PATH: src
   lint_scss:
     runs-on: ubuntu-18.04
     name: Lint stylesheets
     needs: install_deps
     steps:
     - name: Lint SCSS
-      run: npm run lint-scss
+    - run: npm run lint-scss
       env:
-        CI: true
-        SASS_PATH: src
+      - CI: true
+      - SASS_PATH: src
   run_tests:
     runs-on: ubuntu-18.04
     name: Run Jest tests
     needs: install_deps
     steps:
     - name: Run tests
-      run: npm test
+    - run: npm test
       env:
-        CI: true
+      - CI: true
    start_back_end:
       runs-on: ubuntu-18.04
-      name: Start RV back-end
-      run: |
-        docker-compose -f docker-compose.test.yml up -d --build
-        docker-compose -f docker-compose.test.yml run backend yarn db-migrate
-        docker-compose -f docker-compose.test.yml run backend yarn db-seed
+      steps:
+      - name: Start RV back-end
+      - run: |
+          docker-compose -f docker-compose.test.yml up -d --build
+          docker-compose -f docker-compose.test.yml run backend yarn db-migrate
+          docker-compose -f docker-compose.test.yml run backend yarn db-seed
    run_cypress_tests:
       runs-on: ubuntu-18.04
       name: Run Cypress tests
       needs: [install_deps,start_back_end]
-      run: npm run test:cypress     
-      env:
-        CI: true
-        SASS_PATH: src
-        REACT_APP_BACKEND_URL: http://localhost:8080
+      steps:
+        - name: Run Cypress tests
+        - run: npm run test:cypress     
+        env:
+          CI: true
+          SASS_PATH: src
+          REACT_APP_BACKEND_URL: http://localhost:8080
