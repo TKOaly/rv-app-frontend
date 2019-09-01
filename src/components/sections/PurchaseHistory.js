@@ -20,7 +20,7 @@ class PurchaseHistory extends React.Component {
                     <tbody>
                         {this.props.purchaseHistory.map((purchase) => (
                             <tr key={purchase.purchaseId}>
-                                <td>{dateFormatter.dateStringToHumanReadable(purchase.time)}</td>
+                                <td>{dateFormatter.timeStringToOffsetHumanReadable(purchase.time)}</td>
                                 <td>{purchase.product.name}</td>
                                 <td>{moneyFormatter.centsToString(purchase.price)} €</td>
                                 <td>
