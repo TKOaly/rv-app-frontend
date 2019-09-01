@@ -25,8 +25,8 @@ jobs:
     - name: Lint JS
     - run: npm run lint-js
       env:
-      - CI: true
-      - SASS_PATH: src
+        CI: true
+        SASS_PATH: src
   lint_scss:
     runs-on: ubuntu-18.04
     name: Lint stylesheets
@@ -35,22 +35,22 @@ jobs:
     - name: Lint SCSS
     - run: npm run lint-scss
       env:
-      - CI: true
-      - SASS_PATH: src
+        CI: true
+        SASS_PATH: src
   run_tests:
     runs-on: ubuntu-18.04
     name: Run Jest tests
     needs: install_deps
     steps:
-    - name: Run tests
-    - run: npm test
-      env:
-      - CI: true
+      - name: Run tests
+      - run: npm test
+        env:
+          CI: true
    start_back_end:
       runs-on: ubuntu-18.04
       steps:
       - name: Start RV back-end
-      - run: |
+        run: |
           docker-compose -f docker-compose.test.yml up -d --build
           docker-compose -f docker-compose.test.yml run backend yarn db-migrate
           docker-compose -f docker-compose.test.yml run backend yarn db-seed
@@ -60,8 +60,8 @@ jobs:
       needs: [install_deps,start_back_end]
       steps:
         - name: Run Cypress tests
-        - run: npm run test:cypress     
-        env:
-          CI: true
-          SASS_PATH: src
-          REACT_APP_BACKEND_URL: http://localhost:8080
+          run: npm run test:cypress     
+          env:
+            CI: true
+            SASS_PATH: src
+            REACT_APP_BACKEND_URL: http://localhost:8080
