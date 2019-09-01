@@ -48,6 +48,7 @@ jobs:
           CI: true
   start_back_end:
       runs-on: ubuntu-18.04
+      name: Start back-end
       steps:
       - name: Start RV back-end
         run: |
