@@ -26,6 +26,8 @@ jobs:
         docker-compose -f docker-compose.test.yml run backend yarn db-migrate
         docker-compose -f docker-compose.test.yml run backend yarn db-seed
     - name: Run Cypress tests
-      run: npm run test:cypress
+      run: npm run test:cypress     
       env:
         CI: true
+        SASS_PATH: src
+        REACT_APP_BACKEND_URL: http://localhost:8080
