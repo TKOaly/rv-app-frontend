@@ -1,10 +1,8 @@
 import { buyProduct } from './productReducer';
 import { errorMessage } from './notificationReducer';
-import gtinValidator from '../services/gtinValidator';
 
 export const initialState = {
-    terminalInput: '',
-    inputValid: false
+    terminalInput: ''
 };
 
 export const terminalActions = {
@@ -27,15 +25,11 @@ export const resetTerminal = () => {
 
 export const handleTerminalSubmit = (barcode, token) => {
     return async (dispatch, getState) => {
-        if (gtinValidator.validateGtin(barcode)) {
-            const foundProduct = getState().products.products.find((product) => product.barcode === barcode);
-            if (foundProduct !== undefined) {
-                dispatch(buyProduct(foundProduct, 1));
-            } else {
-                dispatch(errorMessage('Product not found'));
-            }
+        const foundProduct = getState().products.products.find((product) => product.barcode === barcode);
+        if (foundProduct !== undefined) {
+            dispatch(buyProduct(foundProduct, 1));
         } else {
-            dispatch(errorMessage('Invalid barcode'));
+            dispatch(errorMessage('Product not found'));
         }
         dispatch(resetTerminal());
     };
@@ -49,7 +43,7 @@ export const handleTerminalSubmit = (barcode, token) => {
 const terminalReducer = (state = initialState, action) => {
     switch (action.type) {
         case terminalActions.SET_TERMINAL_TEXT:
-            return { ...state, terminalInput: action.text, inputValid: gtinValidator.validateGtin(action.text) };
+            return { ...state, terminalInput: action.text };
         case terminalActions.RESET_TERMINAL:
             return initialState;
         default:

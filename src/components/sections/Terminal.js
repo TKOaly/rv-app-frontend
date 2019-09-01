@@ -44,11 +44,11 @@ class Terminal extends React.Component {
     };
 
     handleTerminalInputChange = (event) => {
-        this.props.setTerminalText(event.target.value.replace(/\D/,''));
+        this.props.setTerminalText(event.target.value.replace(/\D/, ''));
     };
 
     render = () => {
-        const className = this.props.inputValid ? 'input fullWidth valid' : 'input fullWidth invalid';
+        const className = 'input fullWidth';
         return (
             <div className="terminal">
                 <form onSubmit={this.handleSubmit}>
@@ -69,7 +69,6 @@ class Terminal extends React.Component {
 const mapStateToProps = (state) => {
     return {
         terminalInput: state.terminal.terminalInput,
-        inputValid: state.terminal.inputValid,
         token: state.authentication.access_token
     };
 };
