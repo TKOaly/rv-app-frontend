@@ -13,7 +13,9 @@ export const productActions = {
     SET_BUY_AMOUNT: 'SET_BUY_AMOUNT',
     RESET_PRODUCTS: 'RESET_PRODUCTS',
     RESET_CATEGORIES: 'RESET_CATEGORIES',
-    SET_PRODUCT_STOCK: 'SET_PRODUCT_STOCK'
+    SET_PRODUCT_STOCK: 'SET_PRODUCT_STOCK',
+    SET_FEATURED_PRODUCTS: 'SET_FEATURED_PRODUCTS',
+    RESET_FEATURED_PRODUCTS: 'RESET_FEATURED_PRODUCTS'
 };
 
 export const initialState = {
@@ -23,7 +25,9 @@ export const initialState = {
     categories: [],
     filter: '',
     selectedCategory: -1,
-    buyAmount: 1
+    buyAmount: 1,
+    featuredProducts: [],
+    featuredProductsLoaded: false
 };
 
 export const setFilter = (filter) => {
@@ -64,6 +68,19 @@ export const setProductStock = (productId, stock) => {
         type: productActions.SET_PRODUCT_STOCK,
         productId,
         stock
+    };
+};
+
+export const setFeaturedProducts = (featuredProducts) => {
+    return {
+        type: productActions.SET_FEATURED_PRODUCTS,
+        featuredProducts
+    };
+};
+
+export const resetFeaturedProducts = () => {
+    return {
+        type: productActions.RESET_FEATURED_PRODUCTS
     };
 };
 
@@ -158,6 +175,10 @@ const productReducer = (state = initialState, action) => {
                 })
             };
         }
+        case productActions.SET_FEATURED_PRODUCTS:
+            return { ...state, featuredProducts: action.featuredProducts, featuredProductsLoaded: true };
+        case productActions.RESET_FEATURED_PRODUCTS:
+            return { ...state, featuredProducts: [], featuredProductsLoaded: false };
         default:
             return state;
     }

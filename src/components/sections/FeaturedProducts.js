@@ -1,11 +1,12 @@
 import './styles/FeaturedProducts.scss';
 import { connect } from 'react-redux';
+import { resetFeaturedProducts, setFeaturedProducts } from '../../reducers/productReducer';
 import FeaturedProductItem from './FeaturedProductItem';
 import Loader from '../loaders/Loader';
 import React from 'react';
 
 class FeaturedProducts extends React.Component {
-    getFeaturedProducts = () => {
+    calculateFeaturedProducts = () => {
         const productBuyCounts = new Map();
 
         /* Stores products ids and purchase counts into the map for the last 100 purchases. */
@@ -31,17 +32,30 @@ class FeaturedProducts extends React.Component {
             .filter((product) => product !== undefined);
     };
 
+    onComponentMountOrUpdate = () => {
+        if (!this.props.fetchingProducts && !this.props.fetchingPurchases && !this.props.featuredProductsLoaded) {
+            this.props.setFeaturedProducts(this.calculateFeaturedProducts());
+        }
+    };
+
+    componentDidUpdate = this.onComponentMountOrUpdate;
+    componentDidMount = this.onComponentMountOrUpdate;
+
+    componentWillUnmount = () => {
+        this.props.resetFeaturedProducts();
+    };
+
     render = () => {
         return (
             <div className="featured-products">
                 <div className="featured-header">
                     <h2>Click 'n' Buy</h2>
                 </div>
-                {this.props.fetchingProducts || this.props.fetchingPurchases ? (
+                {!this.props.featuredProductsLoaded ? (
                     <Loader />
                 ) : (
                     <ul>
-                        {this.getFeaturedProducts().map((p) => (
+                        {this.props.featuredProducts.map((p) => (
                             <FeaturedProductItem key={p.productId} product={p} />
                         ))}
                     </ul>
@@ -56,8 +70,18 @@ const mapStateToProps = (state) => {
         products: state.products.products,
         fetchingProducts: state.products.gettingProducts,
         purchaseHistory: state.history.purchaseHistory,
-        fetchingPurchases: state.history.fetchingPurchases
+        fetchingPurchases: state.history.fetchingPurchases,
+        featuredProducts: state.products.featuredProducts,
+        featuredProductsLoaded: state.products.featuredProductsLoaded
     };
 };
 
-export default connect(mapStateToProps)(FeaturedProducts);
+const mapDispatchToProps = {
+    setFeaturedProducts,
+    resetFeaturedProducts
+};
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(FeaturedProducts);
