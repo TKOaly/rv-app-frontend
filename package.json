@@ -59,7 +59,7 @@
     "husky": "^3.0.9",
     "prettier-stylelint": "^0.4.2",
     "react-test-renderer": "^16.11.0",
-    "redux-mock-store": "^1.5.1",
+    "redux-mock-store": "^1.5.3",
     "sinon": "^7.5.0",
     "start-server-and-test": "^1.10.6",
     "stylelint": "^11.1.1",
