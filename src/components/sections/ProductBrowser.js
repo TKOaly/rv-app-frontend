@@ -5,27 +5,26 @@ import Loader from '../loaders/Loader';
 import ProductBrowserItem from './ProductBrowserItem';
 import React from 'react';
 
-const sortProducts = (products) => {
-    return products.sort((a, b) => {
-        const aname = a.name.toLowerCase();
-        const bname = b.name.toLowerCase();
+const productSorter = (a, b) => {
+    const aName = a.name.toLowerCase();
+    const bName = b.name.toLowerCase();
 
-        return aname < bname ? -1 : aname === bname ? 0 : 1;
-    });
+    return aName.localeCompare(bName);
 };
 
-const filterProducts = (products, selectedCategory, filter) => {
-    return products.filter((p) => {
-        return (
-            (selectedCategory === -1 || p.category.categoryId === selectedCategory) &&
-            (p.name
+const sortProducts = (products) => [...products.sort(productSorter)];
+
+const filterProducts = (products, selectedCategory, filter) => products.filter((p) => {
+    const { name, category: { categoryId }, barcode } = p;
+    return (
+        (selectedCategory === -1 || categoryId === selectedCategory) &&
+            (name
                 .toLowerCase()
                 .trim()
                 .includes(filter.toLowerCase().trim()) ||
-                p.barcode === filter.trim())
-        );
-    });
-};
+                barcode === filter.trim())
+    );
+});
 
 class ProductBrowser extends React.Component {
     componentWillUnmount = () => {
@@ -33,9 +32,7 @@ class ProductBrowser extends React.Component {
         this.props.setCategorySelected(-1);
     };
 
-    getVisibleProducts = () => {
-        return sortProducts(filterProducts(this.props.products, this.props.selectedCategory, this.props.filter));
-    };
+    getVisibleProducts = () => sortProducts(filterProducts(this.props.products, this.props.selectedCategory, this.props.filter));
 
     getVisibleCategories = () => {
         return this.props.categories.filter((categ) => categ.categoryId !== 65535);
