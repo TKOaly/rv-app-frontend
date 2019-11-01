@@ -84,15 +84,33 @@ export const resetFeaturedProducts = () => {
     };
 };
 
+export const setCategories = (categories) => ({
+    type: productActions.SET_CATEGORIES,
+    categories
+});
+
+export const setProducts = (products) => ({
+    type: productActions.SET_PRODUCTS,
+    products
+});
+
+export const setGettingProducts = () => ({
+    type: productActions.SET_GETTING_PRODUCTS
+});
+
+export const setGettingCategories = () => ({
+    type: productActions.SET_GETTING_CATEGORIES
+});
+
 export const getProducts = (token) => {
     return async (dispatch) => {
         try {
-            dispatch({ type: productActions.SET_GETTING_PRODUCTS });
+            dispatch(setGettingProducts());
             const products = await productService.getAllProducts(token);
-            dispatch({
-                type: productActions.SET_PRODUCTS,
-                products: products.filter((product) => product.category.categoryId !== 65535)
-            });
+            dispatch(setProducts(products.filter(
+                (product) => product.category.categoryId !== 65535
+            )
+            ));
         } catch (err) {
             dispatch(errorMessage('Failed to fetch products'));
         }
@@ -102,12 +120,9 @@ export const getProducts = (token) => {
 export const getCategories = (token) => {
     return async (dispatch) => {
         try {
-            dispatch({ type: productActions.SET_GETTING_CATEGORIES });
+            dispatch(setGettingCategories());
             const categories = await productService.getAllCategories(token);
-            dispatch({
-                type: productActions.SET_CATEGORIES,
-                categories
-            });
+            dispatch(setCategories(categories));
         } catch (err) {
             dispatch(errorMessage('Failed to fetch categories'));
         }
@@ -119,7 +134,11 @@ export const buyProduct = (product, quantity) => {
         const token = getState().authentication.access_token;
 
         try {
-            const res = await productService.buyProduct(product.barcode, quantity, token);
+            const res = await productService.buyProduct(
+                product.barcode,
+                quantity,
+                token
+            );
 
             dispatch(setBalance(res.accountBalance));
             dispatch(setProductStock(product.productId, res.productStock));
@@ -152,7 +171,11 @@ const productReducer = (state = initialState, action) => {
         case productActions.SET_PRODUCTS:
             return { ...state, products: action.products, gettingProducts: false };
         case productActions.SET_CATEGORIES:
-            return { ...state, categories: action.categories, gettingCategories: false };
+            return {
+                ...state,
+                categories: action.categories,
+                gettingCategories: false
+            };
         case productActions.SET_FILTER:
             return { ...state, filter: action.filter };
         case productActions.SET_SELECTED_CATEGORY:
@@ -176,7 +199,11 @@ const productReducer = (state = initialState, action) => {
             };
         }
         case productActions.SET_FEATURED_PRODUCTS:
-            return { ...state, featuredProducts: action.featuredProducts, featuredProductsLoaded: true };
+            return {
+                ...state,
+                featuredProducts: action.featuredProducts,
+                featuredProductsLoaded: true
+            };
         case productActions.RESET_FEATURED_PRODUCTS:
             return { ...state, featuredProducts: [], featuredProductsLoaded: false };
         default:
