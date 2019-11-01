@@ -1,6 +1,6 @@
 import './styles/ProductBrowser.scss';
 import { connect } from 'react-redux';
-import { filterWhiteList } from '../../productIds';
+import { filterByPositiveStock } from '../../productUtils';
 import { setCategorySelected, setFilter } from '../../reducers/productReducer';
 import Loader from '../loaders/Loader';
 import ProductBrowserItem from './ProductBrowserItem';
@@ -14,8 +14,6 @@ const productSorter = (a, b) => {
 };
 
 const sortProducts = (products) => [...products.sort(productSorter)];
-
-const filterByPositiveStock = (p) => p.stock > 0 || filterWhiteList.indexOf(p.productId) > -1;
 
 const filterProducts = (
     products,
