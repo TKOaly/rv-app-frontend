@@ -32,7 +32,9 @@ export const editUser = (token, editedUserFields) => {
 
             dispatch(successMessage('User edited successfully'));
         } catch (err) {
-            dispatch(errorMessage('Error while editing user: ' + err.response.data.message));
+            dispatch(
+                errorMessage('Error while editing user: ' + err.response.data.message)
+            );
         }
     };
 };
@@ -52,7 +54,13 @@ export const increaseBalance = (token, amount) => {
             dispatch(setBalance(res.accountBalance));
             dispatch(addDeposit(res.deposit));
 
-            dispatch(successMessage('Deposited into RV-account ' + moneyFormatter.centsToString(amount) + ' €'));
+            dispatch(
+                successMessage(
+                    'Deposited into RV-account ' +
+            moneyFormatter.centsToString(amount) +
+            ' €'
+                )
+            );
         } catch (err) {
             dispatch(errorMessage('Error while making a deposit: ' + err));
         }
@@ -76,7 +84,7 @@ const userReducer = (state = initialState, action) => {
         case userActions.SET_USER_DATA:
             return { ...action.user };
         case userActions.RESET_USER_DATA:
-            return initialState;
+            return { ...initialState };
         case userActions.INCREASE_BALANCE:
             return { ...state, moneyBalance: state.moneyBalance + action.amount };
         case userActions.SET_BALANCE:
