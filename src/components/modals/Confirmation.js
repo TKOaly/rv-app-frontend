@@ -29,10 +29,10 @@ export class Confirmation extends React.Component {
     handleKeyDown = (event) => {
         if (event.key === 'Enter') {
             event.preventDefault();
-            this.handleConfirm();
+            this.handleConfirm(event);
         } else if (event.key === 'Escape') {
             event.preventDefault();
-            this.handleCancel();
+            this.handleCancel(event);
         }
     };
 
