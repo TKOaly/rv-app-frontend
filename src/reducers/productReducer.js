@@ -15,7 +15,8 @@ export const productActions = {
     RESET_CATEGORIES: 'RESET_CATEGORIES',
     SET_PRODUCT_STOCK: 'SET_PRODUCT_STOCK',
     SET_FEATURED_PRODUCTS: 'SET_FEATURED_PRODUCTS',
-    RESET_FEATURED_PRODUCTS: 'RESET_FEATURED_PRODUCTS'
+    RESET_FEATURED_PRODUCTS: 'RESET_FEATURED_PRODUCTS',
+    SET_SHOW_ONLY_PRODUCTS_WITH_POSITIVE_STOCK: 'SET_SHOW_ONLY_PRODUCTS_WITH_POSITIVE_STOCK'
 };
 
 export const initialState = {
@@ -24,6 +25,7 @@ export const initialState = {
     gettingCategories: false,
     categories: [],
     filter: '',
+    showOnlyPositiveStock: true,
     selectedCategory: -1,
     buyAmount: 1,
     featuredProducts: [],
@@ -41,6 +43,13 @@ export const setCategorySelected = (category) => {
     return {
         type: productActions.SET_SELECTED_CATEGORY,
         category
+    };
+};
+
+export const setShowOnlyAvailableProducts = (value) => {
+    return {
+        type: productActions.SET_SHOW_ONLY_PRODUCTS_WITH_POSITIVE_STOCK,
+        value
     };
 };
 
@@ -206,6 +215,8 @@ const productReducer = (state = initialState, action) => {
             };
         case productActions.RESET_FEATURED_PRODUCTS:
             return { ...state, featuredProducts: [], featuredProductsLoaded: false };
+        case productActions.SET_SHOW_ONLY_PRODUCTS_WITH_POSITIVE_STOCK:
+            return { ...state, showOnlyPositiveStock: action.value };
         default:
             return state;
     }
