@@ -96,5 +96,5 @@ jobs:
     needs: [install_deps, lint_js, lint_scss, run_tests, run_cypress_tests]
     steps:
       - name: Push to Docker registry
-      if: github.event_name == 'push' && github.event.action == 'unassigned'
-      run: ./docker-deploy.sh
+        if: github.event_name == 'push' && github.event.action == 'unassigned'
+        run: ./docker-deploy.sh
