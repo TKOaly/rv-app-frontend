@@ -30,7 +30,7 @@ class MainPage extends React.Component {
                 <Content />
                 <AutoLogout
                     logUserOut={this.handleLogout}
-                    timerMs={Number(process.env.REACT_APP_AUTO_LOGOUT_SECONDS || 60) * 1000000}
+                    timerMs={Number(process.env.REACT_APP_AUTO_LOGOUT_SECONDS || 60) * 1000}
                 />
             </div>
         );
