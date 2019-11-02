@@ -21,7 +21,6 @@
 
 .form-shadow {
   border-radius: $base-border-radius;
-
   @if $login-form-box-shadow {
     box-shadow: $box-shadow;
   }
@@ -46,7 +45,6 @@
   color: $input-text-color;
   background-color: transparent;
   text-align: center;
-
   @if $input-box-shadow {
     box-shadow: $box_shadow;
   }

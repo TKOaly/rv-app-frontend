@@ -46,15 +46,13 @@ $material-design-curve-deceleration: cubic-bezier(0, 0, 0.2, 1);
   animation: slide-out 0.5s forwards;
   -webkit-animation: slide-out 0.5s forwards;
 }
-
 @keyframes slide-in {
-  
+ 
   100% {
     opacity: 1;
     transform: translateX(0%);
   }
 }
-
 @-webkit-keyframes slide-in {
 
   100% {
@@ -62,7 +60,6 @@ $material-design-curve-deceleration: cubic-bezier(0, 0, 0.2, 1);
     -webkit-transform: translateX(0%);
   }
 }
-
 @keyframes slide-out {
 
   0% {
@@ -75,7 +72,6 @@ $material-design-curve-deceleration: cubic-bezier(0, 0, 0.2, 1);
     transform: translateX(100%);
   }
 }
-
 @-webkit-keyframes slide-out {
 
   0% {
@@ -86,7 +82,6 @@ $material-design-curve-deceleration: cubic-bezier(0, 0, 0.2, 1);
     -webkit-transform: translateX(100%);
   }
 }
-
 @keyframes scaleAnimation {
 
   0% {
@@ -99,7 +94,6 @@ $material-design-curve-deceleration: cubic-bezier(0, 0, 0.2, 1);
     transform: scale(1);
   }
 }
-
 @keyframes drawCircle {
 
   0% {
@@ -110,7 +104,6 @@ $material-design-curve-deceleration: cubic-bezier(0, 0, 0.2, 1);
     stroke-dashoffset: 0;
   }
 }
-
 @keyframes drawCheck {
 
   0% {
@@ -121,7 +114,6 @@ $material-design-curve-deceleration: cubic-bezier(0, 0, 0.2, 1);
     stroke-dashoffset: 0;
   }
 }
-
 @keyframes fadeOut {
 
   0% {
@@ -132,7 +124,6 @@ $material-design-curve-deceleration: cubic-bezier(0, 0, 0.2, 1);
     opacity: 0;
   }
 }
-
 @keyframes fadeIn {
 
   0% {
