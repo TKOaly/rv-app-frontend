@@ -3,14 +3,17 @@ import './styles/HeaderBtn.scss';
 import Loader from '../loaders/Loader';
 import PropTypes from 'prop-types';
 import React from 'react';
+import classNames from 'classnames';
 
 const HeaderBtn = ({ onClick, children, fill, hover, loader, className, ...props }) => {
-    let className2 = 'btn';
-    fill ? (className2 += ' headerbtn-fill') : (className2 += ' headerbtn');
-    hover && (fill ? (className2 += ' headerbtn-fill-hover') : (className2 += ' headerbtn-hover'));
-
     return (
-        <button {...props} onClick={onClick} className={className2 + ' ' + (className ? className : '')}>
+        <button {...props} onClick={onClick} className={classNames('btn', {
+            'headerbtn-fill-hover': fill && hover,
+            'headerbtn-hover': !fill && hover,
+            headerbtn: !fill,
+            'headerbtn-fill': fill,
+            [className]: className !== undefined
+        })}>
             {!loader ? <span className="btnContent">{children}</span> : <Loader />}
         </button>
     );

@@ -15,14 +15,14 @@ class ProductBrowserItem extends React.Component {
 
     render = () => {
         return (
-            <li className="product-list-item">
+            <div className="product-list-item">
                 <a role="button" href="/" onClick={this.handleClick}>
                     <span className="product-list-item-name">{this.props.product.name}</span>
                     <span className="product-list-item-price">
                         {moneyFormatter.centsToString(this.props.product.sellPrice)} €
                     </span>
                 </a>
-            </li>
+            </div>
         );
     };
 }

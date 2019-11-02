@@ -3,6 +3,7 @@ import './styles/Button.scss';
 import Loader from '../loaders/Loader';
 import PropTypes from 'prop-types';
 import React from 'react';
+import classNames from 'classnames';
 
 /**
  * Basic button.
@@ -10,12 +11,17 @@ import React from 'react';
  * Suitable for UI actions, that do not change the current page or execute a critical action, such as submitting a form.
  */
 const BasicBtn = ({ onClick, children, fill, hover, loader, ...props }) => {
-    let className = 'btn';
-    fill ? (className += ' basic-fill') : (className += ' basic');
-    hover && (fill ? (className += ' basic-fill-hover') : (className += ' basic-hover'));
-
     return (
-        <button {...props} onClick={onClick} className={className}>
+        <button
+            {...props}
+            onClick={onClick}
+            className={classNames('btn', {
+                'basic-fill-hover': fill && hover,
+                'basic-hover': !fill && hover,
+                basic: !fill,
+                'basic-fill': fill
+            })}
+        >
             {!loader ? <span className="btnContent">{children}</span> : <Loader />}
         </button>
     );

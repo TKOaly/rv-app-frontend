@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { increaseBalance } from '../../reducers/userReducer';
 import { resetAmount, toggleConfirmationVisibility } from '../../reducers/depositReducer';
 import React from 'react';
+import classNames from 'classnames';
 import moneyFormatter from '../../services/moneyFormatter';
 
 export class Confirmation extends React.Component {
@@ -48,10 +49,10 @@ export class Confirmation extends React.Component {
                     <span className="confirm-title-text">Confirm <b>{moneyFormatter.centsToString(depositAmount)} €</b> deposit</span>
                     <br />
                     <br />
-                    <button className="btn number cancel cancelBtn confirmation-cancel-btn" onClick={this.handleCancel}>
+                    <button className={classNames('btn','number', 'cancel', 'cancelBtn', 'confirmation-cancel-btn')} onClick={this.handleCancel}>
                         Cancel (ESC)
                     </button>
-                    <button className="btn number success confirmBtn confirmation-ok-btn" onClick={this.handleConfirm}>
+                    <button className={classNames('btn','number', 'success', 'confirmBtn', 'confirmation-ok-btn')} onClick={this.handleConfirm}>
                         OK (ENTER)
                     </button>
                 </div>

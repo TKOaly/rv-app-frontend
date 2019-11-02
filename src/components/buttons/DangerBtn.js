@@ -3,13 +3,20 @@ import './styles/DangerBtn.scss';
 import Loader from '../loaders/Loader';
 import PropTypes from 'prop-types';
 import React from 'react';
+import classNames from 'classnames';
 
 const DangerBtn = ({ onClick, children, fill, hover, loader, ...props }) => {
-    let className = 'btn';
-    fill ? (className += ' danger-fill') : (className += ' danger');
-    hover && (fill ? (className += ' danger-fill-hover') : (className += ' danger-hover'));
     return (
-        <button {...props} onClick={onClick} className={className}>
+        <button
+            {...props}
+            onClick={onClick}
+            className={classNames('btn', {
+                'danger-fill-hover': fill && hover,
+                'danger-hover': !fill && hover,
+                danger: !fill,
+                'danger-fill': fill
+            })}
+        >
             {!loader ? <span className="btnContent">{children}</span> : <Loader />}
         </button>
     );

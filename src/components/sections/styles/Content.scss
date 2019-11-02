@@ -1,14 +1,17 @@
+@import "vars";
+@import "mixins";
+
+$col-gap: 5px;
+
 main {
-  flex-grow: 1;
   margin: 16px;
-  display: flex;
-  flex-direction: column;
-  min-height: 0;
 
   .products-container {
-    flex-grow: 1;
-    display: flex;
-    min-height: 0;
+    width: 100%;
+    display: grid;
+    grid-template-columns: calc(240px - #{$col-gap/2}) calc(100% - 240px - #{$col-gap/2}); 
+    grid-template-rows: 70vh;
+    column-gap: $col-gap;
   }
 
   .terminal-container {

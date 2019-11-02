@@ -1,13 +1,16 @@
 import './styles/SuccessNotification.scss';
 import PropTypes from 'prop-types';
 import React from 'react';
+import classNames from 'classnames';
 
 /**
  * Success notification component.
  */
 const SuccessNotification = ({ message, shadow, children }) => {
     return (
-        <div className={shadow ? 'success-message success-message-shadow' : 'success-message'}>
+        <div  className={classNames('success-message', {
+            'success-message-shadow': shadow
+        })}>
             <div className="inner">
                 <svg
                     id="successAnimation"

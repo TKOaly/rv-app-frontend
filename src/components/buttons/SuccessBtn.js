@@ -3,14 +3,16 @@ import './styles/SuccessBtn.scss';
 import Loader from '../loaders/Loader';
 import PropTypes from 'prop-types';
 import React from 'react';
+import classNames from 'classnames';
 
 const SuccessBtn = ({ onClick, children, fill, hover, loader, ...props }) => {
-    let className = 'btn';
-    fill ? (className += ' success-fill') : (className += ' success');
-    hover && (fill ? (className += ' success-fill-hover') : (className += ' success-hover'));
-
     return (
-        <button {...props} onClick={onClick} className={className}>
+        <button {...props} onClick={onClick} className={classNames('btn', {
+            'success-fill-hover': fill && hover,
+            'success-hover': !fill && hover,
+            success: !fill,
+            'success-fill': fill
+        })}>
             {!loader ? <span className="btnContent">{children}</span> : <Loader />}
         </button>
     );

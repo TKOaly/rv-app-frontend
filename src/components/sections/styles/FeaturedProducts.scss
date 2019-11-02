@@ -1,4 +1,5 @@
 @import "vars";
+@import "mixins";
 
 .featured-products {
   background: $container-background-color;
@@ -7,6 +8,7 @@
   box-shadow: $box-shadow;
   height: 100%;
   overflow: hidden;
+  width: 100%;
 
   .featured-header {
     display: flex;
