@@ -2,7 +2,7 @@
 
 exports[`<HeaderBtn/> renders without crashing 1`] = `
 <button
-  className="btn headerbtn "
+  className="btn headerbtn"
   onClick={null}
 >
   <span
