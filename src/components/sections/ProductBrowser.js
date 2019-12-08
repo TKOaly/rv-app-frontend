@@ -6,14 +6,10 @@ import Loader from '../loaders/Loader';
 import ProductBrowserItem from './ProductBrowserItem';
 import React from 'react';
 
-const productSorter = (a, b) => {
-    const aName = a.name.toLowerCase();
-    const bName = b.name.toLowerCase();
-
-    return aName.localeCompare(bName);
+/* Note: mutating function */
+const sortProducts = (products) => {
+    return products.sort((a, b) => a.name.localeCompare(b.name));
 };
-
-const sortProducts = (products) => [...products.sort(productSorter)];
 
 const filterProducts = (products, selectedCategory, filter, showOnlyAvailableProducts) => {
     return products.filter((p) => {
