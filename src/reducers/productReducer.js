@@ -16,7 +16,7 @@ export const productActions = {
     SET_PRODUCT_STOCK: 'SET_PRODUCT_STOCK',
     SET_FEATURED_PRODUCTS: 'SET_FEATURED_PRODUCTS',
     RESET_FEATURED_PRODUCTS: 'RESET_FEATURED_PRODUCTS',
-    SET_SHOW_ONLY_PRODUCTS_WITH_POSITIVE_STOCK: 'SET_SHOW_ONLY_PRODUCTS_WITH_POSITIVE_STOCK'
+    SET_SHOW_ONLY_AVAILABLE_PRODUCTS: 'SET_SHOW_ONLY_AVAILABLE_PRODUCTS'
 };
 
 export const initialState = {
@@ -25,7 +25,7 @@ export const initialState = {
     gettingCategories: false,
     categories: [],
     filter: '',
-    showOnlyPositiveStock: true,
+    showOnlyAvailableProducts: true,
     selectedCategory: -1,
     buyAmount: 1,
     featuredProducts: [],
@@ -48,7 +48,7 @@ export const setCategorySelected = (category) => {
 
 export const setShowOnlyAvailableProducts = (value) => {
     return {
-        type: productActions.SET_SHOW_ONLY_PRODUCTS_WITH_POSITIVE_STOCK,
+        type: productActions.SET_SHOW_ONLY_AVAILABLE_PRODUCTS,
         value
     };
 };
@@ -116,10 +116,7 @@ export const getProducts = (token) => {
         try {
             dispatch(setGettingProducts());
             const products = await productService.getAllProducts(token);
-            dispatch(setProducts(products.filter(
-                (product) => product.category.categoryId !== 65535
-            )
-            ));
+            dispatch(setProducts(products.filter((product) => product.category.categoryId !== 65535)));
         } catch (err) {
             dispatch(errorMessage('Failed to fetch products'));
         }
@@ -143,11 +140,7 @@ export const buyProduct = (product, quantity) => {
         const token = getState().authentication.access_token;
 
         try {
-            const res = await productService.buyProduct(
-                product.barcode,
-                quantity,
-                token
-            );
+            const res = await productService.buyProduct(product.barcode, quantity, token);
 
             dispatch(setBalance(res.accountBalance));
             dispatch(setProductStock(product.productId, res.productStock));
@@ -215,8 +208,8 @@ const productReducer = (state = initialState, action) => {
             };
         case productActions.RESET_FEATURED_PRODUCTS:
             return { ...state, featuredProducts: [], featuredProductsLoaded: false };
-        case productActions.SET_SHOW_ONLY_PRODUCTS_WITH_POSITIVE_STOCK:
-            return { ...state, showOnlyPositiveStock: action.value };
+        case productActions.SET_SHOW_ONLY_AVAILABLE_PRODUCTS:
+            return { ...state, showOnlyAvailableProducts: action.value };
         default:
             return state;
     }

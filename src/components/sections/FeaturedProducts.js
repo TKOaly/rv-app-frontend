@@ -1,6 +1,6 @@
 import './styles/FeaturedProducts.scss';
 import { connect } from 'react-redux';
-import { filterByPositiveStock } from '../../productUtils';
+import { isAvailableProduct } from '../../services/filterUtils';
 import { resetFeaturedProducts, setFeaturedProducts } from '../../reducers/productReducer';
 import FeaturedProductItem from './FeaturedProductItem';
 import Loader from '../loaders/Loader';
@@ -28,14 +28,9 @@ class FeaturedProducts extends React.Component {
             .slice(0, 10)
             .map((mapEntry) => mapEntry[0]);
 
-        const mostBoughtProducts = mostBought
+        return mostBought
             .map((productId) => this.props.products.find((product) => product.productId === productId))
-            .filter((product) => product !== undefined);
-
-        if(this.props.showOnlyPositiveStock) {
-            return mostBoughtProducts.filter(filterByPositiveStock);
-        }
-        return mostBoughtProducts;
+            .filter((product) => product !== undefined && isAvailableProduct(product));
     };
 
     onComponentMountOrUpdate = () => {
@@ -78,8 +73,7 @@ const mapStateToProps = (state) => {
         purchaseHistory: state.history.purchaseHistory,
         fetchingPurchases: state.history.fetchingPurchases,
         featuredProducts: state.products.featuredProducts,
-        featuredProductsLoaded: state.products.featuredProductsLoaded,
-        showOnlyPositiveStock: state.products.showOnlyPositiveStock
+        featuredProductsLoaded: state.products.featuredProductsLoaded
     };
 };
 
