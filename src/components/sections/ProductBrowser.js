@@ -1,5 +1,6 @@
 import './styles/ProductBrowser.scss';
 import { connect } from 'react-redux';
+import { isAvailableProduct } from '../../services/filterUtils';
 import { setCategorySelected, setFilter } from '../../reducers/productReducer';
 import Loader from '../loaders/Loader';
 import ProductBrowserItem from './ProductBrowserItem';
@@ -14,17 +15,24 @@ const productSorter = (a, b) => {
 
 const sortProducts = (products) => [...products.sort(productSorter)];
 
-const filterProducts = (products, selectedCategory, filter) => products.filter((p) => {
-    const { name, category: { categoryId }, barcode } = p;
-    return (
-        (selectedCategory === -1 || categoryId === selectedCategory) &&
+const filterProducts = (products, selectedCategory, filter, showOnlyAvailableProducts) => {
+    return products.filter((p) => {
+        const {
+            name,
+            category: { categoryId },
+            barcode
+        } = p;
+        return (
+            (selectedCategory === -1 || categoryId === selectedCategory) &&
             (name
                 .toLowerCase()
                 .trim()
                 .includes(filter.toLowerCase().trim()) ||
-                barcode === filter.trim())
-    );
-});
+                barcode === filter.trim()) &&
+            (!showOnlyAvailableProducts || isAvailableProduct(p))
+        );
+    });
+};
 
 class ProductBrowser extends React.Component {
     componentWillUnmount = () => {
@@ -32,7 +40,15 @@ class ProductBrowser extends React.Component {
         this.props.setCategorySelected(-1);
     };
 
-    getVisibleProducts = () => sortProducts(filterProducts(this.props.products, this.props.selectedCategory, this.props.filter));
+    getVisibleProducts = () =>
+        sortProducts(
+            filterProducts(
+                this.props.products,
+                this.props.selectedCategory,
+                this.props.filter,
+                this.props.showOnlyAvailableProducts
+            )
+        );
 
     getVisibleCategories = () => {
         return this.props.categories.filter((categ) => categ.categoryId !== 65535);
@@ -102,6 +118,7 @@ const mapStateToProps = (state) => {
         filter: state.products.filter,
         selectedCategory: state.products.selectedCategory,
         categories: state.products.categories,
+        showOnlyAvailableProducts: state.products.showOnlyAvailableProducts,
         token: state.user.token
     };
 };

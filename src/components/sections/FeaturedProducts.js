@@ -1,5 +1,6 @@
 import './styles/FeaturedProducts.scss';
 import { connect } from 'react-redux';
+import { isAvailableProduct } from '../../services/filterUtils';
 import { resetFeaturedProducts, setFeaturedProducts } from '../../reducers/productReducer';
 import FeaturedProductItem from './FeaturedProductItem';
 import Loader from '../loaders/Loader';
@@ -29,7 +30,7 @@ class FeaturedProducts extends React.Component {
 
         return mostBought
             .map((productId) => this.props.products.find((product) => product.productId === productId))
-            .filter((product) => product !== undefined);
+            .filter((product) => product !== undefined && isAvailableProduct(product));
     };
 
     onComponentMountOrUpdate = () => {
