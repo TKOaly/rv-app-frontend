@@ -145,7 +145,7 @@ export const buyProduct = (product, quantity) => {
             dispatch(setBalance(res.accountBalance));
             dispatch(setProductStock(product.productId, res.productStock));
             for (const purchase of res.purchases) {
-                dispatch(addPurchase(purchase));
+                dispatch(addPurchase({ ...purchase, product }));
             }
 
             dispatch(addProductToNotification(product, quantity));
