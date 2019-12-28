@@ -24,7 +24,7 @@ class PurchaseHistory extends React.Component {
                                 <td>{purchase.product.name}</td>
                                 <td>{moneyFormatter.centsToString(purchase.price)} €</td>
                                 <td>
-                                    {moneyFormatter.centsToString(purchase.balanceAfter - purchase.price)} € ->{' '}
+                                    {moneyFormatter.centsToString(purchase.balanceAfter + purchase.price)} € ->{' '}
                                     {moneyFormatter.centsToString(purchase.balanceAfter)} €
                                 </td>
                             </tr>
