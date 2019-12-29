@@ -72,10 +72,10 @@ export const resetCategories = () => {
     };
 };
 
-export const setProductStock = (productId, stock) => {
+export const setProductStock = (barcode, stock) => {
     return {
         type: productActions.SET_PRODUCT_STOCK,
-        productId,
+        barcode,
         stock
     };
 };
@@ -143,7 +143,7 @@ export const buyProduct = (product, quantity) => {
             const res = await productService.buyProduct(product.barcode, quantity, token);
 
             dispatch(setBalance(res.accountBalance));
-            dispatch(setProductStock(product.productId, res.productStock));
+            dispatch(setProductStock(product.barcode, res.productStock));
             for (const purchase of res.purchases) {
                 dispatch(addPurchase({ ...purchase, product }));
             }
@@ -192,7 +192,7 @@ const productReducer = (state = initialState, action) => {
             return {
                 ...state,
                 products: state.products.map((product) => {
-                    if (product.productId === action.productId) {
+                    if (product.barcode === action.barcode) {
                         return { ...product, stock: action.stock };
                     } else {
                         return product;

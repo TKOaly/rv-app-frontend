@@ -12,7 +12,6 @@ export const mockedCategories = [
 export const mockedProducts = [
     {
         barcode: '12345678',
-        productId: 1,
         name: 'Test product',
         category: {
             ...mockedCategories[0]
@@ -23,7 +22,6 @@ export const mockedProducts = [
     },
     {
         barcode: '12345679',
-        productId: 2,
         name: 'Test product 2',
         category: {
             ...mockedCategories[1]

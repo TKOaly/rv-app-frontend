@@ -136,7 +136,7 @@ describe('productReducer', () => {
         };
         const store = mockStore(state);
 
-        await store.dispatch(buyProduct({productId: 1}, 20));
+        await store.dispatch(buyProduct({ barcode: '00000000' }, 20));
 
         const actions = store.getActions();
 
@@ -144,10 +144,10 @@ describe('productReducer', () => {
         expect(actions[0].type).toBe(userActions.SET_BALANCE);
         expect(actions[0].balance).toBe(1000);
         expect(actions[1].type).toBe(productActions.SET_PRODUCT_STOCK);
-        expect(actions[1].productId).toBe(1);
+        expect(actions[1].barcode).toBe('00000000');
         expect(actions[1].stock).toBe(99);
         expect(actions[2].type).toBe(notificationActions.ADD_PRODUCT_TO_PURCHASE);
         expect(actions[2].data.count).toBe(20);
-        expect(actions[2].data.product.productId).toBe(1);
+        expect(actions[2].data.product.barcode).toBe('00000000');
     });
 });

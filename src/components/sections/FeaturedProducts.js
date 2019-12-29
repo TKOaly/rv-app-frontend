@@ -10,26 +10,26 @@ class FeaturedProducts extends React.Component {
     calculateFeaturedProducts = () => {
         const productBuyCounts = new Map();
 
-        /* Stores products ids and purchase counts into the map for the last 100 purchases. */
+        /* Stores barcodes and purchase counts into the map for the last 100 purchases. */
         for (let i = 0; i < this.props.purchaseHistory.length && i < 100; i++) {
-            const productId = this.props.purchaseHistory[i].product.productId;
+            const barcode = this.props.purchaseHistory[i].product.barcode;
 
             /* Increment or create new entry. */
-            if (productBuyCounts.has(productId)) {
-                productBuyCounts.set(productId, productBuyCounts.get(productId) + 1);
+            if (productBuyCounts.has(barcode)) {
+                productBuyCounts.set(barcode, productBuyCounts.get(barcode) + 1);
             } else {
-                productBuyCounts.set(productId, 1);
+                productBuyCounts.set(barcode, 1);
             }
         }
 
-        /* 10 most purchased product ids within the last 100 purchases. */
+        /* 10 most purchased barcodes within the last 100 purchases. */
         const mostBought = [...productBuyCounts.entries()]
             .sort((a, b) => b[1] - a[1])
             .slice(0, 10)
             .map((mapEntry) => mapEntry[0]);
 
         return mostBought
-            .map((productId) => this.props.products.find((product) => product.productId === productId))
+            .map((barcode) => this.props.products.find((product) => product.barcode === barcode))
             .filter((product) => product !== undefined && isAvailableProduct(product));
     };
 
@@ -57,7 +57,7 @@ class FeaturedProducts extends React.Component {
                 ) : (
                     <ul>
                         {this.props.featuredProducts.map((p) => (
-                            <FeaturedProductItem key={p.productId} product={p} />
+                            <FeaturedProductItem key={p.barcode} product={p} />
                         ))}
                     </ul>
                 )}
@@ -82,7 +82,4 @@ const mapDispatchToProps = {
     resetFeaturedProducts
 };
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(FeaturedProducts);
+export default connect(mapStateToProps, mapDispatchToProps)(FeaturedProducts);

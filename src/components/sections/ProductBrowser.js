@@ -97,7 +97,7 @@ class ProductBrowser extends React.Component {
                     ) : (
                         <ul>
                             {this.getVisibleProducts().map((p) => (
-                                <ProductBrowserItem key={p.productId} product={p} />
+                                <ProductBrowserItem key={p.barcode} product={p} />
                             ))}
                         </ul>
                     )}
@@ -124,7 +124,4 @@ const mapDispatchToProps = {
     setCategorySelected
 };
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(ProductBrowser);
+export default connect(mapStateToProps, mapDispatchToProps)(ProductBrowser);
