@@ -203,7 +203,3 @@ App
             FeaturedProducts
             Terminal
 ```
-
-## License
-
-This project is licensed with GNU GPL v2 license.
